@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <com.summerrc.dumplingplan.ui.widget.KeywordsFlow
+        android:id="@+id/keywordsFlow"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"/>
+
+    <include layout="@layout/activity_welcome_layer" />
+
+</FrameLayout>

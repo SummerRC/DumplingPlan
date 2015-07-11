@@ -1,0 +1,72 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="fill_parent"
+     android:layout_height="fill_parent"
+    android:id="@+id/view_item_rootView"
+    android:clickable="false"
+    android:focusable="false">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="54dp"
+        android:layout_marginLeft="32dp"
+        android:id="@+id/viewPager_viewContainer"/>
+
+    <ImageView
+        android:id="@+id/iv_lemon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/iv_banana"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="56dp"
+        android:background="@mipmap/lemon"/>
+
+    <ImageView
+        android:id="@+id/iv_mangosteen_lock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_lemon"
+        android:layout_above="@+id/iv_banana"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:background="@mipmap/mangosteen_lock"/>
+
+    <ImageView
+        android:id="@+id/iv_watermelon_lock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_mangosteen_lock"
+        android:layout_above="@+id/iv_banana"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:background="@mipmap/watermelon_lock"/>
+
+    <ImageView
+        android:id="@+id/iv_dragon_fruit_lock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_banana"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="110dp"
+        android:layout_marginLeft="16dp"
+        android:background="@mipmap/dragon_fruit_lock"/>
+
+    <ImageView
+        android:id="@+id/iv_banana"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="110dp"
+        android:layout_marginLeft="60dp"
+        android:background="@mipmap/banana_lock"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/word_fruit"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="50dp"/>
+
+</RelativeLayout>

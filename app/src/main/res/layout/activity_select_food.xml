@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rootView"
+    tools:context="com.summerrc.dumplingplan.ui.activity.SelectFoodActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/viewContainer" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:clickable="false"
+        android:focusable="false"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"/>
+
+    <ImageView
+        android:id="@+id/iv_basket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="8dp"
+        android:background="@mipmap/basket"/>
+
+    <ImageView
+        android:id="@+id/iv_left_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/left_arrow"
+        android:layout_marginLeft="8dp"
+        android:visibility="gone"
+        android:layout_centerVertical="true"/>
+
+    <ImageView
+        android:id="@+id/iv_right_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:background="@mipmap/right_arrow"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+
+    <ImageView
+        android:id="@+id/iv_hint_word"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+        android:layout_marginRight="80dp"
+        android:background="@mipmap/hint_next"/>
+
+    <LinearLayout
+        android:id="@+id/ll_hint_select_food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginLeft="38dp"
+        android:gravity="top">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/tip_arrow"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="4dp"
+            android:background="@mipmap/hint_select"/>
+    </LinearLayout>
+
+    <include layout="@layout/view_common"/>
+</RelativeLayout>
