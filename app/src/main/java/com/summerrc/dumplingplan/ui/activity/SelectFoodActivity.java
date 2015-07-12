@@ -17,6 +17,10 @@ import com.summerrc.dumplingplan.ui.adapter.SelectFoodPagerAdapter;
 import com.summerrc.dumplingplan.utils.UIHelper;
 import java.util.ArrayList;
 
+/**
+ * @author SummerRC on 2015.07.12
+ * description : 选择食材界面
+ */
 public class SelectFoodActivity extends BaseActivity implements View.OnClickListener{
     private Bitmap bitmap_background_select_food;
     private ViewPager viewPager;
@@ -102,14 +106,14 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
                 UIHelper.openSelectSeasoningActivity(this);
                 break;
             case R.id.iv_eggplant:
-                UIHelper.openFoodDescriptionActivity(this, SELECT_FOOD_ACTIVITY, FoodTypeManager.Food.EGGPLANT);
+                UIHelper.openFoodDescriptionActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_FOOD, SELECT_FOOD_ACTIVITY, FoodTypeManager.Food.EGGPLANT);
                 break;
             case R.id.iv_beef:
-                UIHelper.openFoodDescriptionActivity(this, SELECT_FOOD_ACTIVITY, FoodTypeManager.Food.BEEF);
+                UIHelper.openFoodDescriptionActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_FOOD, SELECT_FOOD_ACTIVITY, FoodTypeManager.Food.BEEF);
                // animatorSetStart(iv_beef);
                 break;
             case R.id.iv_lemon:
-                UIHelper.openFoodDescriptionActivity(this, SELECT_FOOD_ACTIVITY, FoodTypeManager.Food.LEMON);
+                UIHelper.openFoodDescriptionActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_FOOD, SELECT_FOOD_ACTIVITY, FoodTypeManager.Food.LEMON);
                //animatorSetStart(iv_lemon);
                 break;
             case R.id.iv_left_arrow:
@@ -120,7 +124,7 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
                 //viewPager.setCurrentItem((index+1) % 4);
                 break;
             case R.id.iv_basket:
-                UIHelper.openBasketActivity(this);
+                UIHelper.openBasketActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_FOOD);
                 break;
         }
     }
@@ -162,7 +166,7 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
     }
 
     /**
-     * 食材飞入菜篮，并且提示消失下一关按钮显示
+     * 食材飞入菜篮然后淡出消失，并且提示消失下一关按钮显示
      * @param view 选中的食材
      */
     private void animatorSetStart(View view) {
@@ -184,11 +188,17 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
         animatorSet.start();
     }
 
+    /**
+     * FoodDescriptionActivity(食材详情)结束后的回调
+     * @param requestCode   标示符，标识启动哪个Activity
+     * @param resultCode      标示符 启动结果成功还是失败
+     * @param data                 返回的数据
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode==SELECT_FOOD_ACTIVITY && resultCode==RESULT_OK) {
             Bundle bundle = data.getExtras();
-            FoodTypeManager.Food food = (FoodTypeManager.Food)bundle.getSerializable(IntentConstant.Selected_food);
+            FoodTypeManager.Food food = (FoodTypeManager.Food)bundle.getSerializable(IntentConstant.SELECTED_FOOD);
             switch (food) {
                 case EGGPLANT:
                     animatorSetStart(iv_eggplant);

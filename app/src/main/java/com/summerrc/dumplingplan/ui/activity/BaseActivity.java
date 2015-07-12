@@ -13,11 +13,12 @@ import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Toast;
 import com.summerrc.dumplingplan.R;
+import com.summerrc.dumplingplan.config.GameDataManager;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
- * 相关Activity的父类
- * @author SummerRC
+ * @author SummerRC on 2015.07.12
+ * description : 相关Activity的父类
  */
 public abstract class BaseActivity extends Activity implements View.OnClickListener, View.OnTouchListener{
     private long firstTime;
@@ -91,7 +92,8 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
                 clickBtnResume();
                 touchResult = true;
                 break;
-            case R.id.iv_yes:                       //两种情况：返回首页或者重玩本关卡
+            case R.id.iv_yes:                       //两种情况：返回首页或者重玩本关卡,记得要清空游戏游戏数据
+                GameDataManager.init().clean();
                 switch (tipType) {
                     case TYPE_BACK:
                         UIHelper.openWelcomeActivity(this);

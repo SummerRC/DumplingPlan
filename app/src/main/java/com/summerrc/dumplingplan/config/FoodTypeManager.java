@@ -14,6 +14,7 @@ import java.util.HashMap;
 public  class FoodTypeManager implements Serializable{
     public enum Food{
         CABBAGE, CUCUMBER, EGGPLANT, PIMIENTO, TOMATO, BEEF, CHICKEN, CRAB, PORK, SHRIMP, BANANA,DRAGON_FRUIT, LEMON, MANGO_STEAN, WATERMELON
+        , OIL, SALT, SAUCE
     }
     public static final String UNLOCK = "unlock";
     public static final String LOCK = "lock";
@@ -86,6 +87,15 @@ public  class FoodTypeManager implements Serializable{
                 map.put(UNLOCK, R.mipmap.watermelon);
                 map.put(LOCK, R.mipmap.watermelon_lock);
                 break;
+            case OIL:
+                map.put(UNLOCK, R.mipmap.oil);
+                break;
+            case SALT:
+                map.put(UNLOCK, R.mipmap.salt);
+                break;
+            case SAUCE:
+                map.put(UNLOCK, R.mipmap.sauce);
+                break;
         }
         return map;
     }
@@ -130,6 +140,15 @@ public  class FoodTypeManager implements Serializable{
             case MANGO_STEAN:
                 break;
             case WATERMELON:
+                break;
+            case OIL:
+                resourceId = R.mipmap.oil_description;
+                break;
+            case SALT:
+                resourceId = R.mipmap.salt_description;
+                break;
+            case SAUCE:
+                resourceId = R.mipmap.sauce_description;
                 break;
         }
         return resourceId;

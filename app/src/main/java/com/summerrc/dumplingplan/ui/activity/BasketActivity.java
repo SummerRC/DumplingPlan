@@ -4,32 +4,33 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.FoodTypeManager;
 import com.summerrc.dumplingplan.config.GameDataManager;
-
+import com.summerrc.dumplingplan.config.IntentConstant;
 import java.util.ArrayList;
 
 /**
- * 菜篮的弹出界面
+ * @author SummerRC on 2015.07.12
+ * description : 点击菜篮弹出这个Activity,背景透明位置居中
  */
 public class BasketActivity extends Activity implements View.OnClickListener{
     private Bitmap bitmap_background_basket_popup_box;
+    private String ACTIVITY_TYPE;                                       //启动菜篮Activity的Activity
+    private ArrayList<FoodTypeManager.Food> list;       //食材集合或者调料集合，有启动Activity的类型决定
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);/** 去掉标题栏和信息栏 */
+        super.onCreate(savedInstanceState);
+        /** 去掉标题栏和信息栏 */
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_basket);
+        initData();
         initView();
     }
 
@@ -52,27 +53,35 @@ public class BasketActivity extends Activity implements View.OnClickListener{
         }
     }
 
+    private void initData() {
+        ACTIVITY_TYPE = getIntent().getStringExtra(IntentConstant.ACTIVITY_TYPE);
+        if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_FOOD)) {                        //食材
+            list = GameDataManager.init().getFoodList();
+        } else if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_SEASONING)){     //调料
+            list = GameDataManager.init().getSeasoningList();
+        }
+    }
+
     private void initView() {
-        ArrayList<FoodTypeManager.Food> foodList = GameDataManager.init().getFoodList();
-        for(int i=0; i<foodList.size(); i++) {
+        for(int i=0; i<list.size(); i++) {
             switch (i) {
                 case 0:
                     findViewById(R.id.iv_one).setVisibility(View.VISIBLE);
                     findViewById(R.id.iv_remove_one).setVisibility(View.VISIBLE);
                     findViewById(R.id.iv_remove_one).setOnClickListener(this);
-                    findViewById(R.id.iv_one).setBackgroundResource(FoodTypeManager.getHashMap(foodList.get(i)).get(FoodTypeManager.UNLOCK));
+                    findViewById(R.id.iv_one).setBackgroundResource(FoodTypeManager.getHashMap(list.get(i)).get(FoodTypeManager.UNLOCK));
                     break;
                 case 1:
                     findViewById(R.id.iv_two).setVisibility(View.VISIBLE);
                     findViewById(R.id.iv_remove_two).setVisibility(View.VISIBLE);
                     findViewById(R.id.iv_remove_two).setOnClickListener(this);
-                    findViewById(R.id.iv_two).setBackgroundResource(FoodTypeManager.getHashMap(foodList.get(i)).get(FoodTypeManager.UNLOCK));
+                    findViewById(R.id.iv_two).setBackgroundResource(FoodTypeManager.getHashMap(list.get(i)).get(FoodTypeManager.UNLOCK));
                     break;
                 case 2:
                     findViewById(R.id.iv_three).setVisibility(View.VISIBLE);
                     findViewById(R.id.iv_remove_three).setVisibility(View.VISIBLE);
                     findViewById(R.id.iv_remove_three).setOnClickListener(this);
-                    findViewById(R.id.iv_three).setBackgroundResource(FoodTypeManager.getHashMap(foodList.get(i)).get(FoodTypeManager.UNLOCK));
+                    findViewById(R.id.iv_three).setBackgroundResource(FoodTypeManager.getHashMap(list.get(i)).get(FoodTypeManager.UNLOCK));
                     break;
             }
         }
@@ -86,17 +95,17 @@ public class BasketActivity extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_remove_one:
-                GameDataManager.init().getFoodList().remove(0);
+                list.remove(0);
                 findViewById(R.id.iv_remove_one).setVisibility(View.INVISIBLE);
                 findViewById(R.id.iv_one).setVisibility(View.INVISIBLE);
                 break;
             case R.id.iv_remove_two:
-                GameDataManager.init().getFoodList().remove(1);
+                list.remove(1);
                 findViewById(R.id.iv_remove_two).setVisibility(View.INVISIBLE);
                 findViewById(R.id.iv_two).setVisibility(View.INVISIBLE);
                 break;
             case R.id.iv_remove_three:
-                GameDataManager.init().getFoodList().remove(2);
+                list.remove(2);
                 findViewById(R.id.iv_remove_three).setVisibility(View.INVISIBLE);
                 findViewById(R.id.iv_three).setVisibility(View.INVISIBLE);
                 break;

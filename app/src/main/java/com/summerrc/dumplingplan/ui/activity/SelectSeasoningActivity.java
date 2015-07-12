@@ -1,18 +1,29 @@
 package com.summerrc.dumplingplan.ui.activity;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import com.summerrc.dumplingplan.R;
+import com.summerrc.dumplingplan.config.FoodTypeManager;
+import com.summerrc.dumplingplan.config.IntentConstant;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
+/**
+ * @author SummerRC on 2015.07.12
+ * description : 选择调料界面
+ */
 public class SelectSeasoningActivity extends BaseActivity implements View.OnClickListener{
     private ImageView iv_salt;
     private ImageView iv_sauce;
     private ImageView iv_oil;
     private Bitmap bitmap_background_select_seasoning;
+    private static final int SELECT_SEASONING_ACTIVITY = 1;          //onActivityForResult方法回调的标识符
 
     @Override
     protected void setView() {
@@ -38,7 +49,8 @@ public class SelectSeasoningActivity extends BaseActivity implements View.OnClic
         iv_oil.setOnClickListener(this);
         iv_salt.setOnClickListener(this);
         iv_sauce.setOnClickListener(this);
-        translateAnimationStart(findViewById(R.id.ll_hint_select_food), 0, 100, 800, Integer.MAX_VALUE, false);
+        findViewById(R.id.iv_basket).setOnClickListener(this);
+        translateAnimationStart(findViewById(R.id.ll_hint_select_food), 0, 50, 800, Integer.MAX_VALUE, false);
     }
 
     @Override
@@ -48,37 +60,16 @@ public class SelectSeasoningActivity extends BaseActivity implements View.OnClic
                 UIHelper.openStuffingActivity(this);
                 break;
             case R.id.iv_salt:
-                if(findViewById(R.id.ll_hint_select_food).getVisibility()==View.VISIBLE) {
-                    translateAnimationStop(findViewById(R.id.ll_hint_select_food));
-                    findViewById(R.id.ll_hint_select_food).setVisibility(View.GONE);
-                }
-                super.hintToNext();
-                int x = PhoneWidth - (int)iv_salt.getX();
-                int y = PhoneHeight - (int)iv_salt.getY();
-                translateAnimationStart(iv_salt, x, -y, 1000, 0, true);
-                iv_salt.setVisibility(View.INVISIBLE);
+                UIHelper.openFoodDescriptionActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_SEASONING, SELECT_SEASONING_ACTIVITY, FoodTypeManager.Food.SALT);
                 break;
             case R.id.iv_sauce:
-                if(findViewById(R.id.ll_hint_select_food).getVisibility()==View.VISIBLE) {
-                    translateAnimationStop(findViewById(R.id.ll_hint_select_food));
-                    findViewById(R.id.ll_hint_select_food).setVisibility(View.GONE);
-                }
-                super.hintToNext();
-                int x1 = PhoneWidth - (int)iv_sauce.getX();
-                int y1 = PhoneHeight - (int)iv_sauce.getY();
-                translateAnimationStart(iv_sauce, x1, -y1, 1000, 0, true);
-                iv_sauce.setVisibility(View.INVISIBLE);
+                UIHelper.openFoodDescriptionActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_SEASONING, SELECT_SEASONING_ACTIVITY, FoodTypeManager.Food.SAUCE);
                 break;
             case R.id.iv_oil:
-                if(findViewById(R.id.ll_hint_select_food).getVisibility()==View.VISIBLE) {
-                    translateAnimationStop(findViewById(R.id.ll_hint_select_food));
-                    findViewById(R.id.ll_hint_select_food).setVisibility(View.GONE);
-                }
-                super.hintToNext();
-                int x2 = PhoneWidth - (int)iv_oil.getX();
-                int y2 = PhoneHeight - (int)iv_oil.getY();
-                translateAnimationStart(iv_oil, x2, -y2, 1000, 0, true);
-                iv_oil.setVisibility(View.INVISIBLE);
+                UIHelper.openFoodDescriptionActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_SEASONING, SELECT_SEASONING_ACTIVITY, FoodTypeManager.Food.OIL);
+                break;
+            case R.id.iv_basket:
+                UIHelper.openBasketActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_SEASONING);
                 break;
         }
     }
@@ -90,6 +81,54 @@ public class SelectSeasoningActivity extends BaseActivity implements View.OnClic
             bitmap_background_select_seasoning.isRecycled();
             bitmap_background_select_seasoning = null;
             System.gc();
+        }
+    }
+
+    /**
+     * 调料飞入菜篮然后淡出消失，并且提示消失下一关按钮显示
+     * @param view 选中的调料
+     */
+    private void animatorSetStart(View view) {
+        if(findViewById(R.id.ll_hint_select_food).getVisibility()==View.VISIBLE) {
+            translateAnimationStop(findViewById(R.id.ll_hint_select_food));
+            findViewById(R.id.ll_hint_select_food).setVisibility(View.GONE);
+        }
+        super.hintToNext();
+
+        AnimatorSet animatorSet = new AnimatorSet();
+        int x = (int)findViewById(R.id.iv_basket).getX() - (int)view.getX();
+        int y = (int)findViewById(R.id.iv_basket).getY() - (int)view.getY();
+        ObjectAnimator anim1 = ObjectAnimator.ofFloat(view, "translationX", 0f , x);
+        ObjectAnimator anim2 = ObjectAnimator.ofFloat(view, "translationY", 0f , y);
+        ObjectAnimator anim3 = ObjectAnimator.ofFloat(view,"alpha",1f,0f);
+        animatorSet.play(anim1).with(anim2);
+        animatorSet.play(anim3).after(anim2);
+        animatorSet.setDuration(1000);
+        animatorSet.start();
+    }
+
+    /**
+     * FoodDescriptionActivity(食材详情)结束后的回调
+     * @param requestCode   标示符，标识启动哪个Activity
+     * @param resultCode      标示符 启动结果成功还是失败
+     * @param data                 返回的数据
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==SELECT_SEASONING_ACTIVITY && resultCode==RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            FoodTypeManager.Food food = (FoodTypeManager.Food)bundle.getSerializable(IntentConstant.SELECTED_FOOD);
+            switch (food) {
+                case SALT:
+                    animatorSetStart(iv_salt);
+                    break;
+                case OIL:
+                    animatorSetStart(iv_oil);
+                    break;
+                case SAUCE:
+                    animatorSetStart(iv_sauce);
+                    break;
+            }
         }
     }
 

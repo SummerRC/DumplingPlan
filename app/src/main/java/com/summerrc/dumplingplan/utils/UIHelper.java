@@ -139,19 +139,25 @@ public class UIHelper {
     /**
      * 启动食材详情界面
      * @param currentActivity 当前运行的Activity的实例
+     * @param activity_type     用于标识由哪个Activity来启动
+     * @param requestCode    回调的请求类型，也是起标示符作用
+     * @param food  被点中的食材或者调料
      */
-    public static void openFoodDescriptionActivity(Activity currentActivity, int requestCode, FoodTypeManager.Food food) {
+    public static void openFoodDescriptionActivity(Activity currentActivity, String activity_type, int requestCode, FoodTypeManager.Food food) {
         Intent intent = new Intent(currentActivity, FoodDescriptionActivity.class);
-        intent.putExtra(IntentConstant.Selected_food, food);
+        intent.putExtra(IntentConstant.SELECTED_FOOD, food);
+        intent.putExtra(IntentConstant.ACTIVITY_TYPE, activity_type);
         currentActivity.startActivityForResult(intent, requestCode);
     }
 
     /**
      * 启动菜篮详情界面
      * @param currentActivity 当前运行的Activity的实例
+     * @param activity_type     用于标识由哪个Activity来启动
      */
-    public static void openBasketActivity(Activity currentActivity) {
+    public static void openBasketActivity(Activity currentActivity, String activity_type) {
         Intent intent = new Intent(currentActivity, BasketActivity.class);
+        intent.putExtra(IntentConstant.ACTIVITY_TYPE, activity_type);
         currentActivity.startActivity(intent);
     }
 }
