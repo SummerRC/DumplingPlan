@@ -10,7 +10,8 @@ import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
- * 包饺子
+ * @author SummerRC on 2015.07.12
+ * description : 包饺子界面
  */
 public class PackActivity extends BaseActivity implements View.OnClickListener{
     private Bitmap bitmap_background_pack;

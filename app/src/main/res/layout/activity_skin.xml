@@ -1,6 +1,7 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/background_skin"
     android:id="@+id/rootView">
 
     <RelativeLayout
@@ -8,72 +9,79 @@
         android:layout_height="match_parent"
         android:id="@+id/viewContainer" />
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/iv_basket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:layout_gravity="right"
+        android:layout_margin="8dp"
+        android:background="@mipmap/basket"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/skin_one"/>
+    <ImageView
+        android:id="@+id/iv_skin_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:background="@mipmap/skin_one"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/skin_two"/>
+    <ImageView
+        android:id="@+id/iv_skin_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="60dp"
+        android:background="@mipmap/skin_two"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/skin_three"/>
+    <ImageView
+        android:id="@+id/iv_skin_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="120dp"
+        android:background="@mipmap/skin_three"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/skin_four"/>
+    <ImageView
+        android:id="@+id/iv_skin_four"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="60dp"
+        android:background="@mipmap/skin_four"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/skin_five"/>
+    <ImageView
+        android:id="@+id/iv_skin_five"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="120dp"
+        android:background="@mipmap/skin_five"/>
 
-        </LinearLayout>
+    <ImageView
+        android:id="@+id/iv_skin_big"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="@mipmap/skin_big"/>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp">
-
-            <ImageView
-                android:id="@+id/iv_skin_big"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@mipmap/skin_big"/>
-
-            <ImageView
-                android:id="@+id/iv_rolling_pin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@mipmap/rolling_pin"/>
-        </RelativeLayout>
-
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/iv_rolling_pin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="@mipmap/rolling_pin"/>
 
     <RelativeLayout
         android:id="@+id/rl_hint_skin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_gravity="center">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -82,14 +90,14 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="100dp"
                 android:layout_marginRight="160dp"
                 android:background="@mipmap/double_arrow_left"/>
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="100dp"
                 android:background="@mipmap/double_arrow_right"/>
         </LinearLayout>
 
@@ -101,6 +109,8 @@
 
     </RelativeLayout>
 
+
+
     <include layout="@layout/view_common"/>
 
-</RelativeLayout>
+</FrameLayout>
