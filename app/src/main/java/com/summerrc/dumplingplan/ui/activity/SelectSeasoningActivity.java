@@ -1,5 +1,6 @@
 package com.summerrc.dumplingplan.ui.activity;
 
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
@@ -24,6 +25,8 @@ public class SelectSeasoningActivity extends BaseActivity implements View.OnClic
     private ImageView iv_oil;
     private Bitmap bitmap_background_select_seasoning;
     private static final int SELECT_SEASONING_ACTIVITY = 1;          //onActivityForResult方法回调的标识符
+    private float x_location;
+    private float y_location;
 
     @Override
     protected void setView() {
@@ -88,7 +91,9 @@ public class SelectSeasoningActivity extends BaseActivity implements View.OnClic
      * 调料飞入菜篮然后淡出消失，并且提示消失下一关按钮显示
      * @param view 选中的调料
      */
-    private void animatorSetStart(View view) {
+    private void animatorSetStart(final View view) {
+        x_location = view.getX();
+        y_location = view.getY();
         if(findViewById(R.id.ll_hint_select_food).getVisibility()==View.VISIBLE) {
             translateAnimationStop(findViewById(R.id.ll_hint_select_food));
             findViewById(R.id.ll_hint_select_food).setVisibility(View.GONE);
@@ -105,6 +110,26 @@ public class SelectSeasoningActivity extends BaseActivity implements View.OnClic
         animatorSet.play(anim3).after(anim2);
         animatorSet.setDuration(1000);
         animatorSet.start();
+        animatorSet.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {}
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                /** 动画结束之后放回原位置 */
+                view.clearAnimation();
+                view.setX(x_location);
+                view.setY(y_location);
+                ObjectAnimator.ofFloat(view,"alpha",0.6f,1f).start();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {}
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+            }
+        });
     }
 
     /**

@@ -1,18 +1,25 @@
 package com.summerrc.dumplingplan.ui.activity;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
+
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
- * 包饺子
+ * @author SummerRC on 2015.07.12
+ * description : 下饺子界面
  */
-public class PutActivity extends BaseActivity implements View.OnClickListener{
+public class PutActivity extends BaseActivity  {
     private Bitmap bitmap_background_put;
+    private ImageView iv_cover_pad;                     //放饺子的盖
+    private ImageView iv_pod;                                //锅
 
     @Override
     protected void setView() {
@@ -31,16 +38,14 @@ public class PutActivity extends BaseActivity implements View.OnClickListener{
 
     protected void initView() {
         super.initView();
-       findViewById(R.id.iv_cover_pad).setOnTouchListener(this);
+        iv_cover_pad = (ImageView) findViewById(R.id.iv_cover_pad);
+        iv_cover_pad.setOnTouchListener(this);
+        iv_pod = (ImageView) findViewById(R.id.iv_pod);
+        findViewById(R.id.iv_next).setOnTouchListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.iv_next:
-                UIHelper.openShakeActivity(this);
-                break;
-        }
     }
 
     @Override
@@ -55,18 +60,37 @@ public class PutActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
+        super.onTouch(v, event);
         switch (v.getId()) {
+            case R.id.iv_next:
+                UIHelper.openShakeActivity(this);
+                break;
             case R.id.iv_cover_pad:
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        findViewById(R.id.iv_next).setVisibility(View.VISIBLE);
                         break;
                     case MotionEvent.ACTION_MOVE:
+                        findViewById(R.id.iv_next).setVisibility(View.VISIBLE);
+                        animatorSetStart();
                         break;
                     case MotionEvent.ACTION_UP:
                         break;
                 }
         }
-        return super.onTouch(v, event);
+        return true;
+    }
+
+    /**
+     * 盖子移动的动画
+     */
+    private void animatorSetStart() {
+        AnimatorSet animatorSet = new AnimatorSet();
+        int x = (int)iv_pod.getX() - (int)iv_cover_pad.getX();
+        int y = (int)iv_pod.getY() - (int)iv_cover_pad.getY();
+        ObjectAnimator anim1 = ObjectAnimator.ofFloat(iv_cover_pad, "translationX", 0f , x+240);
+        ObjectAnimator anim2 = ObjectAnimator.ofFloat(iv_cover_pad, "translationY", 0f , y-60);
+        animatorSet.play(anim1).with(anim2);
+        animatorSet.setDuration(1000);
+        animatorSet.start();
     }
 }

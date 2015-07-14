@@ -1,14 +1,11 @@
 package com.summerrc.dumplingplan.config;
 
-import android.content.Context;
-
 import com.summerrc.dumplingplan.R;
-
 import java.io.Serializable;
 import java.util.HashMap;
 
 /**
- * Created by SummerRC on 2015/7/11 0011.
+ * @author SummerRC on 2015/7/11 0011.
  * 系统中所有的食材种类
  */
 public  class FoodTypeManager implements Serializable{

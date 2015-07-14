@@ -5,7 +5,7 @@ import com.summerrc.dumplingplan.R;
 import java.util.HashMap;
 
 /**
- * Created by SummerRC on 2015/7/11 0011.
+ * @author SummerRC on 2015/7/11 0011.
  * 系统中所有的调料种类
  */
 public class SeaSoningManager {

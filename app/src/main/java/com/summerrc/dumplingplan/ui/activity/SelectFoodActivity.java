@@ -1,7 +1,9 @@
 package com.summerrc.dumplingplan.ui.activity;
 
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.TypeEvaluator;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,6 +11,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.FoodTypeManager;
@@ -29,6 +32,8 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
     private ImageView iv_beef;
     private ImageView iv_lemon;
     private static final int SELECT_FOOD_ACTIVITY = 1;
+    private float x_location;
+    private float y_location;
 
     @Override
     protected void setView() {
@@ -169,7 +174,9 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
      * 食材飞入菜篮然后淡出消失，并且提示消失下一关按钮显示
      * @param view 选中的食材
      */
-    private void animatorSetStart(View view) {
+    private void animatorSetStart(final View view) {
+        x_location = view.getX();
+        y_location = view.getY();
         if(findViewById(R.id.ll_hint_select_food).getVisibility()==View.VISIBLE) {
             translateAnimationStop(findViewById(R.id.ll_hint_select_food));
             findViewById(R.id.ll_hint_select_food).setVisibility(View.GONE);
@@ -181,18 +188,40 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
         int y = (int)findViewById(R.id.iv_basket).getY() - (int)view.getY();
         ObjectAnimator anim1 = ObjectAnimator.ofFloat(view, "translationX", 0f , x);
         ObjectAnimator anim2 = ObjectAnimator.ofFloat(view, "translationY", 0f , y);
-        ObjectAnimator anim3 = ObjectAnimator.ofFloat(view,"alpha",1f,0f);
+        ObjectAnimator anim3 = ObjectAnimator.ofFloat(view,"alpha",1f,0.6f);
         animatorSet.play(anim1).with(anim2);
         animatorSet.play(anim3).after(anim2);
         animatorSet.setDuration(1000);
         animatorSet.start();
+        animatorSet.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                /** 动画结束之后放回原位置 */
+                view.clearAnimation();
+                view.setX(x_location);
+                view.setY(y_location);
+                ObjectAnimator.ofFloat(view,"alpha",0.6f,1f).start();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+            }
+        });
     }
 
     /**
      * FoodDescriptionActivity(食材详情)结束后的回调
      * @param requestCode   标示符，标识启动哪个Activity
-     * @param resultCode      标示符 启动结果成功还是失败
-     * @param data                 返回的数据
+     * @param resultCode    标示符 启动结果成功还是失败
+     * @param data          返回的数据
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -7,9 +7,9 @@ import java.util.ArrayList;
  * description : 管理游戏数据的类，将游戏的数据保存到内存中  单例模式
  */
 public class GameDataManager {
-    private static GameDataManager gameDataManager;                     //单例模式
-    private ArrayList<FoodTypeManager.Food> foodList;                    //食材集合
-    private ArrayList<FoodTypeManager.Food> seasoningList;           //调料集合
+    private static GameDataManager gameDataManager;            //单例模式
+    private ArrayList<FoodTypeManager.Food> foodList;          //食材集合
+    private ArrayList<FoodTypeManager.Food> seasoningList;     //调料集合
 
     /**
      * 私有化的构造函数

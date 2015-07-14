@@ -42,7 +42,7 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
     protected void onStart() {
         super.onStart();
         if (bitmap_background_board_one == null || bitmap_background_board_one.isRecycled()) {
-            bitmap_background_board_one = BitmapFactory.decodeResource(getResources(), R.mipmap.board_one);
+            bitmap_background_board_one = BitmapFactory.decodeResource(getResources(), R.mipmap.board_two);
         }
         findViewById(R.id.viewContainer).setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap_background_board_one));
     }

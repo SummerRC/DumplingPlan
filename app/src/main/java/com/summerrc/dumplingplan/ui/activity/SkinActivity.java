@@ -74,7 +74,6 @@ public class SkinActivity extends BaseActivity{
             case R.id.iv_rolling_pin:
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        //hintToNext();
                         break;
                     case MotionEvent.ACTION_MOVE:
                         if(findViewById(R.id.rl_hint_skin).getVisibility()==View.VISIBLE) {

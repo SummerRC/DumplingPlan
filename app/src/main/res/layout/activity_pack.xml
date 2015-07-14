@@ -21,16 +21,19 @@
             android:paddingTop="60dp"
             android:layout_marginLeft="40dp">
             <ImageView
+                android:id="@+id/iv_skin_one"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/skin_up_left"/>
 
             <ImageView
+                android:id="@+id/iv_skin_two"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/skin_up_middle"/>
 
             <ImageView
+                android:id="@+id/iv_skin_three"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/skin_up_right"/>
@@ -43,16 +46,19 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="40dp">
             <ImageView
+                android:id="@+id/iv_skin_four"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/skin_down_left"/>
 
             <ImageView
+                android:id="@+id/iv_skin_five"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/skin_down_middle"/>
 
             <ImageView
+                android:id="@+id/iv_skin_six"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/skin_down_right"/>
@@ -71,15 +77,6 @@
             android:background="@mipmap/meat"
             android:layout_marginRight="40dp"
             android:layout_marginTop="60dp"/>
-
-        <ImageView
-            android:id="@+id/iv_spoon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/wood_spoon_empty"
-            android:layout_gravity="right"
-            android:layout_marginRight="40dp"
-           />
 
         <LinearLayout
             android:id="@+id/ll_hint_click_spoon"
@@ -123,5 +120,14 @@
         android:background="@mipmap/warning"
         android:layout_centerVertical="true"/>
 
+    <ImageView
+        android:id="@+id/iv_spoon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/wood_spoon_empty"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="60dp"
+        />
     <include layout="@layout/view_common"/>
 </RelativeLayout>

@@ -153,7 +153,7 @@ public class UIHelper {
     /**
      * 启动菜篮详情界面
      * @param currentActivity 当前运行的Activity的实例
-     * @param activity_type     用于标识由哪个Activity来启动
+     * @param activity_type   用于标识由哪个Activity来启动
      */
     public static void openBasketActivity(Activity currentActivity, String activity_type) {
         Intent intent = new Intent(currentActivity, BasketActivity.class);
