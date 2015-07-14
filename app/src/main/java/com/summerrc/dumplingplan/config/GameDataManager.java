@@ -1,16 +1,18 @@
 package com.summerrc.dumplingplan.config;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @author SummerRC on 2015/7/11 0011.
  * description : 管理游戏数据的类，将游戏的数据保存到内存中  单例模式
  */
 public class GameDataManager {
-    private static GameDataManager gameDataManager;            //单例模式
-    private ArrayList<FoodTypeManager.Food> foodList;          //食材集合
-    private ArrayList<FoodTypeManager.Food> seasoningList;     //调料集合
-    private StuffTypeManager.StuffType stuffType;                  //馅种类
+    private static GameDataManager gameDataManager;                     //单例模式
+    private ArrayList<FoodTypeManager.Food> foodList;                   //食材集合
+    private ArrayList<FoodTypeManager.Food> seasoningList;              //调料集合
+    private HashMap<FoodTypeManager.Food, Integer> seasoningNumberMap;  //调料份数
+    private StuffTypeManager.StuffType stuffType;                       //馅种类
 
     /**
      * 私有化的构造函数
@@ -18,7 +20,12 @@ public class GameDataManager {
     private GameDataManager() {
         foodList = new ArrayList<>();
         seasoningList = new ArrayList<>();
+        seasoningNumberMap = new HashMap<>();
+        seasoningNumberMap.put(FoodTypeManager.Food.OIL, 0);
+        seasoningNumberMap.put(FoodTypeManager.Food.SALT, 0);
+        seasoningNumberMap.put(FoodTypeManager.Food.SAUCE, 0);
     }
+
 
     /**
      * 单例模式，保证游戏数据内存中只有一份
@@ -106,5 +113,23 @@ public class GameDataManager {
         } else if(count==111){
             stuffType = StuffTypeManager.StuffType.VEGETABLE_FRUIT_MEAT;
         }
+    }
+
+    /**
+     * 设置对应调料的份数
+     * @param food  调料
+     * @param x  份数
+     */
+    public void setSeasoningNumberMap(FoodTypeManager.Food food, int x) {
+        seasoningNumberMap.remove(food);
+        seasoningNumberMap.put(food, x);
+    }
+
+    /**
+     * 获取对应调料的份数
+     * @param food  调料
+     */
+    public int getSeasoningNumberMap(FoodTypeManager.Food food) {
+        return seasoningNumberMap.get(food);
     }
 }

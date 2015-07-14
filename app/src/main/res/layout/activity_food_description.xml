@@ -12,11 +12,13 @@
         android:layout_marginLeft="45dp" />
 
     <LinearLayout
+        android:id="@+id/ll_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
         android:layout_marginBottom="40dp"
         android:layout_marginLeft="40dp"
+        android:visibility="invisible"
         android:gravity="center">
 
         <ImageView
@@ -26,11 +28,13 @@
             android:layout_marginRight="6dp"
             android:background="@mipmap/decrease"/>
 
-        <ImageView
-            android:id="@+id/iv_number"
+        <TextView
+            android:id="@+id/tv_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="6dp"
+            android:gravity="center"
+            android:text="0"
             android:background="@mipmap/quantity_frame"/>
 
         <ImageView

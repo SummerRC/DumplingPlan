@@ -10,8 +10,11 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.FoodTypeManager;
+import com.summerrc.dumplingplan.config.GameDataManager;
 import com.summerrc.dumplingplan.config.IntentConstant;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
@@ -25,6 +28,7 @@ public class SelectSeasoningActivity extends BaseActivity implements View.OnClic
     private ImageView iv_oil;
     private Bitmap bitmap_background_select_seasoning;
     private static final int SELECT_SEASONING_ACTIVITY = 1;          //onActivityForResult方法回调的标识符
+    private static final int BASKET_ACTIVITY = 2;                    //onActivityForResult方法回调的标识符
     private float x_location;
     private float y_location;
 
@@ -72,7 +76,7 @@ public class SelectSeasoningActivity extends BaseActivity implements View.OnClic
                 UIHelper.openFoodDescriptionActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_SEASONING, SELECT_SEASONING_ACTIVITY, FoodTypeManager.Food.OIL);
                 break;
             case R.id.iv_basket:
-                UIHelper.openBasketActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_SEASONING);
+                UIHelper.openBasketActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_SEASONING, BASKET_ACTIVITY);
                 break;
         }
     }
@@ -153,6 +157,17 @@ public class SelectSeasoningActivity extends BaseActivity implements View.OnClic
                 case SAUCE:
                     animatorSetStart(iv_sauce);
                     break;
+                case DEFAULT:
+                    if(GameDataManager.init().getSeasoningList().size()==0) {
+                        Toast.makeText(this, "亲，你一种调料都不选取，皇上会生气的哦", Toast.LENGTH_SHORT).show();
+                        findViewById(R.id.iv_next).setVisibility(View.INVISIBLE);
+                    }
+                    break;
+            }
+        } else if(requestCode==BASKET_ACTIVITY) {
+            if(GameDataManager.init().getSeasoningList().size() == 0) {
+                Toast.makeText(this, "亲，你一种调料都不选取，皇上会生气的哦", Toast.LENGTH_SHORT).show();
+                findViewById(R.id.iv_next).setVisibility(View.INVISIBLE);
             }
         }
     }

@@ -11,7 +11,7 @@ import java.util.HashMap;
 public  class FoodTypeManager implements Serializable{
     public enum Food{
         CABBAGE, CUCUMBER, EGGPLANT, PIMIENTO, TOMATO, BEEF, CHICKEN, CRAB, PORK, SHRIMP, BANANA,DRAGON_FRUIT, LEMON, MANGO_STEAN, WATERMELON
-        , OIL, SALT, SAUCE
+        , OIL, SALT, SAUCE, DEFAULT
     }
     public static final String UNLOCK = "unlock";
     public static final String LOCK = "lock";

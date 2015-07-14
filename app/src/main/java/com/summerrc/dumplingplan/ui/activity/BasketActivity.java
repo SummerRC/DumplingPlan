@@ -1,6 +1,7 @@
 package com.summerrc.dumplingplan.ui.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -110,6 +111,8 @@ public class BasketActivity extends Activity implements View.OnClickListener{
                 findViewById(R.id.iv_three).setVisibility(View.INVISIBLE);
                 break;
             case R.id.iv_close:
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
                 finish();
                 break;
         }

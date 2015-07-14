@@ -9,11 +9,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.FoodTypeManager;
 import com.summerrc.dumplingplan.config.GameDataManager;
 import com.summerrc.dumplingplan.config.IntentConstant;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 /**
@@ -25,6 +29,7 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
     private Bitmap bitmap_background_board_one;
     private Bitmap bitmap_select_food;
     private String ACTIVITY_TYPE;
+    private int number = 0;                 //选择调料的份数
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +77,11 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
         findViewById(R.id.iv_no).setOnClickListener(this);
         findViewById(R.id.iv_add).setOnClickListener(this);
         findViewById(R.id.iv_decrease).setOnClickListener(this);
+        if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_SEASONING)) {
+            findViewById(R.id.ll_number).setVisibility(View.VISIBLE);
+            number = GameDataManager.init().getSeasoningNumberMap(food);
+            ((TextView)findViewById(R.id.tv_number)).setText(number + "");
+        }
     }
 
     @Override
@@ -79,9 +89,14 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
         switch (v.getId()) {
             case R.id.iv_yes:
                 if(isAdd()) {
-                    if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_FOOD)) {                            //食材
+                    if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_FOOD)) {               //食材
                         GameDataManager.init().setFoodList(food);
-                    } else if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_SEASONING)) {        //调料
+                    } else if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_SEASONING)) {   //调料
+                        if(number == 0) {
+                            Toast.makeText(this, "请至少选择一份调料！", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        GameDataManager.init().setSeasoningNumberMap(food, number);
                         GameDataManager.init().setSeasoningList(food);
                     }
                     Intent intent = new Intent();
@@ -93,15 +108,22 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
                 }
                 break;
             case R.id.iv_no:
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(IntentConstant.SELECTED_FOOD, FoodTypeManager.Food.DEFAULT);
+                intent.putExtras(bundle);
+                setResult(RESULT_OK, intent);
                 finish();
                 break;
             case R.id.iv_add:
-                Toast.makeText(this, "点我干啥？", Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, "说你呢！", Toast.LENGTH_SHORT).show();
+                number++;
+                ((TextView)findViewById(R.id.tv_number)).setText(number+"");
                 break;
             case R.id.iv_decrease:
-                Toast.makeText(this, "还点？来来来，你再点啊", Toast.LENGTH_SHORT).show();
-                finish();
+                if(number>0) {
+                    number--;
+                    ((TextView)findViewById(R.id.tv_number)).setText(number+"");
+                }
                 break;
         }
     }
@@ -111,7 +133,7 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
      */
     private boolean isAdd() {
         ArrayList<FoodTypeManager.Food> list = new ArrayList<>();
-        if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_FOOD)) {                            //食材
+        if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_FOOD)) {                    //食材
             list = GameDataManager.init().getFoodList();
         } else if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_SEASONING)) {        //调料
             list =GameDataManager.init().getSeasoningList();

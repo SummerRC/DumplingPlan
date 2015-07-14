@@ -13,6 +13,8 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.FoodTypeManager;
 import com.summerrc.dumplingplan.config.GameDataManager;
@@ -32,6 +34,7 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
     private ImageView iv_beef;
     private ImageView iv_lemon;
     private static final int SELECT_FOOD_ACTIVITY = 1;
+    private static final int BASKET_ACTIVITY = 2;
     private float x_location;
     private float y_location;
 
@@ -130,7 +133,7 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
                 //viewPager.setCurrentItem((index+1) % 4);
                 break;
             case R.id.iv_basket:
-                UIHelper.openBasketActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_FOOD);
+                UIHelper.openBasketActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_FOOD, BASKET_ACTIVITY);
                 break;
         }
     }
@@ -239,6 +242,13 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
                 case LEMON:
                     animatorSetStart(iv_lemon);
                     break;
+                case DEFAULT:
+                    break;
+            }
+        } else if(requestCode==BASKET_ACTIVITY && resultCode==RESULT_OK) {
+            if(GameDataManager.init().getFoodList().size()==0) {
+                Toast.makeText(this, "亲，你一种食材都不选取，皇上会生气的哦", Toast.LENGTH_SHORT).show();
+                findViewById(R.id.iv_next).setVisibility(View.INVISIBLE);
             }
         }
     }
