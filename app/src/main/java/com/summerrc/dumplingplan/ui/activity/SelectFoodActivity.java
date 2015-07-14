@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.FoodTypeManager;
+import com.summerrc.dumplingplan.config.GameDataManager;
 import com.summerrc.dumplingplan.config.IntentConstant;
 import com.summerrc.dumplingplan.ui.adapter.SelectFoodPagerAdapter;
 import com.summerrc.dumplingplan.utils.UIHelper;
@@ -27,7 +28,6 @@ import java.util.ArrayList;
 public class SelectFoodActivity extends BaseActivity implements View.OnClickListener{
     private Bitmap bitmap_background_select_food;
     private ViewPager viewPager;
-    private int index = 0;
     private ImageView iv_eggplant;
     private ImageView iv_beef;
     private ImageView iv_lemon;
@@ -94,7 +94,6 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
 
             @Override
             public void onPageSelected(int position) {
-                index = position;
                 setLeftArrow(position % 4);
             }
 
@@ -108,6 +107,8 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_next:
+                /** 进入下一步之前先设置馅类型 */
+                GameDataManager.init().setStuffType();
                 UIHelper.openSelectSeasoningActivity(this);
                 break;
             case R.id.iv_eggplant:

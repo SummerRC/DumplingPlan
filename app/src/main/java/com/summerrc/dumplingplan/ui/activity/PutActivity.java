@@ -19,7 +19,7 @@ import com.summerrc.dumplingplan.utils.UIHelper;
 public class PutActivity extends BaseActivity  {
     private Bitmap bitmap_background_put;
     private ImageView iv_cover_pad;                     //放饺子的盖
-    private ImageView iv_pod;                                //锅
+    private ImageView iv_pod;                           //锅
 
     @Override
     protected void setView() {

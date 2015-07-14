@@ -1,5 +1,6 @@
 package com.summerrc.dumplingplan.ui.activity;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -29,15 +30,16 @@ import java.lang.ref.WeakReference;
  */
 public class ShakeActivity extends BaseActivity implements Animation.AnimationListener, SensorEventListener {
     private Bitmap bitmap_background_shake;
-    public RotateAnimation rotateAnimation;             //旋转动画
+    public RotateAnimation rotateAnimation;             // 旋转动画
     private SoundPool soundPool;                        // 音频池
     private Vibrator mVibrator;                         // 震动
-    private SensorManager mSensorManager;               //重力传感器
+    private SensorManager mSensorManager;               // 重力传感器
     private Sensor mSensor;
 
     private MyHandler handler;
     private ImageView iv_hint_shake;
     private int index =0;
+    private int shake_count = 0;
     private static final int SENSOR_SHAKE = 10;
     private int hitOkSfx;
 
@@ -133,11 +135,13 @@ public class ShakeActivity extends BaseActivity implements Animation.AnimationLi
             super.handleMessage(msg);
             switch (msg.what) {
                 case SENSOR_SHAKE:
-                        activity.startAnimation();
+                    activity.shake_count++;
+                    activity.waterAlpha(activity.shake_count);
+                    activity.startAnimation();
                     break;
             }
         }
-    };
+    }
 
     public void startAnimation() {
         index = 1;
@@ -262,6 +266,14 @@ public class ShakeActivity extends BaseActivity implements Animation.AnimationLi
             mSensorManager.unregisterListener(this);
         }
         super.onPause();
+    }
+
+    private void waterAlpha(int i) {
+        float start = 1 - 0.01f * (i-1);
+        float end = 1 - 0.01f * i;
+        ObjectAnimator waterObjectAnimator = ObjectAnimator.ofFloat(findViewById(R.id.iv_water),"alpha", start, end);
+        waterObjectAnimator.setDuration(500);
+        waterObjectAnimator.start();
     }
 
 }

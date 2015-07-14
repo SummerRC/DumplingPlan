@@ -10,6 +10,7 @@ public class GameDataManager {
     private static GameDataManager gameDataManager;            //单例模式
     private ArrayList<FoodTypeManager.Food> foodList;          //食材集合
     private ArrayList<FoodTypeManager.Food> seasoningList;     //调料集合
+    private StuffTypeManager.StuffType stuffType;                  //馅种类
 
     /**
      * 私有化的构造函数
@@ -65,5 +66,45 @@ public class GameDataManager {
      */
     public void clean() {
          gameDataManager = null;
+    }
+
+    /**
+     * @return 获取馅类型
+     */
+    public StuffTypeManager.StuffType getStuffType() {
+        return stuffType;
+    }
+
+    /**
+     * 设置馅的类型
+     */
+    public void setStuffType() {
+        int vegetable = 1, fruit = 10, meat = 100, count = 0;
+        for(int i=0; i<foodList.size(); i++) {
+            if(StuffTypeManager.isVegetable(foodList.get(i))) {
+                count += vegetable;
+            }
+            if(StuffTypeManager.isFruit(foodList.get(i))) {
+                count += fruit;
+            }
+            if(StuffTypeManager.isMeat(foodList.get(i))) {
+                count += meat;
+            }
+        }
+        if(count<10) {
+            stuffType = StuffTypeManager.StuffType.VEGETABLE;
+        } else if(count==10 || count==20 || count==30) {
+            stuffType = StuffTypeManager.StuffType.FRUIT;
+        } else if(count==100 || count==200 ||count==300) {
+            stuffType = StuffTypeManager.StuffType.MEAT;
+        } else if(count==12 || count==21) {      //去除了水果的情况
+            stuffType = StuffTypeManager.StuffType.VEGETABLE_FRUIT;
+        } else if(count==102 || count==201){
+            stuffType = StuffTypeManager.StuffType.VEGETABLE_MEAT;
+        } else if(count==120 || count==210){
+            stuffType = StuffTypeManager.StuffType.FRUIT_MEAT;
+        } else if(count==111){
+            stuffType = StuffTypeManager.StuffType.VEGETABLE_FRUIT_MEAT;
+        }
     }
 }

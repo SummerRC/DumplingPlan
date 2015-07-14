@@ -19,13 +19,13 @@ import com.summerrc.dumplingplan.utils.UIHelper;
  */
 public class SkinActivity extends BaseActivity{
     private Bitmap bitmap_background_skin;
-    private ObjectAnimator rollPinAnimator;                   //擀面动画
-    private AnimatorSet skinAnimatorSet;                       //面皮动画
-    private ImageView iv_skin_big;                                   //面皮
-    private ImageView iv_roll_pin;                                    //面杆
+    private ObjectAnimator rollPinAnimator;               //擀面动画
+    private AnimatorSet skinAnimatorSet;                  //面皮动画
+    private ImageView iv_skin_big;                        //面皮
+    private ImageView iv_roll_pin;                        //面杆
     private boolean rollPinAnimatorIsStart = false;       //擀面动画是否开始了
-    private float targetX = 0;                                             //面的横坐标
-    private float targetY = 0;                                             //面的纵坐标
+    private float targetX = 0;                            //面的横坐标
+    private float targetY = 0;                            //面的纵坐标
 
     @Override
     protected void setView() {
@@ -167,25 +167,27 @@ public class SkinActivity extends BaseActivity{
         /** 皮先移动到指定位置 */
         ObjectAnimator skinAnimatorX = ObjectAnimator.ofFloat(view, "translationX", 0, targetX-view.getX()+50);
         ObjectAnimator skinAnimatorY = ObjectAnimator.ofFloat(view, "translationY", 0, targetY-view.getY()+50);
-        /** 然后擀面棍来回移动6次，每次0.5秒钟 */
+        skinAnimatorX.setDuration(200);
+        skinAnimatorY.setDuration(200);
+        /** 然后擀面棍来回移动6次，每次0.2秒钟 */
         ObjectAnimator rollPinAnimatorXY = ObjectAnimator.ofFloat(iv_roll_pin, "translationY", -40f , 40f);
-        rollPinAnimatorXY.setDuration(500);
+        rollPinAnimatorXY.setDuration(200);
         rollPinAnimatorXY.setRepeatCount(5);
         rollPinAnimatorXY.setRepeatMode(ValueAnimator.REVERSE);
         /** 同时皮由小变大 */
         ObjectAnimator skinAnimatorX1 = ObjectAnimator.ofFloat(view, "scaleX", 0.2F, 2F);
         ObjectAnimator skinAnimatorY1 = ObjectAnimator.ofFloat(view, "scaleY", 0.2F, 2F);
-        skinAnimatorX1.setDuration(3000);
-        skinAnimatorY1.setDuration(3000);
+        skinAnimatorX1.setDuration(1000);
+        skinAnimatorY1.setDuration(1000);
         /** 皮飞到右上角的碗里面最后淡出消失 */
         int x = (int)findViewById(R.id.iv_basket).getX() - (int)view.getX();
         int y = (int)findViewById(R.id.iv_basket).getY() - (int)view.getY();
         ObjectAnimator anim1 = ObjectAnimator.ofFloat(view, "translationX", 0f , x);
-        anim1.setDuration(1000);
+        anim1.setDuration(500);
         ObjectAnimator anim2 = ObjectAnimator.ofFloat(view, "translationY", 0f , y);
-        anim2.setDuration(1000);
+        anim2.setDuration(500);
         ObjectAnimator anim3 = ObjectAnimator.ofFloat(view,"alpha",1f,0f);
-        anim3.setDuration(1000);
+        anim3.setDuration(500);
 
         AnimatorSet set = new AnimatorSet();
         set.play(skinAnimatorX).with(skinAnimatorY);

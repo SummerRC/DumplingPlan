@@ -10,6 +10,8 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import com.summerrc.dumplingplan.R;
+import com.summerrc.dumplingplan.config.GameDataManager;
+import com.summerrc.dumplingplan.config.StuffTypeManager;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
@@ -81,12 +83,12 @@ public class StuffingActivity extends BaseActivity implements View.OnClickListen
         super.initView();
         iv_kitchen_knife_left = (ImageView)findViewById(R.id.iv_kitchen_knife_left);
         iv_kitchen_knife_right = (ImageView)findViewById(R.id.iv_kitchen_knife_right);
+        int stuffResourceId = StuffTypeManager.getStuffResourceId(GameDataManager.init().getStuffType());
+        findViewById(R.id.iv_stuff).setBackgroundResource(stuffResourceId);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-        }
     }
 
     /**
