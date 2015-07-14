@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.Image;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,6 +21,7 @@ import com.summerrc.dumplingplan.utils.UIHelper;
 public class DoughActivity extends BaseActivity implements View.OnClickListener{
     private Bitmap bitmap_background_dough;
     private ImageView iv_kettle;                //水壶
+    private ImageView iv_stream;                //水壶
     private boolean tag = false;                //用户标识是否播放了动画
 
     @Override
@@ -42,6 +44,7 @@ public class DoughActivity extends BaseActivity implements View.OnClickListener{
         super.initView();
         iv_kettle = (ImageView)findViewById(R.id.iv_kettle);
         iv_kettle.setOnClickListener(this);
+        iv_stream = (ImageView) findViewById(R.id.iv_stream);
     }
 
     @Override
@@ -78,10 +81,10 @@ public class DoughActivity extends BaseActivity implements View.OnClickListener{
         findViewById(R.id.ll_tip_click_kettle).setVisibility(View.GONE);
 
         AnimatorSet animatorSet = new AnimatorSet();
-        int x = (int)findViewById(R.id.iv_basin).getX() - (int)iv_kettle.getX();
-        int y = (int)findViewById(R.id.iv_basin).getY() - (int)iv_kettle.getY();
-        ObjectAnimator anim1 = ObjectAnimator.ofFloat(iv_kettle, "translationX", 0f , x-40);
-        ObjectAnimator anim2 = ObjectAnimator.ofFloat(iv_kettle, "translationY", 0f , y-320);
+        int x = (int)iv_stream.getX() - (int)iv_kettle.getX();
+        int y = (int)iv_stream.getY() - (int)iv_kettle.getY();
+        ObjectAnimator anim1 = ObjectAnimator.ofFloat(iv_kettle, "translationX", 0f , x-180);
+        ObjectAnimator anim2 = ObjectAnimator.ofFloat(iv_kettle, "translationY", 0f , y-256);
         ObjectAnimator anim3 = ObjectAnimator.ofFloat(iv_kettle, "rotation", 0f, 61f);
         animatorSet.play(anim1).with(anim2);
         animatorSet.play(anim3).after(anim2);
@@ -93,7 +96,7 @@ public class DoughActivity extends BaseActivity implements View.OnClickListener{
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                findViewById(R.id.iv_stream).setVisibility(View.VISIBLE);
+                iv_stream.setVisibility(View.VISIBLE);
                 final AnimationDrawable animation_frame = (AnimationDrawable) findViewById(R.id.iv_basin).getBackground();
                 /** 在异步线程中执行启动动画的方法 */
                 findViewById(R.id.iv_basin).post(new Runnable() {

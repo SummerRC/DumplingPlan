@@ -81,19 +81,20 @@ public class StuffingActivity extends BaseActivity implements View.OnClickListen
         super.initView();
         iv_kitchen_knife_left = (ImageView)findViewById(R.id.iv_kitchen_knife_left);
         iv_kitchen_knife_right = (ImageView)findViewById(R.id.iv_kitchen_knife_right);
-        /** 由于动画的原因，刀在组件最上层，设置touch监听可以是动画播放过程中其它下层组件点击事件失效 *//*
-        findViewById(R.id.ll_animation).setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });*/
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
         }
+    }
+
+    /**
+     * 使是动画播放过程中其它组件点击事件失效
+     * */
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        return true;
     }
 
     @Override

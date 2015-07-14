@@ -1,7 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/background_dough"
     android:id="@+id/rootView">
 
     <RelativeLayout
@@ -34,7 +33,7 @@
         android:layout_gravity="center_horizontal|bottom"
         android:layout_marginBottom="120dp"
         android:layout_marginLeft="80dp"
-        android:visibility="gone"
+        android:visibility="invisible"
         android:background="@mipmap/stream"/>
 
     <LinearLayout
