@@ -120,7 +120,7 @@ public class SelectSeasoningActivity extends BaseActivity implements View.OnClic
                 view.clearAnimation();
                 view.setX(x_location);
                 view.setY(y_location);
-                ObjectAnimator.ofFloat(view,"alpha",0.6f,1f).start();
+                ObjectAnimator.ofFloat(view,"alpha",0f,1f).start();
             }
 
             @Override

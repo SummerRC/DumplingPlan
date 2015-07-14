@@ -188,7 +188,7 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
         int y = (int)findViewById(R.id.iv_basket).getY() - (int)view.getY();
         ObjectAnimator anim1 = ObjectAnimator.ofFloat(view, "translationX", 0f , x);
         ObjectAnimator anim2 = ObjectAnimator.ofFloat(view, "translationY", 0f , y);
-        ObjectAnimator anim3 = ObjectAnimator.ofFloat(view,"alpha",1f,0.6f);
+        ObjectAnimator anim3 = ObjectAnimator.ofFloat(view,"alpha",1f,0f);
         animatorSet.play(anim1).with(anim2);
         animatorSet.play(anim3).after(anim2);
         animatorSet.setDuration(1000);
@@ -204,7 +204,7 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
                 view.clearAnimation();
                 view.setX(x_location);
                 view.setY(y_location);
-                ObjectAnimator.ofFloat(view,"alpha",0.6f,1f).start();
+                ObjectAnimator.ofFloat(view,"alpha",0f,1f).start();
             }
 
             @Override
