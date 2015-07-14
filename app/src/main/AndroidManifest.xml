@@ -23,14 +23,14 @@
         <activity
             android:name=".ui.activity.StuffingActivity"
             android:screenOrientation="landscape" >
-        </activity>
-        <activity
-            android:name=".ui.activity.DoughActivity"
-            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activity.DoughActivity"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".ui.activity.RubActivity"
@@ -39,6 +39,7 @@
         <activity
             android:name=".ui.activity.CutActivity"
             android:screenOrientation="landscape" >
+
         </activity>
         <activity
             android:name=".ui.activity.SkinActivity"

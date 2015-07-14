@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/rootView">
@@ -8,37 +8,28 @@
         android:layout_height="match_parent"
         android:id="@+id/viewContainer" />
 
-    <LinearLayout
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:background="@mipmap/stuffing_meat"/>
-    </LinearLayout>
+        android:layout_gravity="center"
+        android:background="@mipmap/stuffing_meat"/>
 
 
-    <LinearLayout
-        android:id="@+id/ll_animation"
+    <ImageView
+        android:id="@+id/iv_kitchen_knife_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
-        <ImageView
-            android:id="@+id/iv_kitchen_knife_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:background="@mipmap/kitchen_knife_left"/>
+        android:layout_gravity="center"
+        android:layout_marginRight="70dp"
+        android:background="@mipmap/kitchen_knife_left"/>
 
-        <ImageView
-            android:id="@+id/iv_kitchen_knife_right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:background="@mipmap/kitchen_knife_right"/>
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/iv_kitchen_knife_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="70dp"
+        android:background="@mipmap/kitchen_knife_right"/>
 
     <include layout="@layout/view_common"/>
-</RelativeLayout>
+</FrameLayout>

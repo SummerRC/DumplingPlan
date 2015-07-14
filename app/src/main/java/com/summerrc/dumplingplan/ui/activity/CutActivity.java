@@ -18,7 +18,7 @@ import com.summerrc.dumplingplan.utils.UIHelper;
 public class CutActivity extends BaseActivity implements View.OnClickListener , View.OnTouchListener{
     private Bitmap bitmap_background_cut;
     private int cut_times = 0;          //切割图片的次数
-    private ImageView iv_strip;      //面条ImageView
+    private ImageView iv_strip;         //面条ImageView
     private ImageView iv_cut_line;
 
     @Override
