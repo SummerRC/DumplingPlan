@@ -76,7 +76,6 @@ public class CutActivity extends BaseActivity implements View.OnClickListener , 
      */
     private void showPiece()  {
         if(cut_times >= 6) {
-            super.hintToNext();
             return;
         }
         ObjectAnimator.ofFloat(iv_cut_line, "translationX", 0f , 80*cut_times).start();
@@ -102,6 +101,7 @@ public class CutActivity extends BaseActivity implements View.OnClickListener , 
                 iv_strip.setVisibility(View.GONE);
                 findViewById(R.id.iv_piece_six).setVisibility(View.VISIBLE);
                 setWidth();
+                super.hintToNext();
                 break;
         }
     }
