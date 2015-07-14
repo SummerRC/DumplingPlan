@@ -19,7 +19,8 @@ import com.summerrc.dumplingplan.utils.UIHelper;
  */
 public class DoughActivity extends BaseActivity implements View.OnClickListener{
     private Bitmap bitmap_background_dough;
-    private ImageView iv_kettle;                                //水壶
+    private ImageView iv_kettle;                //水壶
+    private boolean tag = false;                //用户标识是否播放了动画
 
     @Override
     protected void setView() {
@@ -69,6 +70,10 @@ public class DoughActivity extends BaseActivity implements View.OnClickListener{
      * 水壶移动的动画，一边移动一边小角度旋转
      */
     private void kettleAnimatorSetStart() {
+        if(tag) {
+            return;
+        }
+        tag = true;
         translateAnimationStop(findViewById(R.id.ll_tip_click_kettle));
         findViewById(R.id.ll_tip_click_kettle).setVisibility(View.GONE);
 
