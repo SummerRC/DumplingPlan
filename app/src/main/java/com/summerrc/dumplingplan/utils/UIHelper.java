@@ -2,7 +2,6 @@ package com.summerrc.dumplingplan.utils;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.widget.BaseAdapter;
 
 import com.summerrc.dumplingplan.config.IntentConstant;
 import com.summerrc.dumplingplan.config.FoodTypeManager;
@@ -10,7 +9,7 @@ import com.summerrc.dumplingplan.ui.activity.BasketActivity;
 import com.summerrc.dumplingplan.ui.activity.CutActivity;
 import com.summerrc.dumplingplan.ui.activity.DoughActivity;
 import com.summerrc.dumplingplan.ui.activity.FoodDescriptionActivity;
-import com.summerrc.dumplingplan.ui.activity.PackActivity;
+import com.summerrc.dumplingplan.ui.activity.AddStuffingActivity;
 import com.summerrc.dumplingplan.ui.activity.PutActivity;
 import com.summerrc.dumplingplan.ui.activity.RubActivity;
 import com.summerrc.dumplingplan.ui.activity.SelectFoodActivity;
@@ -111,7 +110,7 @@ public class UIHelper {
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openPackActivity(Activity currentActivity) {
-        Intent intent = new Intent(currentActivity, PackActivity.class);
+        Intent intent = new Intent(currentActivity, AddStuffingActivity.class);
         currentActivity.startActivity(intent);
         currentActivity.finish();
     }

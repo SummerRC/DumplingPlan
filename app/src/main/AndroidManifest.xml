@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.summerrc.dumplingplan" >
 
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -41,7 +42,7 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".ui.activity.PackActivity"
+            android:name=".ui.activity.AddStuffingActivity"
             android:screenOrientation="landscape" >
         </activity>
         <activity
@@ -49,6 +50,7 @@
             android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -63,7 +65,11 @@
         </activity>
         <activity
             android:name=".ui.activity.BasketActivity"
-            android:theme="@style/DialogActivity">
+            android:theme="@style/DialogActivity" >
+        </activity>
+        <activity
+            android:name=".ui.activity.PackActivity"
+            android:label="@string/title_activity_pack" >
         </activity>
     </application>
 

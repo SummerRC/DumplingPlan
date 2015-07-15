@@ -6,4 +6,5 @@
     <string name="title_activity_select_food">SelectFoodActivity</string>
     <string name="title_activity_select_seasoning">SelectSeasoningActivity</string>
     <string name="title_activity_basket">BasketActivity</string>
+    <string name="title_activity_pack">PackActivity</string>
 </resources>
