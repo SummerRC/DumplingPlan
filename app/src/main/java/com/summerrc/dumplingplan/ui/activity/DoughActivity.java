@@ -110,8 +110,15 @@ public class DoughActivity extends BaseActivity implements View.OnClickListener{
                 for (int i = 0; i < animation_frame.getNumberOfFrames(); i++) {
                     duration += animation_frame.getDuration(i);
                 }
-                /** 动画播放结束后下一步按钮显示 */
                 Handler handler = new Handler();
+                /** 水柱消失 */
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        ObjectAnimator.ofFloat(iv_kettle, "rotation", 61f, 0f).start();
+                        iv_stream.setVisibility(View.GONE);
+                    }
+                }, 1500);
+                /** 动画播放结束后下一步按钮显示 */
                 handler.postDelayed(new Runnable() {
                     public void run() {
                         DoughActivity.super.hintToNext();
