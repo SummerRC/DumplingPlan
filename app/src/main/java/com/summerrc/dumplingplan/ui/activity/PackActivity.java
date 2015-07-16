@@ -19,7 +19,7 @@ import com.summerrc.dumplingplan.utils.UIHelper;
 public class PackActivity extends BaseActivity {
     private Bitmap bitmap_background_pack;
     private View ll_hint_pack;
-    private ImageView iv_skine_big;         //有馅的皮
+    private ImageView iv_skin_big;          //有馅的皮
     private ImageView iv_dumpling;          //包好的饺子
 
     @Override
@@ -42,9 +42,9 @@ public class PackActivity extends BaseActivity {
         super.initView();
         ll_hint_pack = findViewById(R.id.ll_hint_pack);
         translateAnimationStart(ll_hint_pack, 0, -40, 800, Integer.MAX_VALUE, true);
-        iv_skine_big = (ImageView) findViewById(R.id.iv_skin_big);
+        iv_skin_big = (ImageView) findViewById(R.id.iv_skin_big);
         iv_dumpling = (ImageView) findViewById(R.id.iv_dumpling);
-        iv_skine_big.setOnTouchListener(this);
+        iv_skin_big.setOnTouchListener(this);
     }
 
     @Override
@@ -67,7 +67,7 @@ public class PackActivity extends BaseActivity {
                             iv_dumpling.setVisibility(View.VISIBLE);
                             translateAnimationStop(ll_hint_pack);
                             ll_hint_pack.setVisibility(View.GONE);
-                            iv_skine_big.setVisibility(View.INVISIBLE);
+                            iv_skin_big.setVisibility(View.INVISIBLE);
                             animation(0);
                         }
                         break;

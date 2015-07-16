@@ -54,7 +54,6 @@ public class AddStuffingActivity extends BaseActivity {
         /* 根据馅的种类来设置图片 */
         int stuffResourceId = StuffTypeManager.getStuffResourceId(GameDataManager.init().getStuffType());
         findViewById(R.id.iv_stuffing).setBackgroundResource(stuffResourceId);
-        findViewById(R.id.iv_stuffing).setBackgroundResource(R.mipmap.meat);
         translateAnimationStart(findViewById(R.id.ll_hint_click_skin), 0, 50, 800, Integer.MAX_VALUE, false);
     }
 
@@ -77,6 +76,8 @@ public class AddStuffingActivity extends BaseActivity {
         super.onTouch(v, event);
         switch (v.getId()) {
             case R.id.iv_next:
+                /** 记录每个饺子大小 */
+                GameDataManager.init().setDumplingTypeEntities();
                 UIHelper.openPackActivity(this);
                 break;
             case R.id.iv_skin_one:
@@ -118,6 +119,10 @@ public class AddStuffingActivity extends BaseActivity {
      * @param position 标识皮
      */
     private void  animatorSetStart(final int position) {
+        if(gameDataManager.getStuffNum(position) >= 3) {
+            Toast.makeText(this, "太多了", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if(!TOUCH_ABLE) {
             return;
         } else {
@@ -126,10 +131,6 @@ public class AddStuffingActivity extends BaseActivity {
         if(findViewById(R.id.ll_hint_click_skin).getVisibility()==View.VISIBLE) {
             translateAnimationStop(findViewById(R.id.ll_hint_click_skin));
             findViewById(R.id.ll_hint_click_skin).setVisibility(View.INVISIBLE);
-        }
-        if(gameDataManager.getStuffNum(position) >= 3) {
-            Toast.makeText(this, "太多了", Toast.LENGTH_SHORT).show();
-            return;
         }
         gameDataManager.addStuffNum(position);
         final View view;

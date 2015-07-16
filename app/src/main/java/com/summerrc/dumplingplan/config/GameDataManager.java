@@ -1,5 +1,7 @@
 package com.summerrc.dumplingplan.config;
 
+import com.summerrc.dumplingplan.entity.DumplingTypeEntity;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,6 +16,7 @@ public class GameDataManager {
     private HashMap<FoodTypeManager.Food, Integer> seasoningNumberMap;  //调料份数
     private StuffTypeManager.StuffType stuffType;                       //馅种类
     private HashMap<Integer, Integer> stuffNumMap;                      //馅的多少
+    private ArrayList<DumplingTypeEntity> dumplingTypeEntities;         //饺子集合
 
     /**
      * 私有化的构造函数
@@ -32,6 +35,7 @@ public class GameDataManager {
         stuffNumMap.put(4, 0);
         stuffNumMap.put(5, 0);
         stuffNumMap.put(6, 0);
+        dumplingTypeEntities = new ArrayList<>();
     }
 
 
@@ -167,5 +171,34 @@ public class GameDataManager {
         int value = stuffNumMap.get(key)+1;
         stuffNumMap.remove(key);
         stuffNumMap.put(key, value);
+    }
+
+    /**
+     * @return  饺子集合：大 小  正好
+     */
+    public ArrayList<DumplingTypeEntity> getDumplingTypeEntities() {
+        return dumplingTypeEntities;
+    }
+
+    /**
+     * 设置饺子集合
+     */
+    public void setDumplingTypeEntities() {
+        DumplingTypeEntity entity = new DumplingTypeEntity();
+        dumplingTypeEntities.clear();
+        for(int i=1; i<7; i++) {
+            switch (stuffNumMap.get(i)) {
+                case 1:
+                    entity.setType(DumplingTypeEntity.Type.SMALL);
+                    break;
+                case 2:
+                    entity.setType(DumplingTypeEntity.Type.NOMAL);
+                    break;
+                case 3:
+                    entity.setType(DumplingTypeEntity.Type.LARGE);
+                    break;
+            }
+            dumplingTypeEntities.add(i, entity);
+        }
     }
 }

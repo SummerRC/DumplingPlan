@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import com.summerrc.dumplingplan.R;
+import com.summerrc.dumplingplan.config.GameDataManager;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
