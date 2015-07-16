@@ -77,7 +77,7 @@ public class AddStuffingActivity extends BaseActivity {
         super.onTouch(v, event);
         switch (v.getId()) {
             case R.id.iv_next:
-                UIHelper.openPutActivity(this);
+                UIHelper.openPackActivity(this);
                 break;
             case R.id.iv_skin_one:
                 if(event.getAction()==MotionEvent.ACTION_DOWN) {

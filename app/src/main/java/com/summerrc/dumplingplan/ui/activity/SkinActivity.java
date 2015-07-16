@@ -237,7 +237,7 @@ public class SkinActivity extends BaseActivity{
     }
 
     /**
-     * 食材飞入菜篮然后淡出消失，并且提示消失下一关按钮显示
+     * 皮飞入菜篮然后淡出消失，并且提示消失下一关按钮显示
      * @param view 选中的食材
      */
     private void animatorSetStart(View view) {

@@ -37,10 +37,6 @@
         <activity
             android:name=".ui.activity.CutActivity"
             android:screenOrientation="landscape" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.SkinActivity"
@@ -69,7 +65,11 @@
         </activity>
         <activity
             android:name=".ui.activity.PackActivity"
-            android:label="@string/title_activity_pack" >
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

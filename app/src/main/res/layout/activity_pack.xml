@@ -1,7 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/background_pack"
     android:id="@+id/rootView">
 
     <RelativeLayout
@@ -76,6 +75,24 @@
         android:layout_marginTop="40dp"
         android:visibility="gone"
         android:background="@mipmap/dumpling_normal"/>
+
+    <LinearLayout
+        android:id="@+id/ll_hint_pack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="60dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/arrow_up"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@mipmap/hint_pack"/>
+    </LinearLayout>
 
     <include layout="@layout/view_common"/>
 </FrameLayout>

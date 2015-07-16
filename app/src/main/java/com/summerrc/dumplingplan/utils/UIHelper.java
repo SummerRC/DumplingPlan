@@ -10,6 +10,7 @@ import com.summerrc.dumplingplan.ui.activity.CutActivity;
 import com.summerrc.dumplingplan.ui.activity.DoughActivity;
 import com.summerrc.dumplingplan.ui.activity.FoodDescriptionActivity;
 import com.summerrc.dumplingplan.ui.activity.AddStuffingActivity;
+import com.summerrc.dumplingplan.ui.activity.PackActivity;
 import com.summerrc.dumplingplan.ui.activity.PutActivity;
 import com.summerrc.dumplingplan.ui.activity.RubActivity;
 import com.summerrc.dumplingplan.ui.activity.SelectFoodActivity;
@@ -106,11 +107,21 @@ public class UIHelper {
     }
 
     /**
-     * 跳转到包饺子界面
+     * 跳转到给饺子加馅界面
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openAddStuffingActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, AddStuffingActivity.class);
+        currentActivity.startActivity(intent);
+        currentActivity.finish();
+    }
+
+    /**
+     * 跳转到包饺子界面
+     * @param currentActivity 当前运行的Activity的实例
+     */
+    public static void openPackActivity(Activity currentActivity) {
+        Intent intent = new Intent(currentActivity, PackActivity.class);
         currentActivity.startActivity(intent);
         currentActivity.finish();
     }

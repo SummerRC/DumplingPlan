@@ -39,6 +39,8 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         /** 点击外围位置悬浮activity不消失,这里已经在style.xml中设置了 */
         //this.setFinishOnTouchOutside(false);
+        food = (FoodTypeManager.Food)getIntent().getSerializableExtra(IntentConstant.SELECTED_FOOD);
+        ACTIVITY_TYPE = getIntent().getStringExtra(IntentConstant.ACTIVITY_TYPE);
         setContentView(R.layout.activity_food_description);
         initView();
     }
@@ -47,7 +49,11 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
     protected void onStart() {
         super.onStart();
         if (bitmap_background_board_one == null || bitmap_background_board_one.isRecycled()) {
-            bitmap_background_board_one = BitmapFactory.decodeResource(getResources(), R.mipmap.board_two);
+            if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_FOOD)) {
+                bitmap_background_board_one = BitmapFactory.decodeResource(getResources(), R.mipmap.food_description);
+            } else {
+                bitmap_background_board_one = BitmapFactory.decodeResource(getResources(), R.mipmap.seasoning_description);
+            }
         }
         findViewById(R.id.viewContainer).setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap_background_board_one));
     }
@@ -68,8 +74,6 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
 
     private void initView() {
         /** 显示被介绍的食材 */
-        food = (FoodTypeManager.Food)getIntent().getSerializableExtra(IntentConstant.SELECTED_FOOD);
-        ACTIVITY_TYPE = getIntent().getStringExtra(IntentConstant.ACTIVITY_TYPE);
         bitmap_select_food = BitmapFactory.decodeResource(getResources(), FoodTypeManager.getFoodResourceId(food));
         findViewById(R.id.iv_food_description).setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap_select_food));
         /** 设置相关的监听 */
