@@ -109,7 +109,7 @@ public class UIHelper {
      * 跳转到包饺子界面
      * @param currentActivity 当前运行的Activity的实例
      */
-    public static void openPackActivity(Activity currentActivity) {
+    public static void openAddStuffingActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, AddStuffingActivity.class);
         currentActivity.startActivity(intent);
         currentActivity.finish();

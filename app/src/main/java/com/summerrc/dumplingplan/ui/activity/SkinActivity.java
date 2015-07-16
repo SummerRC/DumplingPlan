@@ -69,7 +69,7 @@ public class SkinActivity extends BaseActivity{
         super.onTouch(v, event);
         switch (v.getId()) {
             case R.id.iv_next:
-                UIHelper.openPackActivity(this);
+                UIHelper.openAddStuffingActivity(this);
                 break;
             case R.id.iv_rolling_pin:
                 switch (event.getAction()) {
@@ -129,8 +129,8 @@ public class SkinActivity extends BaseActivity{
 
         /** 面皮从小变大 */
         skinAnimatorSet = new AnimatorSet();
-        ObjectAnimator skinAnimatorX = ObjectAnimator.ofFloat(iv_skin_big, "scaleX", 0.2F, 1F);
-        ObjectAnimator skinAnimatorY = ObjectAnimator.ofFloat(iv_skin_big, "scaleY", 0.2F, 1F);
+        ObjectAnimator skinAnimatorX = ObjectAnimator.ofFloat(iv_skin_big, "scaleX", 0.2F, 0.9F);
+        ObjectAnimator skinAnimatorY = ObjectAnimator.ofFloat(iv_skin_big, "scaleY", 0.2F, 0.9F);
         skinAnimatorSet.setDuration(6000);
         skinAnimatorSet.play(skinAnimatorX).with(skinAnimatorY);
     }
@@ -175,16 +175,16 @@ public class SkinActivity extends BaseActivity{
         rollPinAnimatorXY.setRepeatCount(5);
         rollPinAnimatorXY.setRepeatMode(ValueAnimator.REVERSE);
         /** 同时皮由小变大 */
-        ObjectAnimator skinAnimatorX1 = ObjectAnimator.ofFloat(view, "scaleX", 0.2F, 2F);
-        ObjectAnimator skinAnimatorY1 = ObjectAnimator.ofFloat(view, "scaleY", 0.2F, 2F);
+        ObjectAnimator skinAnimatorX1 = ObjectAnimator.ofFloat(view, "scaleX", 0.2F, 1.8F);
+        ObjectAnimator skinAnimatorY1 = ObjectAnimator.ofFloat(view, "scaleY", 0.2F, 1.8F);
         skinAnimatorX1.setDuration(1000);
         skinAnimatorY1.setDuration(1000);
         /** 皮飞到右上角的碗里面最后淡出消失 */
         int x = (int)findViewById(R.id.iv_basket).getX() - (int)view.getX();
         int y = (int)findViewById(R.id.iv_basket).getY() - (int)view.getY();
-        ObjectAnimator anim1 = ObjectAnimator.ofFloat(view, "translationX", 0f , x);
+        ObjectAnimator anim1 = ObjectAnimator.ofFloat(view, "translationX", targetX-view.getX()+50, x);
         anim1.setDuration(500);
-        ObjectAnimator anim2 = ObjectAnimator.ofFloat(view, "translationY", 0f , y);
+        ObjectAnimator anim2 = ObjectAnimator.ofFloat(view, "translationY", targetY-view.getY()+50, y);
         anim2.setDuration(500);
         ObjectAnimator anim3 = ObjectAnimator.ofFloat(view,"alpha",1f,0f);
         anim3.setDuration(500);

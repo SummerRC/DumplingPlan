@@ -13,6 +13,7 @@ public class GameDataManager {
     private ArrayList<FoodTypeManager.Food> seasoningList;              //调料集合
     private HashMap<FoodTypeManager.Food, Integer> seasoningNumberMap;  //调料份数
     private StuffTypeManager.StuffType stuffType;                       //馅种类
+    private HashMap<Integer, Integer> stuffNumMap;                      //馅的多少
 
     /**
      * 私有化的构造函数
@@ -24,6 +25,13 @@ public class GameDataManager {
         seasoningNumberMap.put(FoodTypeManager.Food.OIL, 0);
         seasoningNumberMap.put(FoodTypeManager.Food.SALT, 0);
         seasoningNumberMap.put(FoodTypeManager.Food.SAUCE, 0);
+        stuffNumMap = new HashMap<>();
+        stuffNumMap.put(1, 0);
+        stuffNumMap.put(2, 0);
+        stuffNumMap.put(3, 0);
+        stuffNumMap.put(4, 0);
+        stuffNumMap.put(5, 0);
+        stuffNumMap.put(6, 0);
     }
 
 
@@ -131,5 +139,33 @@ public class GameDataManager {
      */
     public int getSeasoningNumberMap(FoodTypeManager.Food food) {
         return seasoningNumberMap.get(food);
+    }
+
+    /**
+     * 设置馅的多少
+     * @param key       第几个馅
+     * @param value     值
+     */
+    public void setStuffNum(int key, int value) {
+        stuffNumMap.remove(key);
+        stuffNumMap.put(key, value);
+    }
+
+    /**
+     * 获取馅的多少
+     * @param key       第几个馅
+     */
+    public Integer getStuffNum(int key) {
+        return stuffNumMap.get(key);
+    }
+
+    /**
+     *  添加馅
+     * @param key       第几个馅
+     */
+    public void addStuffNum(int key) {
+        int value = stuffNumMap.get(key)+1;
+        stuffNumMap.remove(key);
+        stuffNumMap.put(key, value);
     }
 }

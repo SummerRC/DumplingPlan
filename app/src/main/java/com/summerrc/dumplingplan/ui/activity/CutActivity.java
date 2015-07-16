@@ -19,7 +19,7 @@ public class CutActivity extends BaseActivity implements View.OnClickListener , 
     private Bitmap bitmap_background_cut;
     private int cut_times = 0;          //切割图片的次数
     private ImageView iv_strip;         //面条ImageView
-    private ImageView iv_cut_line;
+    private ImageView iv_knife_cut;
 
     @Override
     protected void setView() {
@@ -40,8 +40,8 @@ public class CutActivity extends BaseActivity implements View.OnClickListener , 
     protected void initView() {
         super.initView();
         iv_strip = (ImageView)findViewById(R.id.iv_strip);
-        iv_cut_line = (ImageView)findViewById(R.id.iv_cut_line);
-        iv_cut_line.setOnClickListener(this);
+        iv_knife_cut = (ImageView)findViewById(R.id.iv_knife_cut);
+        iv_knife_cut.setOnClickListener(this);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class CutActivity extends BaseActivity implements View.OnClickListener , 
             case R.id.iv_next:
                 UIHelper.openSkinActivity(this);
                 break;
-            case R.id.iv_cut_line:
+            case R.id.iv_knife_cut:
                 if(findViewById(R.id.ll_hint_cut).getVisibility() == View.VISIBLE) {
                     translateAnimationStop(findViewById(R.id.ll_hint_cut));
                     findViewById(R.id.ll_hint_cut).setVisibility(View.GONE);
@@ -78,7 +78,7 @@ public class CutActivity extends BaseActivity implements View.OnClickListener , 
         if(cut_times >= 6) {
             return;
         }
-        ObjectAnimator.ofFloat(iv_cut_line, "translationX", 0f , 80*cut_times).start();
+        ObjectAnimator.ofFloat(iv_knife_cut, "translationX", 0f , 80*cut_times).start();
         switch (cut_times) {
             case 1:
                 findViewById(R.id.iv_piece_one).setVisibility(View.VISIBLE);
@@ -99,6 +99,7 @@ public class CutActivity extends BaseActivity implements View.OnClickListener , 
             case 5:
                 findViewById(R.id.iv_piece_five).setVisibility(View.VISIBLE);
                 iv_strip.setVisibility(View.GONE);
+                iv_knife_cut.setVisibility(View.GONE);
                 findViewById(R.id.iv_piece_six).setVisibility(View.VISIBLE);
                 setWidth();
                 super.hintToNext();

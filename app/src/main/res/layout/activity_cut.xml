@@ -22,15 +22,6 @@
             android:layout_marginRight="130dp" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/iv_cut_line"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right|center_vertical"
-        android:layout_marginRight="370dp"
-        android:layout_marginTop="16dp"
-        android:background="@mipmap/cut_line" />
-
     <LinearLayout
         android:id="@+id/ll_hint_cut"
         android:layout_width="wrap_content"
@@ -107,6 +98,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@mipmap/dough_six"/>
+
+    <ImageView
+        android:id="@+id/iv_knife_cut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:layout_marginRight="360dp"
+        android:layout_marginTop="12dp"
+        android:background="@mipmap/knife_cut" />
 
     <include layout="@layout/view_common"/>
 

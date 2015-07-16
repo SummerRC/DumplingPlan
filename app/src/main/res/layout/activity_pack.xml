@@ -1,12 +1,81 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.summerrc.dumplingplan.ui.activity.PackActivity">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background_pack"
+    android:id="@+id/rootView">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/viewContainer" />
 
-</RelativeLayout>
+   <ImageView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_gravity="center"
+       android:layout_marginTop="20dp"
+       android:background="@mipmap/panel"/>
+
+    <ImageView
+        android:id="@+id/iv_skin_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:background="@mipmap/skin_one"/>
+
+    <ImageView
+        android:id="@+id/iv_skin_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="60dp"
+        android:background="@mipmap/skin_two"/>
+
+    <ImageView
+        android:id="@+id/iv_skin_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="120dp"
+        android:background="@mipmap/skin_three"/>
+
+    <ImageView
+        android:id="@+id/iv_skin_four"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="60dp"
+        android:background="@mipmap/skin_four"/>
+
+    <ImageView
+        android:id="@+id/iv_skin_five"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="120dp"
+        android:background="@mipmap/skin_five"/>
+
+    <ImageView
+        android:id="@+id/iv_skin_big"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@mipmap/skin_big"/>
+
+    <ImageView
+        android:id="@+id/iv_dumpling"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:visibility="gone"
+        android:background="@mipmap/dumpling_normal"/>
+
+    <include layout="@layout/view_common"/>
+</FrameLayout>

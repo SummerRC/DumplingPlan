@@ -84,7 +84,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
                 findViewById(R.id.rl_dialog_background).setVisibility(View.GONE);
                 touchResult = true;
                 break;
-            case R.id.iv_back:                      //返回欢迎界面按钮
+            case R.id.iv_back:                   //返回欢迎界面按钮
                 clickBtnBack();
                 touchResult = true;
                 break;

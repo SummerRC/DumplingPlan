@@ -24,18 +24,21 @@
                 android:id="@+id/iv_skin_one"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
                 android:background="@mipmap/skin_up_left"/>
 
             <ImageView
                 android:id="@+id/iv_skin_two"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
                 android:background="@mipmap/skin_up_middle"/>
 
             <ImageView
                 android:id="@+id/iv_skin_three"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
                 android:background="@mipmap/skin_up_right"/>
         </LinearLayout>
 
@@ -47,6 +50,7 @@
             android:layout_marginLeft="40dp">
             <ImageView
                 android:id="@+id/iv_skin_four"
+                android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/skin_down_left"/>
@@ -55,15 +59,27 @@
                 android:id="@+id/iv_skin_five"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
                 android:background="@mipmap/skin_down_middle"/>
 
             <ImageView
                 android:id="@+id/iv_skin_six"
+                android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/skin_down_right"/>
         </LinearLayout>
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_spoon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/wood_spoon_empty"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="60dp"
+        />
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -81,6 +97,7 @@
         <LinearLayout
             android:id="@+id/ll_hint_click_spoon"
             android:layout_width="wrap_content"
+            android:visibility="invisible"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
@@ -96,10 +113,12 @@
     </FrameLayout>
 
     <LinearLayout
+        android:id="@+id/ll_hint_click_skin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_centerVertical="true"
+        android:visibility="visible"
         android:layout_marginLeft="48dp">
 
         <ImageView
@@ -114,20 +133,12 @@
     </LinearLayout>
 
     <ImageView
+        android:visibility="invisible"
         android:id="@+id/iv_hint_operation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@mipmap/warning"
         android:layout_centerVertical="true"/>
 
-    <ImageView
-        android:id="@+id/iv_spoon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/wood_spoon_empty"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="60dp"
-        />
     <include layout="@layout/view_common"/>
 </RelativeLayout>

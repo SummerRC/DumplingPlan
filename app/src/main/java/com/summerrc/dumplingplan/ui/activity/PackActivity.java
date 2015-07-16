@@ -1,13 +1,15 @@
 package com.summerrc.dumplingplan.ui.activity;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
 
 import com.summerrc.dumplingplan.R;
 
-public class PackActivity extends ActionBarActivity {
+/**
+ * @author SummerRC on 2015/7/11 0011.
+ * description : 包馅界面
+ */
+public class PackActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,24 +18,13 @@ public class PackActivity extends ActionBarActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_pack, menu);
-        return true;
+    protected void setView() {
+
     }
 
+
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void onClick(View v) {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }
