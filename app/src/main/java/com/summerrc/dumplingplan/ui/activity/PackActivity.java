@@ -5,7 +5,9 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,13 +21,14 @@ import com.summerrc.dumplingplan.utils.UIHelper;
 public class PackActivity extends BaseActivity {
     private Bitmap bitmap_background_pack;
     private View ll_hint_pack;
-    private ImageView iv_skin_big;          //有馅的皮
     private ImageView iv_dumpling;          //包好的饺子
+    private Handler handler;
 
     @Override
     protected void setView() {
         setContentView(R.layout.activity_pack);
         initView();
+        handler = new Handler();
     }
 
 
@@ -42,9 +45,8 @@ public class PackActivity extends BaseActivity {
         super.initView();
         ll_hint_pack = findViewById(R.id.ll_hint_pack);
         translateAnimationStart(ll_hint_pack, 0, -40, 800, Integer.MAX_VALUE, true);
-        iv_skin_big = (ImageView) findViewById(R.id.iv_skin_big);
         iv_dumpling = (ImageView) findViewById(R.id.iv_dumpling);
-        iv_skin_big.setOnTouchListener(this);
+        iv_dumpling.setOnTouchListener(this);
     }
 
     @Override
@@ -58,7 +60,7 @@ public class PackActivity extends BaseActivity {
             case R.id.iv_next:
                 UIHelper.openPutActivity(this);
                 break;
-            case R.id.iv_skin_big:
+            case R.id.iv_dumpling:
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         break;
@@ -67,8 +69,14 @@ public class PackActivity extends BaseActivity {
                             iv_dumpling.setVisibility(View.VISIBLE);
                             translateAnimationStop(ll_hint_pack);
                             ll_hint_pack.setVisibility(View.GONE);
-                            iv_skin_big.setVisibility(View.INVISIBLE);
-                            animation(0);
+                            AnimationDrawable anim_dumpling = (AnimationDrawable) findViewById(R.id.iv_dumpling).getBackground();
+                            anim_dumpling.start();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    animation(0);
+                                }
+                            }, 2200);
                         }
                         break;
                     case MotionEvent.ACTION_UP:

@@ -49,6 +49,7 @@
         <activity
             android:name=".ui.activity.PutActivity"
             android:screenOrientation="landscape" >
+
         </activity>
         <activity
             android:name=".ui.activity.ShakeActivity"

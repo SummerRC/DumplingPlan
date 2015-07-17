@@ -17,6 +17,7 @@ public class GameDataManager {
     private StuffTypeManager.StuffType stuffType;                       //馅种类
     private HashMap<Integer, Integer> stuffNumMap;                      //馅的多少
     private ArrayList<DumplingTypeEntity> dumplingTypeEntities;         //饺子集合
+    private int count;                                                  //饺子煮的时间
 
     /**
      * 私有化的构造函数
@@ -184,9 +185,9 @@ public class GameDataManager {
      * 设置饺子集合
      */
     public void setDumplingTypeEntities() {
-        DumplingTypeEntity entity = new DumplingTypeEntity();
         dumplingTypeEntities.clear();
         for(int i=1; i<7; i++) {
+            DumplingTypeEntity entity = new DumplingTypeEntity();
             switch (stuffNumMap.get(i)) {
                 case 1:
                     entity.setType(DumplingTypeEntity.Type.SMALL);
@@ -197,8 +198,18 @@ public class GameDataManager {
                 case 3:
                     entity.setType(DumplingTypeEntity.Type.LARGE);
                     break;
+                default:
+                    entity.setType(DumplingTypeEntity.Type.NOMAL);
             }
-            dumplingTypeEntities.add(i, entity);
+            dumplingTypeEntities.add(entity);
         }
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

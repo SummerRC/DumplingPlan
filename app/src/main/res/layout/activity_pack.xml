@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="40dp"
         android:background="@mipmap/skin_one"/>
 
     <ImageView
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="40dp"
         android:layout_marginRight="60dp"
         android:background="@mipmap/skin_two"/>
 
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="40dp"
         android:layout_marginRight="120dp"
         android:background="@mipmap/skin_three"/>
 
@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="40dp"
         android:layout_marginLeft="60dp"
         android:background="@mipmap/skin_four"/>
 
@@ -55,17 +55,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="40dp"
         android:layout_marginLeft="120dp"
         android:background="@mipmap/skin_five"/>
 
-    <ImageView
-        android:id="@+id/iv_skin_big"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:background="@mipmap/skin_big"/>
 
     <ImageView
         android:id="@+id/iv_dumpling"
@@ -73,8 +66,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:visibility="gone"
-        android:background="@mipmap/dumpling_normal"/>
+        android:visibility="visible"
+        android:background="@anim/pack_dumpling"/>
 
     <LinearLayout
         android:id="@+id/ll_hint_pack"
