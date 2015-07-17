@@ -23,6 +23,7 @@ public class PutActivity extends BaseActivity  {
     private ImageView iv_cover_pad;                     //放饺子的盖
     private ImageView iv_pod;                           //锅
     private AnimatorSet animatorSet;                    //饺子播放动画
+    private ObjectAnimator anim;
 
     @Override
     protected void setView() {
@@ -86,7 +87,8 @@ public class PutActivity extends BaseActivity  {
                 if(event.getAction()==MotionEvent.ACTION_DOWN) {
                     animatorSet.pause();
                     findViewById(R.id.ll_hint_click_switch).setVisibility(View.GONE);
-                    int count = ((ObjectAnimator)animatorSet.getChildAnimations().get(5)).getRepeatCount();
+                    //int count = ((ObjectAnimator)animatorSet.getChildAnimations().get(5)).getRepeatCount();
+                    int count = anim.getRepeatCount();
                     GameDataManager.init().setCount(count);
                     super.hintToNext();
                 }
@@ -179,7 +181,13 @@ public class PutActivity extends BaseActivity  {
                         findViewById(R.id.ll_hint_click_switch).setVisibility(View.VISIBLE);
                         findViewById(R.id.iv_switch).setVisibility(View.VISIBLE);
                         findViewById(R.id.iv_switch).setOnTouchListener(PutActivity.this);
-                        PutActivity.this.AlphaAnimator();
+                        //PutActivity.this.AlphaAnimator();
+                        findViewById(R.id.iv_dumplings).setVisibility(View.VISIBLE);
+                        anim = ObjectAnimator.ofFloat(findViewById(R.id.iv_dumplings), "alpha", 0f, 0.8f);
+                        anim.setDuration(1500);
+                        anim.setRepeatCount(Integer.MAX_VALUE);
+                        anim.setRepeatMode(ValueAnimator.REVERSE);
+                        anim.start();
                         break;
                 }
             }

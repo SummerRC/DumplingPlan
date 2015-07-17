@@ -110,7 +110,7 @@ public  class FoodTypeManager implements Serializable{
             case CUCUMBER:
                 break;
             case EGGPLANT:
-                resourceId = R.mipmap.cabbage_description;
+                resourceId = R.mipmap.eggplant_description;
                 break;
             case PIMIENTO:
                 break;

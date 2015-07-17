@@ -14,6 +14,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Toast;
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.GameDataManager;
+import com.summerrc.dumplingplan.utils.SoundUtil;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
@@ -32,6 +33,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SoundUtil.initSounds(this);
         /** 去掉标题栏和信息栏 */
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -85,10 +87,12 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
                 touchResult = true;
                 break;
             case R.id.iv_back:                   //返回欢迎界面按钮
+                SoundUtil.playSounds(SoundUtil.BACK, 0, this);
                 clickBtnBack();
                 touchResult = true;
                 break;
             case R.id.iv_resume:                 //返回游戏第一个界面按钮
+                SoundUtil.playSounds(SoundUtil.REPLAY, 0, this);
                 clickBtnResume();
                 touchResult = true;
                 break;
