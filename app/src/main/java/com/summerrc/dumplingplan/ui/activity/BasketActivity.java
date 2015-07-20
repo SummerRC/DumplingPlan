@@ -23,6 +23,7 @@ public class BasketActivity extends Activity implements View.OnClickListener{
     private Bitmap bitmap_background_basket_popup_box;
     private String ACTIVITY_TYPE;                       //启动菜篮Activity的Activity
     private ArrayList<FoodTypeManager.Food> list;       //食材集合或者调料集合，有启动Activity的类型决定
+    private GameDataManager gameDataManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +56,12 @@ public class BasketActivity extends Activity implements View.OnClickListener{
     }
 
     private void initData() {
+        gameDataManager = GameDataManager.init(this);
         ACTIVITY_TYPE = getIntent().getStringExtra(IntentConstant.ACTIVITY_TYPE);
         if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_FOOD)) {                //食材
-            list = GameDataManager.init().getFoodList();
+            list =gameDataManager.getFoodList();
         } else if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_SEASONING)){     //调料
-            list = GameDataManager.init().getSeasoningList();
+            list = gameDataManager.getSeasoningList();
         }
     }
 
@@ -97,7 +99,7 @@ public class BasketActivity extends Activity implements View.OnClickListener{
         switch (v.getId()) {
             case R.id.iv_remove_one:
                 if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_SEASONING)){     //调料
-                    GameDataManager.init().setSeasoningNumberMap(list.get(0), 0);
+                    gameDataManager.setSeasoningNumberMap(list.get(0), 0);
                 }
                 list.remove(0);
                 findViewById(R.id.iv_remove_one).setVisibility(View.INVISIBLE);
@@ -105,7 +107,7 @@ public class BasketActivity extends Activity implements View.OnClickListener{
                 break;
             case R.id.iv_remove_two:
                 if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_SEASONING)){     //调料
-                    GameDataManager.init().setSeasoningNumberMap(list.get(1), 0);
+                    gameDataManager.setSeasoningNumberMap(list.get(1), 0);
                 }
                 list.remove(1);
                 findViewById(R.id.iv_remove_two).setVisibility(View.INVISIBLE);
@@ -113,7 +115,7 @@ public class BasketActivity extends Activity implements View.OnClickListener{
                 break;
             case R.id.iv_remove_three:
                 if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_SEASONING)){     //调料
-                    GameDataManager.init().setSeasoningNumberMap(list.get(2), 0);
+                    gameDataManager.setSeasoningNumberMap(list.get(2), 0);
                 }
                 list.remove(2);
                 findViewById(R.id.iv_remove_three).setVisibility(View.INVISIBLE);

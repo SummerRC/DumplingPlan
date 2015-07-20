@@ -85,11 +85,14 @@ public class PutActivity extends BaseActivity  {
                 break;
             case R.id.iv_switch:
                 if(event.getAction()==MotionEvent.ACTION_DOWN) {
-                    animatorSet.pause();
+                    anim.pause();
                     findViewById(R.id.ll_hint_click_switch).setVisibility(View.GONE);
+                    ObjectAnimator anim1 = ObjectAnimator.ofFloat(findViewById(R.id.iv_switch), "rotation", 0f, 90f);
+                    anim1.setDuration(200);
+                    anim1.start();
                     //int count = ((ObjectAnimator)animatorSet.getChildAnimations().get(5)).getRepeatCount();
-                    int count = anim.getRepeatCount();
-                    GameDataManager.init().setCount(count);
+                    int count = (int)(anim.getCurrentPlayTime() / 1500L);
+                    GameDataManager.init(this).setCount(count);
                     super.hintToNext();
                 }
                 break;

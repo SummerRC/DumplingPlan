@@ -60,10 +60,6 @@
         <activity
             android:name=".ui.activity.ScoreActivity"
             android:screenOrientation="landscape" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.FoodDescriptionActivity"
@@ -73,6 +69,14 @@
         <activity
             android:name=".ui.activity.BasketActivity"
             android:theme="@style/DialogActivity" >
+        </activity>
+        <activity
+            android:name=".ui.activity.LockActivity"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

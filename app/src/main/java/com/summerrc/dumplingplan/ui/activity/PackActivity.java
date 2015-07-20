@@ -126,7 +126,10 @@ public class PackActivity extends BaseActivity {
                 view = findViewById(R.id.iv_skin_five);
                 break;
         }
-
+        /** 直接将带馅的皮图片替换成包好的饺子 */
+        if(position > 0) {
+            view.setBackgroundResource(R.mipmap.little_dumpling);
+        }
         /** 包好的饺子飞出屏幕 */
         ObjectAnimator skinAnimatorX = ObjectAnimator.ofFloat(view, "translationX", 0, (view.getX()==0)?PhoneHeight:(PhoneWidth-view.getX()));
         ObjectAnimator skinAnimatorY = ObjectAnimator.ofFloat(view, "translationY", 0, (view.getY()==0)?0:(PhoneHeight/2-view.getY()));

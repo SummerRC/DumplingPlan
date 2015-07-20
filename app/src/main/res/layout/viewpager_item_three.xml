@@ -23,7 +23,7 @@
         android:background="@mipmap/lemon"/>
 
     <ImageView
-        android:id="@+id/iv_mangosteen_lock"
+        android:id="@+id/iv_mangosteen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/iv_lemon"
@@ -33,17 +33,17 @@
         android:background="@mipmap/mangosteen_lock"/>
 
     <ImageView
-        android:id="@+id/iv_watermelon_lock"
+        android:id="@+id/iv_watermelon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/iv_mangosteen_lock"
+        android:layout_toRightOf="@+id/iv_mangosteen"
         android:layout_above="@+id/iv_banana"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="10dp"
         android:background="@mipmap/watermelon_lock"/>
 
     <ImageView
-        android:id="@+id/iv_dragon_fruit_lock"
+        android:id="@+id/iv_dragon_fruit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/iv_banana"

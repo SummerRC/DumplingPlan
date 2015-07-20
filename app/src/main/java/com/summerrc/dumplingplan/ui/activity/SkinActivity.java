@@ -104,7 +104,7 @@ public class SkinActivity extends BaseActivity{
     private void initAnimator() {
         /** 擀面棍来回移动6次，每次1秒钟 */
         rollPinAnimator = ObjectAnimator.ofFloat(iv_roll_pin, "translationY", -40f , 40f);
-        rollPinAnimator.setDuration(1000);
+        rollPinAnimator.setDuration(800);
         rollPinAnimator.setRepeatCount(5);
         rollPinAnimator.setRepeatMode(ValueAnimator.REVERSE);
         rollPinAnimator.addListener(new Animator.AnimatorListener() {
@@ -130,9 +130,9 @@ public class SkinActivity extends BaseActivity{
 
         /** 面皮从小变大 */
         skinAnimatorSet = new AnimatorSet();
-        ObjectAnimator skinAnimatorX = ObjectAnimator.ofFloat(iv_skin_big, "scaleX", 0.2F, 0.9F);
-        ObjectAnimator skinAnimatorY = ObjectAnimator.ofFloat(iv_skin_big, "scaleY", 0.2F, 0.9F);
-        skinAnimatorSet.setDuration(6000);
+        ObjectAnimator skinAnimatorX = ObjectAnimator.ofFloat(iv_skin_big, "scaleX", 0.2F, 0.8F);
+        ObjectAnimator skinAnimatorY = ObjectAnimator.ofFloat(iv_skin_big, "scaleY", 0.2F, 0.8F);
+        skinAnimatorSet.setDuration(4000);
         skinAnimatorSet.play(skinAnimatorX).with(skinAnimatorY);
     }
 

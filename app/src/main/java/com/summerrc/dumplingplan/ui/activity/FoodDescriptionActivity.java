@@ -30,6 +30,7 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
     private Bitmap bitmap_select_food;
     private String ACTIVITY_TYPE;
     private int number = 0;                 //选择调料的份数
+    private GameDataManager gameDataManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
         food = (FoodTypeManager.Food)getIntent().getSerializableExtra(IntentConstant.SELECTED_FOOD);
         ACTIVITY_TYPE = getIntent().getStringExtra(IntentConstant.ACTIVITY_TYPE);
         setContentView(R.layout.activity_food_description);
+        gameDataManager = GameDataManager.init(this);
         initView();
     }
 
@@ -83,7 +85,7 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
         findViewById(R.id.iv_decrease).setOnClickListener(this);
         if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_SEASONING)) {
             findViewById(R.id.ll_number).setVisibility(View.VISIBLE);
-            number = GameDataManager.init().getSeasoningNumberMap(food);
+            number = gameDataManager.getSeasoningNumberMap(food);
             ((TextView)findViewById(R.id.tv_number)).setText(number + "");
         }
     }
@@ -94,14 +96,14 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
             case R.id.iv_yes:
                 if(isAdd()) {
                     if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_FOOD)) {               //食材
-                        GameDataManager.init().setFoodList(food);
+                        gameDataManager.setFoodList(food);
                     } else if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_SEASONING)) {   //调料
                         if(number == 0) {
                             Toast.makeText(this, "请至少选择一份调料！", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        GameDataManager.init().setSeasoningNumberMap(food, number);
-                        GameDataManager.init().setSeasoningList(food);
+                        gameDataManager.setSeasoningNumberMap(food, number);
+                        gameDataManager.setSeasoningList(food);
                     }
                     Intent intent = new Intent();
                     Bundle bundle = new Bundle();
@@ -138,9 +140,9 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
     private boolean isAdd() {
         ArrayList<FoodTypeManager.Food> list = new ArrayList<>();
         if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_FOOD)) {                    //食材
-            list = GameDataManager.init().getFoodList();
+            list = gameDataManager.getFoodList();
         } else if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_SEASONING)) {        //调料
-            list =GameDataManager.init().getSeasoningList();
+            list = gameDataManager.getSeasoningList();
         }
         if(list.size() >= 3) {
             Toast.makeText(this, "最多只能选择3种食材！", Toast.LENGTH_SHORT).show();

@@ -6,12 +6,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/viewContainer" />
+        android:id="@+id/viewContainer"
+        android:background="@mipmap/background_film"/>
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         android:layout_gravity="bottom|center_horizontal">
 
         <ImageView
@@ -23,15 +24,15 @@
 
         <ImageView
             android:id="@+id/iv_water"
-            android:layout_marginTop="100dp"
-            android:layout_marginLeft="50dp"
+            android:layout_marginTop="98dp"
+            android:layout_marginLeft="49dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@mipmap/water_put"/>
 
         <ImageView
             android:id="@+id/iv_dumplings"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="98dp"
             android:layout_marginLeft="80dp"
             android:visibility="invisible"
             android:layout_width="wrap_content"
@@ -101,48 +102,48 @@
         android:background="@mipmap/cover_pad"/>
 
     <ImageView
-        android:id="@+id/iv_dumpling_one"
+        android:id="@+id/iv_dumpling_three"
         android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@mipmap/skin_five"/>
-
-    <ImageView
-        android:id="@+id/iv_dumpling_two"
-        android:layout_marginTop="50dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/skin_five"/>
-
-    <ImageView
-        android:id="@+id/iv_dumpling_three"
-        android:layout_marginTop="70dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/skin_five"/>
+        android:background="@mipmap/little_dumpling"/>
 
     <ImageView
         android:id="@+id/iv_dumpling_four"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@mipmap/skin_five"/>
+        android:background="@mipmap/little_dumpling"/>
 
     <ImageView
         android:id="@+id/iv_dumpling_five"
+        android:layout_marginTop="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/little_dumpling"/>
+
+    <ImageView
+        android:id="@+id/iv_dumpling_six"
+        android:layout_marginTop="90dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/little_dumpling"/>
+
+    <ImageView
+        android:id="@+id/iv_dumpling_one"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@mipmap/skin_five"/>
+        android:background="@mipmap/little_dumpling"/>
 
     <ImageView
-        android:id="@+id/iv_dumpling_six"
+        android:id="@+id/iv_dumpling_two"
         android:layout_marginTop="70dp"
         android:layout_marginLeft="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@mipmap/skin_five"/>
+        android:background="@mipmap/little_dumpling"/>
 
 
     <include layout="@layout/view_common"/>

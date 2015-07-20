@@ -1,7 +1,9 @@
 package com.summerrc.dumplingplan.config;
 
-import com.summerrc.dumplingplan.entity.DumplingTypeEntity;
+import android.content.Context;
 
+import com.summerrc.dumplingplan.entity.DumplingTypeEntity;
+import com.summerrc.dumplingplan.utils.SharedPreferenceUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,11 +20,15 @@ public class GameDataManager {
     private HashMap<Integer, Integer> stuffNumMap;                      //馅的多少
     private ArrayList<DumplingTypeEntity> dumplingTypeEntities;         //饺子集合
     private int count;                                                  //饺子煮的时间
+    private int currentLock = 0;                                        //当前关卡
+    private int unLock = 1;                                             //以解锁的关卡
+    private Context context;
 
     /**
      * 私有化的构造函数
      */
-    private GameDataManager() {
+    private GameDataManager(Context context) {
+        this.context = context;
         foodList = new ArrayList<>();
         seasoningList = new ArrayList<>();
         seasoningNumberMap = new HashMap<>();
@@ -37,6 +43,7 @@ public class GameDataManager {
         stuffNumMap.put(5, 0);
         stuffNumMap.put(6, 0);
         dumplingTypeEntities = new ArrayList<>();
+        currentLock = SharedPreferenceUtils.getIntDate(context, IntentConstant.UN_LOCK, 1);
     }
 
 
@@ -44,9 +51,9 @@ public class GameDataManager {
      * 单例模式，保证游戏数据内存中只有一份
      * @return 自身对象，单利模式
      */
-    public static GameDataManager init() {
+    public static GameDataManager init(Context context) {
         if(gameDataManager == null) {
-            gameDataManager = new GameDataManager();
+            gameDataManager = new GameDataManager(context);
         }
         return gameDataManager;
     }
@@ -99,32 +106,41 @@ public class GameDataManager {
      * 设置馅的类型
      */
     public void setStuffType() {
-        int vegetable = 1, fruit = 10, meat = 100, count = 0;
+        int vegetable = 0, fruit = 0, meat = 0, count = 0;
         for(int i=0; i<foodList.size(); i++) {
             if(StuffTypeManager.isVegetable(foodList.get(i))) {
-                count += vegetable;
+                vegetable = 1;
             }
             if(StuffTypeManager.isFruit(foodList.get(i))) {
-                count += fruit;
+                fruit = 10;
             }
             if(StuffTypeManager.isMeat(foodList.get(i))) {
-                count += meat;
+                meat = 100;
             }
         }
-        if(count<10) {
-            stuffType = StuffTypeManager.StuffType.VEGETABLE;
-        } else if(count==10 || count==20 || count==30) {
-            stuffType = StuffTypeManager.StuffType.FRUIT;
-        } else if(count==100 || count==200 ||count==300) {
-            stuffType = StuffTypeManager.StuffType.MEAT;
-        } else if(count==12 || count==21) {      //去除了水果的情况
-            stuffType = StuffTypeManager.StuffType.VEGETABLE_FRUIT;
-        } else if(count==102 || count==201){
-            stuffType = StuffTypeManager.StuffType.VEGETABLE_MEAT;
-        } else if(count==120 || count==210){
-            stuffType = StuffTypeManager.StuffType.FRUIT_MEAT;
-        } else if(count==111){
-            stuffType = StuffTypeManager.StuffType.VEGETABLE_FRUIT_MEAT;
+        count = vegetable + fruit + meat;
+        switch (count) {
+            case 1:
+                stuffType = StuffTypeManager.StuffType.VEGETABLE;
+                break;
+            case 10:
+                stuffType = StuffTypeManager.StuffType.FRUIT;
+                break;
+            case 100:
+                stuffType = StuffTypeManager.StuffType.MEAT;
+                break;
+            case 11:
+                stuffType = StuffTypeManager.StuffType.VEGETABLE_FRUIT;
+                break;
+            case 101:
+                stuffType = StuffTypeManager.StuffType.VEGETABLE_MEAT;
+                break;
+            case 110:
+                stuffType = StuffTypeManager.StuffType.FRUIT_MEAT;
+                break;
+            case 111:
+                stuffType = StuffTypeManager.StuffType.VEGETABLE_FRUIT_MEAT;
+                break;
         }
     }
 
@@ -211,5 +227,22 @@ public class GameDataManager {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public int getCurrentLock() {
+        return currentLock;
+    }
+
+    public void setCurrentLock(int currentLock) {
+        this.currentLock = currentLock;
+    }
+
+    public int getUnLock() {
+        return unLock;
+    }
+
+    public void setUnLock(int unLock) {
+        this.unLock = unLock;
+        SharedPreferenceUtils.saveIntDate(context, IntentConstant.UN_LOCK, unLock);
     }
 }

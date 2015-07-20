@@ -1,6 +1,9 @@
 package com.summerrc.dumplingplan.ui.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -13,7 +16,7 @@ import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
  * @author SummerRC on 2015.07.12
- * description : 切馅界面
+ * description : 切段界面
  */
 public class CutActivity extends BaseActivity implements View.OnClickListener , View.OnTouchListener{
     private Bitmap bitmap_background_cut;
@@ -78,7 +81,16 @@ public class CutActivity extends BaseActivity implements View.OnClickListener , 
         if(cut_times >= 6) {
             return;
         }
-        ObjectAnimator.ofFloat(iv_knife_cut, "translationX", 0f , 80*cut_times).start();
+        ObjectAnimator anim1 = ObjectAnimator.ofFloat(iv_knife_cut, "translationY", 0f, 40);
+        anim1.setDuration(50);
+        ObjectAnimator anim2 = ObjectAnimator.ofFloat(iv_knife_cut, "translationY", 40f, 0);
+        anim2.setDuration(2);
+        ObjectAnimator anim3 = ObjectAnimator.ofFloat(iv_knife_cut, "translationX", 0f , 80*cut_times);
+        anim3.setDuration(400);
+        AnimatorSet set = new AnimatorSet();
+        set.play(anim2).after(anim1);
+        set.play(anim3).after(anim2);
+        set.start();
         switch (cut_times) {
             case 1:
                 findViewById(R.id.iv_piece_one).setVisibility(View.VISIBLE);
@@ -123,8 +135,7 @@ public class CutActivity extends BaseActivity implements View.OnClickListener , 
      * @param view 控件
      * @param x       绝对位置，此时Y可能归0
      */
-    public static void setLayoutX(View view, int x)
-    {
+    public static void setLayoutX(View view, int x) {
         ViewGroup.MarginLayoutParams margin=new ViewGroup.MarginLayoutParams(view.getLayoutParams());
         margin.setMargins(x,margin.topMargin, x+margin.width, margin.bottomMargin);
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(margin);

@@ -10,9 +10,11 @@ import com.summerrc.dumplingplan.ui.activity.CutActivity;
 import com.summerrc.dumplingplan.ui.activity.DoughActivity;
 import com.summerrc.dumplingplan.ui.activity.FoodDescriptionActivity;
 import com.summerrc.dumplingplan.ui.activity.AddStuffingActivity;
+import com.summerrc.dumplingplan.ui.activity.LockActivity;
 import com.summerrc.dumplingplan.ui.activity.PackActivity;
 import com.summerrc.dumplingplan.ui.activity.PutActivity;
 import com.summerrc.dumplingplan.ui.activity.RubActivity;
+import com.summerrc.dumplingplan.ui.activity.ScoreActivity;
 import com.summerrc.dumplingplan.ui.activity.SelectFoodActivity;
 import com.summerrc.dumplingplan.ui.activity.SelectSeasoningActivity;
 import com.summerrc.dumplingplan.ui.activity.ShakeActivity;
@@ -170,5 +172,25 @@ public class UIHelper {
         Intent intent = new Intent(currentActivity, BasketActivity.class);
         intent.putExtra(IntentConstant.ACTIVITY_TYPE, activity_type);
         currentActivity.startActivityForResult(intent, requestCode);
+    }
+
+    /**
+     * 启动评分界面
+     * @param currentActivity 当前运行的Activity的实例
+     */
+    public static void openScoreActivity(Activity currentActivity) {
+        Intent intent = new Intent(currentActivity, ScoreActivity.class);
+        currentActivity.startActivity(intent);
+        currentActivity.finish();
+    }
+
+    /**
+     * 解锁界面界面
+     * @param currentActivity 当前运行的Activity的实例
+     */
+    public static void openLockActivity(Activity currentActivity) {
+        Intent intent = new Intent(currentActivity, LockActivity.class);
+        currentActivity.startActivity(intent);
+        currentActivity.finish();
     }
 }

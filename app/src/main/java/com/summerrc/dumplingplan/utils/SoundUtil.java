@@ -24,7 +24,7 @@ public class SoundUtil  {
 	public static void initSounds(Context context) {
 		/** 创建声音缓冲池 */
 		soundPool = new SoundPool(
-						5, 							//同时能最多播放的个数
+						20, 						//同时能最多播放的个数
 						AudioManager.STREAM_MUSIC,  //音频的类型
 						100							//声音的播放质量，目前无效
 		);
@@ -53,7 +53,7 @@ public class SoundUtil  {
 				.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 		float volume = streamVolumeCurrent / streamVolumeMax;
 		soundPool.play(
-				soundPoolMap.get(key), 		//声音id
+				soundPoolMap.get(key), 						//声音id
 				volume, 									//左声道
 				volume, 									//右声道
 				1,											//优先级

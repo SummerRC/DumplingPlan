@@ -2,6 +2,7 @@ package com.summerrc.dumplingplan.ui.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -33,7 +34,8 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SoundUtil.initSounds(this);
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        SoundUtil.initSounds(getApplicationContext());
         /** 去掉标题栏和信息栏 */
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -87,17 +89,17 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
                 touchResult = true;
                 break;
             case R.id.iv_back:                   //返回欢迎界面按钮
-                SoundUtil.playSounds(SoundUtil.BACK, 0, this);
+                SoundUtil.playSounds(SoundUtil.BACK, 0, getApplicationContext());
                 clickBtnBack();
                 touchResult = true;
                 break;
             case R.id.iv_resume:                 //返回游戏第一个界面按钮
-                SoundUtil.playSounds(SoundUtil.REPLAY, 0, this);
+                SoundUtil.playSounds(SoundUtil.REPLAY, 0, getApplicationContext());
                 clickBtnResume();
                 touchResult = true;
                 break;
             case R.id.iv_yes:                       //两种情况：返回首页或者重玩本关卡,记得要清空游戏游戏数据
-                GameDataManager.init().clean();
+                GameDataManager.init(this).clean();
                 switch (tipType) {
                     case TYPE_BACK:
                         UIHelper.openWelcomeActivity(this);

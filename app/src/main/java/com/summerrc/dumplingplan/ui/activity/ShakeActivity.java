@@ -82,8 +82,6 @@ public class ShakeActivity extends BaseActivity implements Animation.AnimationLi
     protected void initView() {
         super.initView();
         iv_hint_shake = (ImageView) findViewById(R.id.iv_hint_shake);
-        findViewById(R.id.iv_next).setVisibility(View.VISIBLE);
-        findViewById(R.id.iv_next).setOnTouchListener(this);
     }
 
     @Override
@@ -105,13 +103,12 @@ public class ShakeActivity extends BaseActivity implements Animation.AnimationLi
         super.onTouch(v, event);
         switch (v.getId()) {
             case R.id.iv_next:
-                UIHelper.openWelcomeActivity(this);
+                UIHelper.openScoreActivity(this);
                 break;
             case R.id.iv_strip:
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         findViewById(R.id.ll_hint_cut).setVisibility(View.GONE);
-                        findViewById(R.id.iv_next).setVisibility(View.VISIBLE);
                         break;
                     case MotionEvent.ACTION_MOVE:
 
@@ -136,6 +133,9 @@ public class ShakeActivity extends BaseActivity implements Animation.AnimationLi
             switch (msg.what) {
                 case SENSOR_SHAKE:
                     activity.shake_count++;
+                    if(activity.shake_count == 80) {
+                        activity.hintToNext();
+                    }
                     activity.waterAlpha(activity.shake_count);
                     activity.startAnimation();
                     break;

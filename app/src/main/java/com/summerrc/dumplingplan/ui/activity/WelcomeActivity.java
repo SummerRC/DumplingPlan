@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import com.summerrc.dumplingplan.R;
+import com.summerrc.dumplingplan.config.GameDataManager;
 import com.summerrc.dumplingplan.utils.UIHelper;
 import com.summerrc.dumplingplan.ui.widget.KeywordsFlow;
 import java.util.Random;
@@ -38,6 +39,7 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_welcome);
 		handler = new Handler();
 		initView();
+		GameDataManager.init(this);
 	}
 
 	public void initView() {
@@ -73,7 +75,7 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 				UIHelper.openSelectFoodActivity(this);
 				break;
 			case R.id.iv_cook_mode:			//厨神之路
-				findViewById(R.id.rl).setVisibility(View.GONE);
+				/*findViewById(R.id.rl).setVisibility(View.GONE);
 				if(tag) {
 					in();
 					tag = false;
@@ -86,7 +88,8 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 					public void run() {
 						findViewById(R.id.rl).setVisibility(View.VISIBLE);
 					}
-				}, 1000l);
+				}, 1000l);*/
+				UIHelper.openLockActivity(this);
 				break;
 			case R.id.iv_about:						//关于我们
 				break;

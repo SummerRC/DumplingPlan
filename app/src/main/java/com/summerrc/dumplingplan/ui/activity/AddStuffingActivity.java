@@ -28,8 +28,8 @@ public class AddStuffingActivity extends BaseActivity {
     @Override
     protected void setView() {
         setContentView(R.layout.activity_add_stuffing);
+        gameDataManager = GameDataManager.init(this);
         initView();
-        gameDataManager = GameDataManager.init();
     }
 
     @Override
@@ -52,7 +52,7 @@ public class AddStuffingActivity extends BaseActivity {
         findViewById(R.id.iv_skin_five).setOnTouchListener(this);
         findViewById(R.id.iv_skin_six).setOnTouchListener(this);
         /* 根据馅的种类来设置图片 */
-        int stuffResourceId = StuffTypeManager.getStuffResourceId(GameDataManager.init().getStuffType());
+        int stuffResourceId = StuffTypeManager.getStuffResourceId(gameDataManager.getStuffType());
         findViewById(R.id.iv_stuffing).setBackgroundResource(stuffResourceId);
         translateAnimationStart(findViewById(R.id.ll_hint_click_skin), 0, 50, 800, Integer.MAX_VALUE, false);
     }
@@ -77,7 +77,7 @@ public class AddStuffingActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.iv_next:
                 /** 记录每个饺子大小 */
-                GameDataManager.init().setDumplingTypeEntities();
+                gameDataManager.setDumplingTypeEntities();
                 UIHelper.openPackActivity(this);
                 break;
             case R.id.iv_skin_one:

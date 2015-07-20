@@ -42,7 +42,7 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
     protected void setView() {
         setContentView(R.layout.activity_select_food);
         initView();
-        translateAnimationStart(findViewById(R.id.ll_hint_select_food), 50, 60, 800, Integer.MAX_VALUE, false);
+        translateAnimationStart(findViewById(R.id.ll_hint_select_food), 50, 30, 800, Integer.MAX_VALUE, false);
         translateAnimationStart(findViewById(R.id.iv_right_arrow), 30, 0, 500, Integer.MAX_VALUE, false);
     }
 
@@ -82,6 +82,7 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
         list.add(view_three);
         list.add(view_four);
 
+        /** 根据关卡的不同，显示不同的食材 */
         iv_eggplant = (ImageView)view_one.findViewById(R.id.iv_eggplant);
         iv_beef = (ImageView)view_two.findViewById(R.id.iv_beef);
         iv_lemon = (ImageView)view_three.findViewById(R.id.iv_lemon);
@@ -108,22 +109,57 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        FoodTypeManager.Food food = FoodTypeManager.Food.DEFAULT;
         switch (v.getId()) {
             case R.id.iv_next:
                 /** 进入下一步之前先设置馅类型 */
-                GameDataManager.init().setStuffType();
+                GameDataManager.init(this).setStuffType();
                 UIHelper.openSelectSeasoningActivity(this);
                 break;
             case R.id.iv_eggplant:
-                UIHelper.openFoodDescriptionActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_FOOD, SELECT_FOOD_ACTIVITY, FoodTypeManager.Food.EGGPLANT);
+                food = FoodTypeManager.Food.EGGPLANT;
+                break;
+            case R.id.iv_cucumber:
+                food = FoodTypeManager.Food.CUCUMBER;
+                break;
+            case R.id.iv_pimiento:
+                food = FoodTypeManager.Food.PIMIENTO;
+                break;
+            case R.id.iv_cabbage:
+                food = FoodTypeManager.Food.CABBAGE;
+                break;
+            case R.id.iv_tomato:
+                food = FoodTypeManager.Food.TOMATO;
                 break;
             case R.id.iv_beef:
-                UIHelper.openFoodDescriptionActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_FOOD, SELECT_FOOD_ACTIVITY, FoodTypeManager.Food.BEEF);
-               // animatorSetStart(iv_beef);
+                food = FoodTypeManager.Food.BEEF;
+                break;
+            case R.id.iv_crab:
+                food = FoodTypeManager.Food.CRAB;
+                break;
+            case R.id.iv_chicken:
+                food = FoodTypeManager.Food.CHICKEN;
+                break;
+            case R.id.iv_pork:
+                food = FoodTypeManager.Food.PORK;
+                break;
+            case R.id.iv_shrimp:
+                food = FoodTypeManager.Food.SHRIMP;
                 break;
             case R.id.iv_lemon:
-                UIHelper.openFoodDescriptionActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_FOOD, SELECT_FOOD_ACTIVITY, FoodTypeManager.Food.LEMON);
-               //animatorSetStart(iv_lemon);
+                food = FoodTypeManager.Food.LEMON;
+                break;
+            case R.id.iv_mangosteen:
+                food =  FoodTypeManager.Food.MANGO_STEAN;
+                break;
+            case R.id.iv_watermelon:
+                food = FoodTypeManager.Food.WATERMELON;
+                break;
+            case R.id.iv_banana:
+                food = FoodTypeManager.Food.BANANA;
+                break;
+            case R.id.iv_dragon_fruit:
+                food = FoodTypeManager.Food.DRAGON_FRUIT;
                 break;
             case R.id.iv_left_arrow:
                 //todo 有问题
@@ -136,6 +172,10 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
                 UIHelper.openBasketActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_FOOD, BASKET_ACTIVITY);
                 break;
         }
+        if(food != FoodTypeManager.Food.DEFAULT) {
+            UIHelper.openFoodDescriptionActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_FOOD, SELECT_FOOD_ACTIVITY, FoodTypeManager.Food.LEMON);
+        }
+
     }
 
     /**
@@ -246,7 +286,7 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
                     break;
             }
         } else if(requestCode==BASKET_ACTIVITY && resultCode==RESULT_OK) {
-            if(GameDataManager.init().getFoodList().size()==0) {
+            if(GameDataManager.init(this).getFoodList().size()==0) {
                 Toast.makeText(this, "亲，你一种食材都不选取，皇上会生气的哦", Toast.LENGTH_SHORT).show();
                 findViewById(R.id.iv_next).setVisibility(View.INVISIBLE);
             }

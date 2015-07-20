@@ -8,7 +8,7 @@
         android:layout_height="match_parent"
         android:id="@+id/viewContainer" />
 
-   <ImageView
+    <ImageView
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_gravity="center"
@@ -16,30 +16,12 @@
        android:background="@mipmap/panel"/>
 
     <ImageView
-        android:id="@+id/iv_skin_one"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="40dp"
-        android:background="@mipmap/skin_one"/>
-
-    <ImageView
-        android:id="@+id/iv_skin_two"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="40dp"
-        android:layout_marginRight="60dp"
-        android:background="@mipmap/skin_two"/>
-
-    <ImageView
         android:id="@+id/iv_skin_three"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="40dp"
-        android:layout_marginRight="120dp"
-        android:background="@mipmap/skin_three"/>
+        android:background="@mipmap/little_skin_pie_three"/>
 
     <ImageView
         android:id="@+id/iv_skin_four"
@@ -47,8 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="40dp"
-        android:layout_marginLeft="60dp"
-        android:background="@mipmap/skin_four"/>
+        android:layout_marginRight="60dp"
+        android:background="@mipmap/little_skin_pie_four"/>
 
     <ImageView
         android:id="@+id/iv_skin_five"
@@ -56,9 +38,26 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="40dp"
-        android:layout_marginLeft="120dp"
-        android:background="@mipmap/skin_five"/>
+        android:layout_marginRight="120dp"
+        android:background="@mipmap/little_skin_pie_five"/>
 
+    <ImageView
+        android:id="@+id/iv_skin_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="60dp"
+        android:background="@mipmap/little_skin_pie_two"/>
+
+    <ImageView
+        android:id="@+id/iv_skin_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="120dp"
+        android:background="@mipmap/little_skin_pie_one"/>
 
     <ImageView
         android:id="@+id/iv_dumpling"
