@@ -37,6 +37,7 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
     private static final int BASKET_ACTIVITY = 2;
     private float x_location;
     private float y_location;
+    private View view_one, view_two, view_three, view_four;
 
     @Override
     protected void setView() {
@@ -73,22 +74,23 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
         viewPager.setClickable(false);
         viewPager.setFocusable(false);
         ArrayList<View> list = new ArrayList<>();
-        View view_one = View.inflate(this, R.layout.viewpager_item_one, null);
-        View view_two = View.inflate(this, R.layout.viewpager_item_two, null);
-        View view_three = View.inflate(this, R.layout.viewpager_item_three, null);
-        View view_four = View.inflate(this, R.layout.viewpager_item_four, null);
+        view_one = View.inflate(this, R.layout.viewpager_item_one, null);
+        view_two = View.inflate(this, R.layout.viewpager_item_two, null);
+        view_three = View.inflate(this, R.layout.viewpager_item_three, null);
+        view_four = View.inflate(this, R.layout.viewpager_item_four, null);
         list.add(view_one);
         list.add(view_two);
         list.add(view_three);
         list.add(view_four);
 
-        /** 根据关卡的不同，显示不同的食材 */
+        /** 根据当前关卡的不同，显示不同的食材 */
         iv_eggplant = (ImageView)view_one.findViewById(R.id.iv_eggplant);
         iv_beef = (ImageView)view_two.findViewById(R.id.iv_beef);
         iv_lemon = (ImageView)view_three.findViewById(R.id.iv_lemon);
         iv_eggplant.setOnClickListener(this);
         iv_beef.setOnClickListener(this);
         iv_lemon.setOnClickListener(this);
+        setFood();
 
         viewPager.setAdapter(new SelectFoodPagerAdapter(list, this));
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -173,7 +175,7 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
                 break;
         }
         if(food != FoodTypeManager.Food.DEFAULT) {
-            UIHelper.openFoodDescriptionActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_FOOD, SELECT_FOOD_ACTIVITY, FoodTypeManager.Food.LEMON);
+            UIHelper.openFoodDescriptionActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_FOOD, SELECT_FOOD_ACTIVITY, food);
         }
 
     }
@@ -276,11 +278,47 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
                 case EGGPLANT:
                     animatorSetStart(iv_eggplant);
                     break;
+                case CABBAGE:
+                    animatorSetStart(findViewById(R.id.iv_cabbage));
+                    break;
+                case CUCUMBER:
+                    animatorSetStart(findViewById(R.id.iv_cucumber));
+                    break;
+                case PIMIENTO:
+                    animatorSetStart(findViewById(R.id.iv_pimiento));
+                    break;
+                case TOMATO:
+                    animatorSetStart(findViewById(R.id.iv_tomato));
+                    break;
                 case BEEF:
                     animatorSetStart(iv_beef);
                     break;
+                case CHICKEN:
+                    animatorSetStart(findViewById(R.id.iv_chicken));
+                    break;
+                case CRAB:
+                    animatorSetStart(findViewById(R.id.iv_crab));
+                    break;
+                case PORK:
+                    animatorSetStart(findViewById(R.id.iv_pork));
+                    break;
+                case SHRIMP:
+                    animatorSetStart(findViewById(R.id.iv_shrimp));
+                    break;
                 case LEMON:
                     animatorSetStart(iv_lemon);
+                    break;
+                case BANANA:
+                    animatorSetStart(findViewById(R.id.iv_banana));
+                    break;
+                case DRAGON_FRUIT:
+                    animatorSetStart(findViewById(R.id.iv_dragon_fruit));
+                    break;
+                case MANGO_STEAN:
+                    animatorSetStart(findViewById(R.id.iv_mangosteen));
+                    break;
+                case WATERMELON:
+                    animatorSetStart(findViewById(R.id.iv_watermelon));
                     break;
                 case DEFAULT:
                     break;
@@ -290,6 +328,47 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
                 Toast.makeText(this, "亲，你一种食材都不选取，皇上会生气的哦", Toast.LENGTH_SHORT).show();
                 findViewById(R.id.iv_next).setVisibility(View.INVISIBLE);
             }
+        }
+    }
+
+    private void setFood() {
+        int currentLock = GameDataManager.init(this).getCurrentLock();
+        if(currentLock == 0) {
+            return;
+        }
+        if(currentLock > 7) {       //第八关卡
+            view_three.findViewById(R.id.iv_dragon_fruit).setBackgroundResource(R.mipmap.dragon_fruit);
+            view_three.findViewById(R.id.iv_dragon_fruit).setOnClickListener(this);
+            view_three.findViewById(R.id.iv_banana).setBackgroundResource(R.mipmap.banana);
+            view_three.findViewById(R.id.iv_banana).setOnClickListener(this);
+        }
+        if(currentLock > 6) {       //第七关卡
+            view_three.findViewById(R.id.iv_watermelon).setBackgroundResource(R.mipmap.watermelon);
+            view_three.findViewById(R.id.iv_watermelon).setOnClickListener(this);
+            view_three.findViewById(R.id.iv_mangosteen).setBackgroundResource(R.mipmap.mangosteen);
+            view_three.findViewById(R.id.iv_mangosteen).setOnClickListener(this);
+        }
+        if(currentLock > 4) {       //第五关卡
+            view_two.findViewById(R.id.iv_pork).setBackgroundResource(R.mipmap.pork);
+            view_two.findViewById(R.id.iv_pork).setOnClickListener(this);
+            view_two.findViewById(R.id.iv_shrimp).setBackgroundResource(R.mipmap.shrimp);
+            view_two.findViewById(R.id.iv_shrimp).setOnClickListener(this);
+        }
+        if(currentLock > 3) {       //第四关卡
+            view_two.findViewById(R.id.iv_crab).setBackgroundResource(R.mipmap.crab);
+            view_two.findViewById(R.id.iv_crab).setOnClickListener(this);
+            view_two.findViewById(R.id.iv_chicken).setBackgroundResource(R.mipmap.chicken);
+            view_two.findViewById(R.id.iv_chicken).setOnClickListener(this);
+            view_one.findViewById(R.id.iv_tomato).setBackgroundResource(R.mipmap.tomato);
+            view_one.findViewById(R.id.iv_tomato).setOnClickListener(this);
+        }
+        if(currentLock > 1) {       //第二关卡
+            view_one.findViewById(R.id.iv_cucumber).setBackgroundResource(R.mipmap.cucumber);
+            view_one.findViewById(R.id.iv_cucumber).setOnClickListener(this);
+            view_one.findViewById(R.id.iv_pimiento).setBackgroundResource(R.mipmap.pimiento);
+            view_one.findViewById(R.id.iv_pimiento).setOnClickListener(this);
+            view_one.findViewById(R.id.iv_cabbage).setBackgroundResource(R.mipmap.cabbage);
+            view_one.findViewById(R.id.iv_cabbage).setOnClickListener(this);
         }
     }
 }

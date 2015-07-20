@@ -96,6 +96,10 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
             case R.id.iv_yes:
                 if(isAdd()) {
                     if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_FOOD)) {               //食材
+                        if(gameDataManager.getFoodList().size() >= 3) {
+                            Toast.makeText(this, "最多一次只能选择三种食材！", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         gameDataManager.setFoodList(food);
                     } else if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_SEASONING)) {   //调料
                         if(number == 0) {

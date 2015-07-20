@@ -14,7 +14,7 @@ import com.summerrc.dumplingplan.utils.UIHelper;
  * @author SummerRC on 2015.07.12
  * description : 点击菜篮弹出这个Activity,背景透明位置居中
  */
-public class LockActivity extends BaseActivity{
+public class LockActivity extends BaseActivity implements View.OnLongClickListener{
     private Bitmap bitmap_background_lock;
     private int unLock;
     private ImageView iv_one, iv_two, iv_three, iv_four, iv_five, iv_six, iv_seven, iv_eight, iv_nine;
@@ -82,6 +82,14 @@ public class LockActivity extends BaseActivity{
         } else {
             iv_nine.setBackgroundResource(R.mipmap.nine_lock);
         }
+        iv_two.setOnLongClickListener(this);
+        iv_three.setOnLongClickListener(this);
+        iv_four.setOnLongClickListener(this);
+        iv_five.setOnLongClickListener(this);
+        iv_six.setOnLongClickListener(this);
+        iv_seven.setOnLongClickListener(this);
+        iv_eight.setOnLongClickListener(this);
+        iv_nine.setOnLongClickListener(this);
     }
 
 
@@ -142,5 +150,41 @@ public class LockActivity extends BaseActivity{
             bitmap_background_lock = null;
             System.gc();
         }
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        int currentLock = 0;
+        switch (v.getId()) {
+            case R.id.iv_one:
+                break;
+            case R.id.iv_two:
+                currentLock = 2;
+                break;
+            case R.id.iv_three:
+                currentLock = 4;
+                break;
+            case R.id.iv_four:
+                currentLock = 4;
+                break;
+            case R.id.iv_five:
+                currentLock = 5;
+                break;
+            case R.id.iv_six:
+                currentLock = 7;
+                break;
+            case R.id.iv_seven:
+                currentLock = 7;
+                break;
+            case R.id.iv_eight:
+                currentLock = 8;
+                break;
+            case R.id.iv_nine:
+                currentLock = 8;
+                break;
+        }
+        GameDataManager.init(this).setCurrentLock(currentLock);
+        UIHelper.openSelectFoodActivity(this);
+        return false;
     }
 }

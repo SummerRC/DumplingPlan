@@ -33,7 +33,7 @@ public class ScoreActivity extends Activity {
     private Handler handler;
     private int score_time;                     //煮的时间得分    多少 11  正好 22
     private int score_seasoning;                //调料得分  5  7   9
-    private int score_stuffing;                 //馅的得分    3   6   4
+    private int score_stuffing;                  //馅的得分    3   6   4
     private int score;                          //总得分
 
     @Override
