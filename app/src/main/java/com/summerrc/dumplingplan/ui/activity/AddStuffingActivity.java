@@ -28,7 +28,7 @@ public class AddStuffingActivity extends BaseActivity {
     @Override
     protected void setView() {
         setContentView(R.layout.activity_add_stuffing);
-        gameDataManager = GameDataManager.init(this);
+        gameDataManager = GameDataManager.init(getApplicationContext());
         initView();
     }
 

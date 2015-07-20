@@ -56,7 +56,7 @@ public class BasketActivity extends Activity implements View.OnClickListener{
     }
 
     private void initData() {
-        gameDataManager = GameDataManager.init(this);
+        gameDataManager = GameDataManager.init(getApplicationContext());
         ACTIVITY_TYPE = getIntent().getStringExtra(IntentConstant.ACTIVITY_TYPE);
         if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_FOOD)) {                //食材
             list =gameDataManager.getFoodList();

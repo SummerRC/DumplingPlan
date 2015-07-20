@@ -83,7 +83,7 @@ public class StuffingActivity extends BaseActivity implements View.OnClickListen
         super.initView();
         iv_kitchen_knife_left = (ImageView)findViewById(R.id.iv_kitchen_knife_left);
         iv_kitchen_knife_right = (ImageView)findViewById(R.id.iv_kitchen_knife_right);
-        int stuffResourceId = StuffTypeManager.getStuffResourceId(GameDataManager.init(this).getStuffType());
+        int stuffResourceId = StuffTypeManager.getStuffResourceId(GameDataManager.init(getApplicationContext()).getStuffType());
         findViewById(R.id.iv_stuff).setBackgroundResource(stuffResourceId);
     }
 

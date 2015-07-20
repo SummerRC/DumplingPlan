@@ -92,7 +92,7 @@ public class PutActivity extends BaseActivity  {
                     anim1.start();
                     //int count = ((ObjectAnimator)animatorSet.getChildAnimations().get(5)).getRepeatCount();
                     int count = (int)(anim.getCurrentPlayTime() / 1500L);
-                    GameDataManager.init(this).setCount(count);
+                    GameDataManager.init(getApplicationContext()).setCount(count);
                     super.hintToNext();
                 }
                 break;

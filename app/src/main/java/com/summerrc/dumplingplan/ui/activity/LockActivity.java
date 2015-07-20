@@ -22,7 +22,8 @@ public class LockActivity extends BaseActivity implements View.OnLongClickListen
     @Override
     protected void setView() {
         setContentView(R.layout.activity_lock);
-        unLock = GameDataManager.init(this).getUnLock();
+        GameDataManager.init(getApplicationContext()).clean();
+        unLock = GameDataManager.init(getApplicationContext()).getUnLock();
         iv_one = (ImageView) findViewById(R.id.iv_one);
         iv_one.setOnClickListener(this);
         iv_one.setBackgroundResource(R.mipmap.one_pass);
@@ -127,7 +128,7 @@ public class LockActivity extends BaseActivity implements View.OnLongClickListen
                 break;
         }
         if(currentLock > 0) {
-            GameDataManager.init(this).setCurrentLock(currentLock);
+            GameDataManager.init(getApplicationContext()).setCurrentLock(currentLock);
             UIHelper.openSelectFoodActivity(this);
         }
     }
@@ -183,7 +184,7 @@ public class LockActivity extends BaseActivity implements View.OnLongClickListen
                 currentLock = 8;
                 break;
         }
-        GameDataManager.init(this).setCurrentLock(currentLock);
+        GameDataManager.init(getApplicationContext()).setCurrentLock(currentLock);
         UIHelper.openSelectFoodActivity(this);
         return false;
     }

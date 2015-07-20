@@ -23,6 +23,13 @@ public class GameDataManager {
     private int currentLock = 0;                                        //当前关卡
     private int unLock = 1;                                             //以解锁的关卡
     private Context context;
+    public static final int ONE = 60;
+    public static final int TWO = 67;
+    public static final int FOUR = 74;
+    public static final int FIVE = 81;
+    public static final int SEVEN = 87;
+    public static final int EIGHT = 93;
+
 
     /**
      * 私有化的构造函数
@@ -43,7 +50,7 @@ public class GameDataManager {
         stuffNumMap.put(5, 0);
         stuffNumMap.put(6, 0);
         dumplingTypeEntities = new ArrayList<>();
-        currentLock = SharedPreferenceUtils.getIntDate(context, IntentConstant.UN_LOCK, 1);
+        unLock = SharedPreferenceUtils.getIntDate(context, IntentConstant.UN_LOCK, 1);
     }
 
 
@@ -92,7 +99,8 @@ public class GameDataManager {
      * 重新开始游戏或者游戏结束后记得清空内存中的数据
      */
     public void clean() {
-         gameDataManager = null;
+        clear();
+        gameDataManager = null;
     }
 
     /**
@@ -244,5 +252,15 @@ public class GameDataManager {
     public void setUnLock(int unLock) {
         this.unLock = unLock;
         SharedPreferenceUtils.saveIntDate(context, IntentConstant.UN_LOCK, unLock);
+    }
+
+    public void clear() {
+        foodList = null;
+        seasoningList = null;
+        seasoningNumberMap = null;
+        stuffNumMap = null;
+        dumplingTypeEntities = null;
+        unLock = 1;
+        gameDataManager = null;
     }
 }

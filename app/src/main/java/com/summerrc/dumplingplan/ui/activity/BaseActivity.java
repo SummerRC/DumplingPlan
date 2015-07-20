@@ -99,7 +99,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
                 touchResult = true;
                 break;
             case R.id.iv_yes:                       //两种情况：返回首页或者重玩本关卡,记得要清空游戏游戏数据
-                GameDataManager.init(this).clean();
+                GameDataManager.init(getApplicationContext()).clean();
                 switch (tipType) {
                     case TYPE_BACK:
                         UIHelper.openWelcomeActivity(this);

@@ -16,6 +16,7 @@ import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.FoodTypeManager;
 import com.summerrc.dumplingplan.config.GameDataManager;
 import com.summerrc.dumplingplan.config.ScoreResourceManager;
+import com.summerrc.dumplingplan.utils.UIHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -74,8 +75,52 @@ public class ScoreActivity extends Activity {
             public void run() {
                 findViewById(R.id.view).setVisibility(View.VISIBLE);
                 findViewById(R.id.ll_score).setVisibility(View.VISIBLE);
+                /** 判断是否过关 */
+                int currentLock = gameDataManager.getCurrentLock();
+                int unLock = gameDataManager.getUnLock();
+                int currentLockScore = 0;
+                switch (currentLock) {
+                    case 1:
+                        currentLockScore = GameDataManager.ONE;
+                        break;
+                    case 2:
+                        currentLockScore = GameDataManager.TWO;
+                        break;
+                    case 4:
+                        currentLockScore = GameDataManager.FOUR;
+                        break;
+                    case 5:
+                        currentLockScore = GameDataManager.FIVE;
+                        break;
+                    case 7:
+                        currentLockScore = GameDataManager.SEVEN;
+                        break;
+                    case 8:
+                        currentLockScore = GameDataManager.EIGHT;
+                        break;
+                }
+                if(currentLock == unLock) {
+                    if(score >= currentLockScore) { //过关
+                        gameDataManager.setUnLock(unLock+1);
+                    }
+                }
+                if(score-5 > currentLockScore) {
+                    findViewById(R.id.iv_word).setBackgroundResource(R.mipmap.perfect);
+                } else if(score >= currentLockScore) {
+                    findViewById(R.id.iv_word).setBackgroundResource(R.mipmap.good);
+                } else {
+                    findViewById(R.id.iv_word).setBackgroundResource(R.mipmap.awful);
+                }
             }
         }, 9000);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                gameDataManager.clean();
+                UIHelper.openWelcomeActivity(ScoreActivity.this);
+            }
+        }, 11000);
     }
 
     private void initView() {
@@ -85,7 +130,7 @@ public class ScoreActivity extends Activity {
     }
 
     private void initData() {
-        gameDataManager = GameDataManager.init(this);
+        gameDataManager = GameDataManager.init(getApplicationContext());
         /** 煮的时间长短 */
         int count = gameDataManager.getCount();
         if(count < 6) {
@@ -109,13 +154,13 @@ public class ScoreActivity extends Activity {
             n += num;
             switch (num) {
                 case 1:
-                    score_stuffing += 3;
+                    score_stuffing += 5;
                     break;
                 case 2:
-                    score_stuffing += 6;
+                    score_stuffing += 8;
                     break;
                 case 3:
-                    score_stuffing += 4;
+                    score_stuffing += 6;
                     break;
             }
         }
@@ -127,7 +172,7 @@ public class ScoreActivity extends Activity {
             iv_stuffing.setBackgroundResource(R.mipmap.pie_normal_score);
         }
         /** 总得分 */
-        score = score_seasoning + score_time + score_stuffing;
+        score = score_seasoning + score_time + score_stuffing + gameDataManager.getCurrentLock() * 2;
         findViewById(R.id.iv_score_one).setBackgroundResource(ScoreResourceManager.getScoreResource(score / 10));
         findViewById(R.id.iv_score_two).setBackgroundResource(ScoreResourceManager.getScoreResource(score % 10));
     }

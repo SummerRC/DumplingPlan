@@ -39,7 +39,8 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_welcome);
 		handler = new Handler();
 		initView();
-		GameDataManager.init(this);
+		GameDataManager.init(getApplicationContext()).clean();
+		GameDataManager.init(getApplicationContext());
 	}
 
 	public void initView() {

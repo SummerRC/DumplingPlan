@@ -115,7 +115,7 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.iv_next:
                 /** 进入下一步之前先设置馅类型 */
-                GameDataManager.init(this).setStuffType();
+                GameDataManager.init(getApplicationContext()).setStuffType();
                 UIHelper.openSelectSeasoningActivity(this);
                 break;
             case R.id.iv_eggplant:
@@ -324,7 +324,7 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
                     break;
             }
         } else if(requestCode==BASKET_ACTIVITY && resultCode==RESULT_OK) {
-            if(GameDataManager.init(this).getFoodList().size()==0) {
+            if(GameDataManager.init(getApplicationContext()).getFoodList().size()==0) {
                 Toast.makeText(this, "亲，你一种食材都不选取，皇上会生气的哦", Toast.LENGTH_SHORT).show();
                 findViewById(R.id.iv_next).setVisibility(View.INVISIBLE);
             }
@@ -332,7 +332,7 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
     }
 
     private void setFood() {
-        int currentLock = GameDataManager.init(this).getCurrentLock();
+        int currentLock = GameDataManager.init(getApplicationContext()).getCurrentLock();
         if(currentLock == 0) {
             return;
         }
@@ -359,16 +359,18 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
             view_two.findViewById(R.id.iv_crab).setOnClickListener(this);
             view_two.findViewById(R.id.iv_chicken).setBackgroundResource(R.mipmap.chicken);
             view_two.findViewById(R.id.iv_chicken).setOnClickListener(this);
+        }
+        if(currentLock > 1) {       //第二关卡
+            view_one.findViewById(R.id.iv_cabbage).setBackgroundResource(R.mipmap.cabbage);
+            view_one.findViewById(R.id.iv_cabbage).setOnClickListener(this);
             view_one.findViewById(R.id.iv_tomato).setBackgroundResource(R.mipmap.tomato);
             view_one.findViewById(R.id.iv_tomato).setOnClickListener(this);
         }
-        if(currentLock > 1) {       //第二关卡
+        if(currentLock > 0) {       //第一关卡
             view_one.findViewById(R.id.iv_cucumber).setBackgroundResource(R.mipmap.cucumber);
             view_one.findViewById(R.id.iv_cucumber).setOnClickListener(this);
             view_one.findViewById(R.id.iv_pimiento).setBackgroundResource(R.mipmap.pimiento);
             view_one.findViewById(R.id.iv_pimiento).setOnClickListener(this);
-            view_one.findViewById(R.id.iv_cabbage).setBackgroundResource(R.mipmap.cabbage);
-            view_one.findViewById(R.id.iv_cabbage).setOnClickListener(this);
         }
     }
 }

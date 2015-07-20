@@ -158,14 +158,14 @@ public class SelectSeasoningActivity extends BaseActivity implements View.OnClic
                     animatorSetStart(iv_sauce);
                     break;
                 case DEFAULT:
-                    if(GameDataManager.init(this).getSeasoningList().size()==0) {
+                    if(GameDataManager.init(getApplicationContext()).getSeasoningList().size()==0) {
                         Toast.makeText(this, "亲，你一种调料都不选取，皇上会生气的哦", Toast.LENGTH_SHORT).show();
                         findViewById(R.id.iv_next).setVisibility(View.INVISIBLE);
                     }
                     break;
             }
         } else if(requestCode==BASKET_ACTIVITY) {
-            if(GameDataManager.init(this).getSeasoningList().size() == 0) {
+            if(GameDataManager.init(getApplicationContext()).getSeasoningList().size() == 0) {
                 Toast.makeText(this, "亲，你一种调料都不选取，皇上会生气的哦", Toast.LENGTH_SHORT).show();
                 findViewById(R.id.iv_next).setVisibility(View.INVISIBLE);
             }

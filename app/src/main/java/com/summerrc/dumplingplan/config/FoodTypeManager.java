@@ -106,37 +106,49 @@ public  class FoodTypeManager implements Serializable{
         int resourceId = R.mipmap.ic_launcher;
         switch (food) {
             case CABBAGE:
+                resourceId = R.mipmap.cabbage_description;
                 break;
             case CUCUMBER:
+                resourceId = R.mipmap.cucumber_description;
                 break;
             case EGGPLANT:
                 resourceId = R.mipmap.eggplant_description;
                 break;
             case PIMIENTO:
+                resourceId = R.mipmap.pimiento_description;
                 break;
             case TOMATO:
+                resourceId = R.mipmap.tomato_description;
                 break;
             case BEEF:
                 resourceId = R.mipmap.beef_description;
                 break;
             case CHICKEN:
+                resourceId = R.mipmap.chicken_description;
                 break;
             case CRAB:
+                resourceId = R.mipmap.crab_description;
                 break;
             case PORK:
+                resourceId = R.mipmap.pork_description;
                 break;
             case SHRIMP:
+                resourceId = R.mipmap.shrimp_description;
                 break;
             case BANANA:
+                resourceId = R.mipmap.banana_description;
                 break;
             case DRAGON_FRUIT:
+                resourceId = R.mipmap.dragon_fruit_description;
                 break;
             case LEMON:
                 resourceId = R.mipmap.lemon_description;
                 break;
             case MANGO_STEAN:
+                resourceId = R.mipmap.mango_stean_description;
                 break;
             case WATERMELON:
+                resourceId = R.mipmap.watermelon_description;
                 break;
             case OIL:
                 resourceId = R.mipmap.oil_description;
