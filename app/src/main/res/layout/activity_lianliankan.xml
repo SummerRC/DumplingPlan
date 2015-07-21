@@ -5,12 +5,14 @@
     android:layout_height="fill_parent">
 
 
-    <ImageButton android:id="@+id/play_btn"
-    			android:layout_width="wrap_content"
-    			android:layout_height="wrap_content"
-    			android:layout_centerInParent="true"
-    			android:background="@mipmap/dumpling_more"
-    			android:src="@drawable/buttons_play"/>
+    <ImageButton
+		android:id="@+id/play_btn"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerInParent="true"
+		android:background="@mipmap/dumpling_more"
+		android:src="@drawable/buttons_play"/>
+
 
     <ImageView
 		android:id="@+id/title_img"
@@ -19,7 +21,7 @@
 		android:layout_below="@id/play_btn"
 		android:layout_centerHorizontal="true"
 		android:src="@drawable/title"
-		android:visibility="invisible"
+		android:visibility="gone"
 		android:paddingTop="10dip"/>
 
    	<ImageView
