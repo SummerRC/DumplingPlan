@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import com.summerrc.dumplingplan.R;
+import com.summerrc.dumplingplan.utils.SoundUtil;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
@@ -51,9 +52,11 @@ public class DoughActivity extends BaseActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_next:
+                SoundUtil.playSounds(SoundUtil.NEXT, 0, getApplicationContext());
                 UIHelper.openRubActivity(this);
                 break;
             case R.id.iv_kettle:
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 kettleAnimatorSetStart();
                 break;
         }
@@ -103,6 +106,7 @@ public class DoughActivity extends BaseActivity implements View.OnClickListener{
                     @Override
                     public void run() {
                         animation_frame.start();   //启动动画
+                        SoundUtil.playSounds(SoundUtil.WATER, 0, getApplicationContext());
                     }
                 });
                 /** 计算动画播放的时间 */

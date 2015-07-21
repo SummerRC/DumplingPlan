@@ -68,6 +68,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         findViewById(R.id.iv_resume).setOnTouchListener(this);
         findViewById(R.id.iv_pause).setOnTouchListener(this);
         findViewById(R.id.iv_next).setOnClickListener(this);
+        findViewById(R.id.iv_setting).setOnTouchListener(this);
     }
 
     /**
@@ -81,10 +82,12 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         boolean touchResult = false;
         switch (v.getId()) {
             case R.id.iv_pause:
+                SoundUtil.playSounds(SoundUtil.STOP, 0, getApplicationContext());
                 clickBtnPause();
                 touchResult = true;
                 break;
             case R.id.iv_tip_content:           //继续游戏
+                SoundUtil.playSounds(SoundUtil.REPLAY, 0, getApplicationContext());
                 findViewById(R.id.rl_dialog_background).setVisibility(View.GONE);
                 touchResult = true;
                 break;
@@ -98,7 +101,8 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
                 clickBtnResume();
                 touchResult = true;
                 break;
-            case R.id.iv_yes:                       //两种情况：返回首页或者重玩本关卡,记得要清空游戏游戏数据
+            case R.id.iv_yes:                    //两种情况：返回首页或者重玩本关卡,记得要清空游戏游戏数据
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 GameDataManager.init(getApplicationContext()).clean();
                 switch (tipType) {
                     case TYPE_BACK:
@@ -111,10 +115,17 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
                 touchResult = true;
                 break;
             case R.id.iv_no:
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 findViewById(R.id.rl_dialog_background).setVisibility(View.GONE);
                 touchResult = true;
                 break;
             case R.id.rl_dialog_background:
+                break;
+            case R.id.iv_setting:
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    SoundUtil.playSounds(SoundUtil.SETTING, 0, getApplicationContext());
+                    UIHelper.openSettingActivity(this);
+                }
                 break;
         }
         return touchResult;

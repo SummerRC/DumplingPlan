@@ -11,4 +11,6 @@ public interface IntentConstant {
     String ACTIVITY_FROM_SELECT_SEASONING = "ACTIVITY_FROM_SELECT_SEASONING";
 
     String UN_LOCK = "UN_LOCK";
+    String MUSIC = "MUSIC";
+    String SOUND = "SOUND";
 }

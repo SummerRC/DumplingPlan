@@ -12,6 +12,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.GameDataManager;
+import com.summerrc.dumplingplan.utils.MusicPlayer;
+import com.summerrc.dumplingplan.utils.SoundUtil;
 import com.summerrc.dumplingplan.utils.UIHelper;
 import com.summerrc.dumplingplan.ui.widget.KeywordsFlow;
 import java.util.Random;
@@ -25,7 +27,6 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 	public static final String[] keywords = { "木木", "婷女神", "齐凤梨",
 			"高小姐", "湖建人","皇上", "夏雨荷", "马总", "妖", "姚","晓冬" };
 	private KeywordsFlow keywordsFlow;
-	private boolean tag = true;
 	private Handler handler;
 	private Bitmap bitmap;
 
@@ -41,6 +42,9 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		initView();
 		GameDataManager.init(getApplicationContext()).clean();
 		GameDataManager.init(getApplicationContext());
+		MusicPlayer.init(getApplicationContext());
+		MusicPlayer.startMusic();
+		SoundUtil.initSounds(getApplicationContext());
 	}
 
 	public void initView() {
@@ -69,13 +73,12 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-			case R.id.iv_next:
-				UIHelper.openSelectSeasoningActivity(this);
-				break;
 			case R.id.iv_student_mode:		//学徒模式
+				SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
 				UIHelper.openSelectFoodActivity(this);
 				break;
 			case R.id.iv_cook_mode:			//厨神之路
+				SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
 				/*findViewById(R.id.rl).setVisibility(View.GONE);
 				if(tag) {
 					in();
@@ -93,10 +96,14 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 				UIHelper.openLockActivity(this);
 				break;
 			case R.id.iv_about:						//关于我们
+				SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
 				break;
 			case R.id.iv_help:						//帮助
+				SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
 				break;
 			case R.id.iv_setting:					//设置
+				SoundUtil.playSounds(SoundUtil.SETTING, 0, getApplicationContext());
+				UIHelper.openSettingActivity(this);
 				break;
 		}
 	}

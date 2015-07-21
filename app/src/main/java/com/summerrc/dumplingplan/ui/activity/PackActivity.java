@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import com.summerrc.dumplingplan.R;
+import com.summerrc.dumplingplan.utils.SoundUtil;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
@@ -58,11 +59,13 @@ public class PackActivity extends BaseActivity {
         super.onTouch(v, event);
         switch (v.getId()) {
             case R.id.iv_next:
+                SoundUtil.playSounds(SoundUtil.NEXT, 0, getApplicationContext());
                 UIHelper.openPutActivity(this);
                 break;
             case R.id.iv_dumpling:
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
+                        SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                         break;
                     case MotionEvent.ACTION_MOVE:
                         if(ll_hint_pack.getVisibility()==View.VISIBLE) {
@@ -102,6 +105,7 @@ public class PackActivity extends BaseActivity {
      * @param position 索引标记移动五个小面皮的哪一个
      */
     private void animation(final int position) {
+        SoundUtil.playSounds(SoundUtil.TWO_THREE, 0, getApplicationContext());
         View view;
         switch (position) {
             case 0:

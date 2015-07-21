@@ -20,6 +20,7 @@ import com.summerrc.dumplingplan.config.FoodTypeManager;
 import com.summerrc.dumplingplan.config.GameDataManager;
 import com.summerrc.dumplingplan.config.IntentConstant;
 import com.summerrc.dumplingplan.ui.adapter.SelectFoodPagerAdapter;
+import com.summerrc.dumplingplan.utils.SoundUtil;
 import com.summerrc.dumplingplan.utils.UIHelper;
 import java.util.ArrayList;
 
@@ -112,8 +113,12 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         FoodTypeManager.Food food = FoodTypeManager.Food.DEFAULT;
+        if(!(v.getId()==R.id.iv_next || v.getId()==R.id.iv_basket)) {
+            SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
+        }
         switch (v.getId()) {
             case R.id.iv_next:
+                SoundUtil.playSounds(SoundUtil.NEXT, 0, getApplicationContext());
                 /** 进入下一步之前先设置馅类型 */
                 GameDataManager.init(getApplicationContext()).setStuffType();
                 UIHelper.openSelectSeasoningActivity(this);
@@ -171,6 +176,7 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
                 //viewPager.setCurrentItem((index+1) % 4);
                 break;
             case R.id.iv_basket:
+                SoundUtil.playSounds(SoundUtil.TWO_TWO, 0, getApplicationContext());
                 UIHelper.openBasketActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_FOOD, BASKET_ACTIVITY);
                 break;
         }
@@ -221,6 +227,7 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
      * @param view 选中的食材
      */
     private void animatorSetStart(final View view) {
+        SoundUtil.playSounds(SoundUtil.TWO_THREE, 0, getApplicationContext());
         x_location = view.getX();
         y_location = view.getY();
         if(findViewById(R.id.ll_hint_select_food).getVisibility()==View.VISIBLE) {

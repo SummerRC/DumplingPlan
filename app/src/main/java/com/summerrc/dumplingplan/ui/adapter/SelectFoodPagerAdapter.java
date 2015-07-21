@@ -5,12 +5,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.view.PagerAdapter;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.ui.activity.SelectFoodActivity;
-
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.HashMap;

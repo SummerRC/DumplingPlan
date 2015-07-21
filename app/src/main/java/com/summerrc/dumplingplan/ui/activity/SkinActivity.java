@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.GameDataManager;
+import com.summerrc.dumplingplan.utils.SoundUtil;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
@@ -70,11 +71,13 @@ public class SkinActivity extends BaseActivity{
         super.onTouch(v, event);
         switch (v.getId()) {
             case R.id.iv_next:
+                SoundUtil.playSounds(SoundUtil.NEXT, 0, getApplicationContext());
                 UIHelper.openAddStuffingActivity(this);
                 break;
             case R.id.iv_rolling_pin:
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
+                        SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                         break;
                     case MotionEvent.ACTION_MOVE:
                         if(findViewById(R.id.rl_hint_skin).getVisibility()==View.VISIBLE) {
@@ -242,6 +245,7 @@ public class SkinActivity extends BaseActivity{
      * @param view 选中的食材
      */
     private void animatorSetStart(View view) {
+        SoundUtil.playSounds(SoundUtil.TWO_THREE, 0, getApplicationContext());
         AnimatorSet animatorSet = new AnimatorSet();
         int x = (int)findViewById(R.id.iv_basket).getX() - (int)view.getX();
         int y = (int)findViewById(R.id.iv_basket).getY() - (int)view.getY();

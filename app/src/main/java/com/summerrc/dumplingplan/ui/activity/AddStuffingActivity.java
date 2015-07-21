@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.GameDataManager;
 import com.summerrc.dumplingplan.config.StuffTypeManager;
+import com.summerrc.dumplingplan.utils.SoundUtil;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
@@ -78,35 +79,42 @@ public class AddStuffingActivity extends BaseActivity {
             case R.id.iv_next:
                 /** 记录每个饺子大小 */
                 gameDataManager.setDumplingTypeEntities();
+                SoundUtil.playSounds(SoundUtil.NEXT, 0, getApplicationContext());
                 UIHelper.openPackActivity(this);
                 break;
             case R.id.iv_skin_one:
                 if(event.getAction()==MotionEvent.ACTION_DOWN) {
+                    SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                     animatorSetStart(1);
                 }
                 break;
             case R.id.iv_skin_two:
                 if(event.getAction()==MotionEvent.ACTION_DOWN) {
+                    SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                     animatorSetStart(2);
                 }
                 break;
             case R.id.iv_skin_three:
                 if(event.getAction()==MotionEvent.ACTION_DOWN) {
+                    SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                     animatorSetStart(3);
                 }
                 break;
             case R.id.iv_skin_four:
                 if(event.getAction()==MotionEvent.ACTION_DOWN) {
+                    SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                     animatorSetStart(4);
                 }
                 break;
             case R.id.iv_skin_five:
                 if(event.getAction()==MotionEvent.ACTION_DOWN) {
+                    SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                     animatorSetStart(5);
                 }
                 break;
             case R.id.iv_skin_six:
                 if(event.getAction()==MotionEvent.ACTION_DOWN) {
+                    SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                     animatorSetStart(6);
                 }
                 break;
@@ -128,6 +136,7 @@ public class AddStuffingActivity extends BaseActivity {
         } else {
             TOUCH_ABLE = false;
         }
+        SoundUtil.playSounds(SoundUtil.TWO_THREE, 0, getApplicationContext());
         if(findViewById(R.id.ll_hint_click_skin).getVisibility()==View.VISIBLE) {
             translateAnimationStop(findViewById(R.id.ll_hint_click_skin));
             findViewById(R.id.ll_hint_click_skin).setVisibility(View.INVISIBLE);

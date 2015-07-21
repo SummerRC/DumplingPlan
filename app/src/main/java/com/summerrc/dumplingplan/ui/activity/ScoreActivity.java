@@ -16,6 +16,7 @@ import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.FoodTypeManager;
 import com.summerrc.dumplingplan.config.GameDataManager;
 import com.summerrc.dumplingplan.config.ScoreResourceManager;
+import com.summerrc.dumplingplan.utils.SoundUtil;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 import java.util.ArrayList;
@@ -59,6 +60,7 @@ public class ScoreActivity extends Activity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
                 rl_seasoning.setVisibility(View.VISIBLE);
             }
         }, 3000);
@@ -66,6 +68,7 @@ public class ScoreActivity extends Activity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
                 iv_stuffing.setVisibility(View.VISIBLE);
             }
         }, 5000);
@@ -73,6 +76,7 @@ public class ScoreActivity extends Activity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
                 findViewById(R.id.view).setVisibility(View.VISIBLE);
                 findViewById(R.id.ll_score).setVisibility(View.VISIBLE);
                 /** 判断是否过关 */
@@ -117,6 +121,7 @@ public class ScoreActivity extends Activity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
                 gameDataManager.clean();
                 UIHelper.openWelcomeActivity(ScoreActivity.this);
             }

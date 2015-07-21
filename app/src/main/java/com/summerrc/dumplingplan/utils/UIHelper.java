@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.summerrc.dumplingplan.config.IntentConstant;
 import com.summerrc.dumplingplan.config.FoodTypeManager;
+import com.summerrc.dumplingplan.lianliankan.LianliankanActivity;
 import com.summerrc.dumplingplan.ui.activity.BasketActivity;
 import com.summerrc.dumplingplan.ui.activity.CutActivity;
 import com.summerrc.dumplingplan.ui.activity.DoughActivity;
@@ -17,6 +18,7 @@ import com.summerrc.dumplingplan.ui.activity.RubActivity;
 import com.summerrc.dumplingplan.ui.activity.ScoreActivity;
 import com.summerrc.dumplingplan.ui.activity.SelectFoodActivity;
 import com.summerrc.dumplingplan.ui.activity.SelectSeasoningActivity;
+import com.summerrc.dumplingplan.ui.activity.SettingActivity;
 import com.summerrc.dumplingplan.ui.activity.ShakeActivity;
 import com.summerrc.dumplingplan.ui.activity.SkinActivity;
 import com.summerrc.dumplingplan.ui.activity.StuffingActivity;
@@ -29,6 +31,7 @@ import com.summerrc.dumplingplan.ui.activity.WelcomeActivity;
 public class UIHelper {
     /**
      * 跳转到选择欢迎界面
+     *
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openWelcomeActivity(Activity currentActivity) {
@@ -40,6 +43,7 @@ public class UIHelper {
 
     /**
      * 跳转到选择食材界面
+     *
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openSelectFoodActivity(Activity currentActivity) {
@@ -50,6 +54,7 @@ public class UIHelper {
 
     /**
      * 跳转到选择调料界面
+     *
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openSelectSeasoningActivity(Activity currentActivity) {
@@ -60,6 +65,7 @@ public class UIHelper {
 
     /**
      * 跳转到制作馅界面
+     *
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openStuffingActivity(Activity currentActivity) {
@@ -70,6 +76,7 @@ public class UIHelper {
 
     /**
      * 跳转到和面界面
+     *
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openDoughActivity(Activity currentActivity) {
@@ -80,6 +87,7 @@ public class UIHelper {
 
     /**
      * 跳转到和面界面
+     *
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openRubActivity(Activity currentActivity) {
@@ -90,6 +98,7 @@ public class UIHelper {
 
     /**
      * 跳转到切段界面
+     *
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openCutActivity(Activity currentActivity) {
@@ -100,6 +109,7 @@ public class UIHelper {
 
     /**
      * 跳转到擀面界面
+     *
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openSkinActivity(Activity currentActivity) {
@@ -110,6 +120,7 @@ public class UIHelper {
 
     /**
      * 跳转到给饺子加馅界面
+     *
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openAddStuffingActivity(Activity currentActivity) {
@@ -120,6 +131,7 @@ public class UIHelper {
 
     /**
      * 跳转到包饺子界面
+     *
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openPackActivity(Activity currentActivity) {
@@ -130,6 +142,7 @@ public class UIHelper {
 
     /**
      * 跳转到下饺子界面
+     *
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openPutActivity(Activity currentActivity) {
@@ -140,6 +153,7 @@ public class UIHelper {
 
     /**
      * 跳转到筛水界面
+     *
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openShakeActivity(Activity currentActivity) {
@@ -150,10 +164,11 @@ public class UIHelper {
 
     /**
      * 启动食材详情界面
+     *
      * @param currentActivity 当前运行的Activity的实例
-     * @param activity_type     用于标识由哪个Activity来启动
-     * @param requestCode    回调的请求类型，也是起标示符作用
-     * @param food  被点中的食材或者调料
+     * @param activity_type   用于标识由哪个Activity来启动
+     * @param requestCode     回调的请求类型，也是起标示符作用
+     * @param food            被点中的食材或者调料
      */
     public static void openFoodDescriptionActivity(Activity currentActivity, String activity_type, int requestCode, FoodTypeManager.Food food) {
         Intent intent = new Intent(currentActivity, FoodDescriptionActivity.class);
@@ -164,6 +179,7 @@ public class UIHelper {
 
     /**
      * 启动菜篮详情界面
+     *
      * @param currentActivity 当前运行的Activity的实例
      * @param activity_type   用于标识由哪个Activity来启动
      * @param requestCode     用于标识由哪个Activity来启动
@@ -176,6 +192,7 @@ public class UIHelper {
 
     /**
      * 启动评分界面
+     *
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openScoreActivity(Activity currentActivity) {
@@ -186,11 +203,34 @@ public class UIHelper {
 
     /**
      * 解锁界面界面
+     *
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openLockActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, LockActivity.class);
         currentActivity.startActivity(intent);
         currentActivity.finish();
+    }
+
+
+    /**
+     * 启动设置界面
+     *
+     * @param currentActivity 当前运行的Activity的实例
+     */
+    public static void openSettingActivity(Activity currentActivity) {
+        Intent intent = new Intent(currentActivity, SettingActivity.class);
+        currentActivity.startActivity(intent);
+    }
+
+    /**
+     * 连连看
+     *
+     * @param currentActivity 当前运行的Activity的实例
+     */
+    public static void openLianliankanActivity(Activity currentActivity) {
+        Intent intent = new Intent(currentActivity, LianliankanActivity.class);
+        currentActivity.startActivity(intent);
+        //currentActivity.finish();
     }
 }

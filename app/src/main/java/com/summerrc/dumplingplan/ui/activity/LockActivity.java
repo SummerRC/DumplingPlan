@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.GameDataManager;
+import com.summerrc.dumplingplan.utils.MusicPlayer;
+import com.summerrc.dumplingplan.utils.SoundUtil;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
@@ -91,6 +93,7 @@ public class LockActivity extends BaseActivity implements View.OnLongClickListen
         iv_seven.setOnLongClickListener(this);
         iv_eight.setOnLongClickListener(this);
         iv_nine.setOnLongClickListener(this);
+        super.initView();
     }
 
 
@@ -100,31 +103,40 @@ public class LockActivity extends BaseActivity implements View.OnLongClickListen
         switch (v.getId()) {
             case R.id.iv_one:
                 currentLock = 1;
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 Toast.makeText(this, "so what", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.iv_two:
                 currentLock = 2;
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 break;
             case R.id.iv_three:
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 currentLock = 3;
                 break;
             case R.id.iv_four:
                 currentLock = 4;
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 break;
             case R.id.iv_five:
                 currentLock = 5;
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 break;
             case R.id.iv_six:
                 currentLock = 6;
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 break;
             case R.id.iv_seven:
                 currentLock = 7;
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 break;
             case R.id.iv_eight:
                 currentLock = 8;
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 break;
             case R.id.iv_nine:
                 currentLock = 9;
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 break;
         }
         if(currentLock > 0) {
@@ -155,15 +167,18 @@ public class LockActivity extends BaseActivity implements View.OnLongClickListen
 
     @Override
     public boolean onLongClick(View v) {
+        if(v.getId() == R.id.iv_three) {
+            MusicPlayer.pauseMusic();
+            GameDataManager.init(getApplicationContext()).setMusicST(false);
+            UIHelper.openLianliankanActivity(this);
+            return false;
+        }
         int currentLock = 0;
         switch (v.getId()) {
             case R.id.iv_one:
                 break;
             case R.id.iv_two:
                 currentLock = 2;
-                break;
-            case R.id.iv_three:
-                currentLock = 4;
                 break;
             case R.id.iv_four:
                 currentLock = 4;

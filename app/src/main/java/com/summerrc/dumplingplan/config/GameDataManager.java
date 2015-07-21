@@ -29,7 +29,8 @@ public class GameDataManager {
     public static final int FIVE = 81;
     public static final int SEVEN = 87;
     public static final int EIGHT = 93;
-
+    private boolean musicST = true;                                     //音乐开关
+    private boolean soundST = true;                                     //音效开关
 
     /**
      * 私有化的构造函数
@@ -51,6 +52,8 @@ public class GameDataManager {
         stuffNumMap.put(6, 0);
         dumplingTypeEntities = new ArrayList<>();
         unLock = SharedPreferenceUtils.getIntDate(context, IntentConstant.UN_LOCK, 1);
+        soundST = SharedPreferenceUtils.getBooleanDate(context, IntentConstant.SOUND, true);
+        musicST = SharedPreferenceUtils.getBooleanDate(context, IntentConstant.MUSIC, true);
     }
 
 
@@ -261,6 +264,26 @@ public class GameDataManager {
         stuffNumMap = null;
         dumplingTypeEntities = null;
         unLock = 1;
+        musicST = true;
+        soundST = true;
         gameDataManager = null;
+    }
+
+    public boolean isMusicST() {
+        return musicST;
+    }
+
+    public void setMusicST(boolean musicST) {
+        this.musicST = musicST;
+        SharedPreferenceUtils.saveBooleanDate(context, IntentConstant.MUSIC, musicST);
+    }
+
+    public boolean isSoundST() {
+        return soundST;
+    }
+
+    public void setSoundST(boolean soundST) {
+        this.soundST = soundST;
+        SharedPreferenceUtils.saveBooleanDate(context, IntentConstant.SOUND, soundST);
     }
 }

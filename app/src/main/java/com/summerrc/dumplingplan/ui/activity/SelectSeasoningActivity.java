@@ -16,6 +16,7 @@ import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.FoodTypeManager;
 import com.summerrc.dumplingplan.config.GameDataManager;
 import com.summerrc.dumplingplan.config.IntentConstant;
+import com.summerrc.dumplingplan.utils.SoundUtil;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
@@ -64,18 +65,23 @@ public class SelectSeasoningActivity extends BaseActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_next:
+                SoundUtil.playSounds(SoundUtil.NEXT, 0, getApplicationContext());
                 UIHelper.openStuffingActivity(this);
                 break;
             case R.id.iv_salt:
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 UIHelper.openFoodDescriptionActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_SEASONING, SELECT_SEASONING_ACTIVITY, FoodTypeManager.Food.SALT);
                 break;
             case R.id.iv_sauce:
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 UIHelper.openFoodDescriptionActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_SEASONING, SELECT_SEASONING_ACTIVITY, FoodTypeManager.Food.SAUCE);
                 break;
             case R.id.iv_oil:
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 UIHelper.openFoodDescriptionActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_SEASONING, SELECT_SEASONING_ACTIVITY, FoodTypeManager.Food.OIL);
                 break;
             case R.id.iv_basket:
+                SoundUtil.playSounds(SoundUtil.TWO_TWO, 0, getApplicationContext());
                 UIHelper.openBasketActivity(this, IntentConstant.ACTIVITY_FROM_SELECT_SEASONING, BASKET_ACTIVITY);
                 break;
         }
@@ -96,6 +102,7 @@ public class SelectSeasoningActivity extends BaseActivity implements View.OnClic
      * @param view 选中的调料
      */
     private void animatorSetStart(final View view) {
+        SoundUtil.playSounds(SoundUtil.TWO_THREE, 0, getApplicationContext());
         x_location = view.getX();
         y_location = view.getY();
         if(findViewById(R.id.ll_hint_select_food).getVisibility()==View.VISIBLE) {

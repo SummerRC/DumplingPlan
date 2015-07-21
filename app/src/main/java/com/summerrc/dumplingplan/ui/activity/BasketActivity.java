@@ -13,6 +13,8 @@ import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.FoodTypeManager;
 import com.summerrc.dumplingplan.config.GameDataManager;
 import com.summerrc.dumplingplan.config.IntentConstant;
+import com.summerrc.dumplingplan.utils.SoundUtil;
+
 import java.util.ArrayList;
 
 /**
@@ -98,6 +100,7 @@ public class BasketActivity extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_remove_one:
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_SEASONING)){     //调料
                     gameDataManager.setSeasoningNumberMap(list.get(0), 0);
                 }
@@ -106,6 +109,7 @@ public class BasketActivity extends Activity implements View.OnClickListener{
                 findViewById(R.id.iv_one).setVisibility(View.INVISIBLE);
                 break;
             case R.id.iv_remove_two:
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_SEASONING)){     //调料
                     gameDataManager.setSeasoningNumberMap(list.get(1), 0);
                 }
@@ -114,6 +118,7 @@ public class BasketActivity extends Activity implements View.OnClickListener{
                 findViewById(R.id.iv_two).setVisibility(View.INVISIBLE);
                 break;
             case R.id.iv_remove_three:
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_SEASONING)){     //调料
                     gameDataManager.setSeasoningNumberMap(list.get(2), 0);
                 }
@@ -122,6 +127,7 @@ public class BasketActivity extends Activity implements View.OnClickListener{
                 findViewById(R.id.iv_three).setVisibility(View.INVISIBLE);
                 break;
             case R.id.iv_close:
+                SoundUtil.playSounds(SoundUtil.BACK, 0, getApplicationContext());
                 Intent intent = new Intent();
                 setResult(RESULT_OK, intent);
                 finish();

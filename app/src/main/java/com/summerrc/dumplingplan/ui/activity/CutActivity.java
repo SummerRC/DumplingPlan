@@ -1,9 +1,7 @@
 package com.summerrc.dumplingplan.ui.activity;
 
-import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -12,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import com.summerrc.dumplingplan.R;
+import com.summerrc.dumplingplan.utils.SoundUtil;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
@@ -51,9 +50,11 @@ public class CutActivity extends BaseActivity implements View.OnClickListener , 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_next:
+                SoundUtil.playSounds(SoundUtil.NEXT, 0, getApplicationContext());
                 UIHelper.openSkinActivity(this);
                 break;
             case R.id.iv_knife_cut:
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 if(findViewById(R.id.ll_hint_cut).getVisibility() == View.VISIBLE) {
                     translateAnimationStop(findViewById(R.id.ll_hint_cut));
                     findViewById(R.id.ll_hint_cut).setVisibility(View.GONE);

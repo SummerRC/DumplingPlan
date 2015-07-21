@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.GameDataManager;
+import com.summerrc.dumplingplan.utils.SoundUtil;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
@@ -67,11 +68,13 @@ public class PutActivity extends BaseActivity  {
         super.onTouch(v, event);
         switch (v.getId()) {
             case R.id.iv_next:
+                SoundUtil.playSounds(SoundUtil.NEXT, 0, getApplicationContext());
                 UIHelper.openShakeActivity(this);
                 break;
             case R.id.iv_cover_pad:
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
+                        SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                         break;
                     case MotionEvent.ACTION_MOVE:
                         if(findViewById(R.id.ll_hint_slide).getVisibility()==View.VISIBLE) {
@@ -86,6 +89,7 @@ public class PutActivity extends BaseActivity  {
             case R.id.iv_switch:
                 if(event.getAction()==MotionEvent.ACTION_DOWN) {
                     anim.pause();
+                    SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                     findViewById(R.id.ll_hint_click_switch).setVisibility(View.GONE);
                     ObjectAnimator anim1 = ObjectAnimator.ofFloat(findViewById(R.id.iv_switch), "rotation", 0f, 90f);
                     anim1.setDuration(200);
@@ -119,6 +123,7 @@ public class PutActivity extends BaseActivity  {
      * @param position 索引标记移动五个小面皮的哪一个
      */
     private void animation(final int position) {
+        SoundUtil.playSounds(SoundUtil.TWO_THREE, 0, getApplicationContext());
         View view;
         switch (position) {
             case 1:

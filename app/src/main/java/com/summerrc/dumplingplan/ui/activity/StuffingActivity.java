@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.GameDataManager;
 import com.summerrc.dumplingplan.config.StuffTypeManager;
+import com.summerrc.dumplingplan.utils.SoundUtil;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
@@ -28,6 +29,7 @@ public class StuffingActivity extends BaseActivity implements View.OnClickListen
     protected void setView() {
         setContentView(R.layout.activity_stuffing);
         initView();
+        SoundUtil.playSounds(SoundUtil.FOUR_ONE, 0, getApplicationContext());
         mHandler = new Handler();
         /** 左边小刀的移动动画 */
         mHandler.post(new Runnable() {
