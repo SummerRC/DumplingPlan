@@ -99,6 +99,18 @@ public class LockActivity extends BaseActivity implements View.OnLongClickListen
 
     @Override
     public void onClick(View v) {
+        if(v.getId() == R.id.iv_three) {
+            MusicPlayer.pauseMusic();
+            GameDataManager.init(getApplicationContext()).setMusicST(false);
+            UIHelper.openLianliankanActivity(this);
+            return;
+        }
+        if(v.getId() == R.id.iv_six) {
+            MusicPlayer.pauseMusic();
+            GameDataManager.init(getApplicationContext()).setMusicST(false);
+            UIHelper.openCutFoodActivity(this);
+            return;
+        }
         int currentLock = 0;
         switch (v.getId()) {
             case R.id.iv_one:
@@ -173,6 +185,12 @@ public class LockActivity extends BaseActivity implements View.OnLongClickListen
             UIHelper.openLianliankanActivity(this);
             return false;
         }
+        if(v.getId() == R.id.iv_six) {
+            MusicPlayer.pauseMusic();
+            GameDataManager.init(getApplicationContext()).setMusicST(false);
+            UIHelper.openCutFoodActivity(this);
+            return false;
+        }
         int currentLock = 0;
         switch (v.getId()) {
             case R.id.iv_one:
@@ -187,7 +205,6 @@ public class LockActivity extends BaseActivity implements View.OnLongClickListen
                 currentLock = 5;
                 break;
             case R.id.iv_six:
-                currentLock = 7;
                 break;
             case R.id.iv_seven:
                 currentLock = 7;

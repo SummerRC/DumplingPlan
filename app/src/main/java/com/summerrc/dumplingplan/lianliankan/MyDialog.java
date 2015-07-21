@@ -40,7 +40,8 @@ public class MyDialog extends Dialog implements OnClickListener{
 		this.dismiss();
 		switch(v.getId()){
 		case R.id.menu_imgbtn:
-			Dialog dialog = new AlertDialog.Builder(context)
+			((LianliankanActivity)context).quit();
+			/*Dialog dialog = new AlertDialog.Builder(context)
             .setIcon(R.drawable.buttons_bg20)
             .setTitle(R.string.quit)
             .setMessage(R.string.sure_quit)
@@ -54,7 +55,7 @@ public class MyDialog extends Dialog implements OnClickListener{
                 }
             })
             .create();
-			dialog.show();
+			dialog.show();*/
 //			gameview.startPlay();
 //			Toast.makeText(context, text, duration);
 			break;

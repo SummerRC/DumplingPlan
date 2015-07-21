@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.summerrc.dumplingplan.config.IntentConstant;
 import com.summerrc.dumplingplan.config.FoodTypeManager;
+import com.summerrc.dumplingplan.cutfood.CutFoodActivity;
 import com.summerrc.dumplingplan.lianliankan.LianliankanActivity;
 import com.summerrc.dumplingplan.ui.activity.BasketActivity;
 import com.summerrc.dumplingplan.ui.activity.CutActivity;
@@ -225,11 +226,20 @@ public class UIHelper {
 
     /**
      * 连连看
-     *
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openLianliankanActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, LianliankanActivity.class);
+        currentActivity.startActivity(intent);
+        //currentActivity.finish();
+    }
+
+    /**
+     * 切食材
+     * @param currentActivity 当前运行的Activity的实例
+     */
+    public static void openCutFoodActivity(Activity currentActivity) {
+        Intent intent = new Intent(currentActivity, CutFoodActivity.class);
         currentActivity.startActivity(intent);
         //currentActivity.finish();
     }

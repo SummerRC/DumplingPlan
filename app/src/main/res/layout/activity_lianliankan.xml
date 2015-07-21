@@ -42,6 +42,9 @@
     	android:paddingTop="8dip"
     	android:paddingLeft="5dip"
     	android:paddingRight="10dip"
+		android:secondaryProgress="0"
+		android:thumbOffset="20px"
+		android:progressDrawable="@drawable/seek_bar"
     	android:paddingBottom="5dip" />
 
     <com.summerrc.dumplingplan.lianliankan.GameView

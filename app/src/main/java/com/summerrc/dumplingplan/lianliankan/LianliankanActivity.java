@@ -9,6 +9,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
@@ -18,7 +19,10 @@ import android.widget.TextView;
 
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.GameDataManager;
+import com.summerrc.dumplingplan.config.IntentConstant;
 import com.summerrc.dumplingplan.utils.UIHelper;
+
+import java.lang.ref.WeakReference;
 
 public class LianliankanActivity extends Activity
 		implements OnClickListener,OnTimerListener,OnStateListener,OnToolsChangeListener{
@@ -36,26 +40,15 @@ public class LianliankanActivity extends Activity
 
 	private MediaPlayer player;
 
-	private Handler handler = new Handler(){
-		@Override
-		public void handleMessage(Message msg) {
-			switch(msg.what){
-				case 0:
-					dialog = new MyDialog(LianliankanActivity.this,gameView,"胜利！",gameView.getTotalTime() - progress.getProgress());
-					dialog.show();
-					break;
-				case 1:
-					dialog = new MyDialog(LianliankanActivity.this,gameView,"失败！",gameView.getTotalTime() - progress.getProgress());
-					dialog.show();
-			}
-		}
-	};
+	private MyHandler handler;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		setContentView(R.layout.activity_lianliankan);
+		handler = new MyHandler(this);
 		btnPlay = (ImageButton) findViewById(R.id.play_btn);
 		btnRefresh = (ImageButton) findViewById(R.id.refresh_btn);
 		btnTip = (ImageButton) findViewById(R.id.tip_btn);
@@ -148,6 +141,9 @@ public class LianliankanActivity extends Activity
 	public void OnStateChanged(int StateMode) {
 		switch(StateMode){
 			case GameView.WIN:
+				if(GameDataManager.init(getApplicationContext()).getUnLock() <= 3) {
+					GameDataManager.init(getApplicationContext()).setUnLock(4);
+				}
 				handler.sendEmptyMessage(0);
 				break;
 			case GameView.LOSE:
@@ -177,9 +173,31 @@ public class LianliankanActivity extends Activity
 	}
 
 	public void quit(){
-		if(GameDataManager.init(getApplicationContext()).getUnLock() == 3) {
-			GameDataManager.init(getApplicationContext()).setUnLock(4);
-		}
 		UIHelper.openLockActivity(this);
+	}
+
+	static class MyHandler extends Handler {
+		WeakReference<LianliankanActivity> mActivity;
+		MyHandler(LianliankanActivity activity) {
+			mActivity = new WeakReference<>(activity);
+		}
+
+		@Override
+		public void handleMessage(Message msg) {
+			final LianliankanActivity activity = mActivity.get();
+			if(activity == null) {
+				return;
+			}
+			activity.setContentView(R.layout.activity_cut_food);
+			switch(msg.what){
+				case 0:
+					activity.dialog = new MyDialog(activity, activity.gameView,"胜利！", activity.gameView.getTotalTime() - activity.progress.getProgress());
+					activity.dialog.show();
+					break;
+				case 1:
+					activity.dialog = new MyDialog(activity, activity.gameView,"失败！", activity.gameView.getTotalTime() - activity.progress.getProgress());
+					activity.dialog.show();
+			}
+		}
 	}
 }

@@ -3,6 +3,8 @@
     package="com.summerrc.dumplingplan" >
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
 
     <application
         android:allowBackup="true"
@@ -88,6 +90,12 @@
             android:launchMode="singleTask"
             android:configChanges="keyboardHidden|orientation"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+        </activity>
+
+        <activity
+            android:name=".cutfood.CutFoodActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
     </application>
 

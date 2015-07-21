@@ -13,4 +13,7 @@ public interface IntentConstant {
     String UN_LOCK = "UN_LOCK";
     String MUSIC = "MUSIC";
     String SOUND = "SOUND";
+
+    int WIN = 0;
+    int LOSE = 1;
 }
