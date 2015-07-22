@@ -1,16 +1,17 @@
-package com.summerrc.dumplingplan.cutfood;
+package com.summerrc.dumplingplan.interestinggame.cutfood;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.KeyEvent;
+import android.view.Window;
 import android.view.WindowManager;
-
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.GameDataManager;
 import com.summerrc.dumplingplan.config.IntentConstant;
+import com.summerrc.dumplingplan.utils.SoundUtil;
 import com.summerrc.dumplingplan.utils.UIHelper;
-
 import java.lang.ref.WeakReference;
 
 /**
@@ -24,6 +25,10 @@ public class CutFoodActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        /** 去掉标题栏和信息栏 */
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 
         handler = new MyHandler(this);
         MyGameView view = new MyGameView(this, handler);
@@ -47,9 +52,13 @@ public class CutFoodActivity extends Activity {
                     if(GameDataManager.init(activity.getApplicationContext()).getUnLock() <= 6) {
                         GameDataManager.init(activity.getApplicationContext()).setUnLock(7);
                     }
+                    SoundUtil.initSounds(activity.getApplicationContext());
+                    SoundUtil.playSounds(SoundUtil.WIN, 0, activity.getApplicationContext());
                     activity.findViewById(R.id.rootView).setBackgroundResource(R.mipmap.success);
                     break;
                 case IntentConstant.LOSE:
+                    SoundUtil.initSounds(activity.getApplicationContext());
+                    SoundUtil.playSounds(SoundUtil.LOSE, 0, activity.getApplicationContext());
                     activity.findViewById(R.id.rootView).setBackgroundResource(R.mipmap.fail);
                     break;
             }
@@ -60,5 +69,13 @@ public class CutFoodActivity extends Activity {
                 }
             }, 2000);
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

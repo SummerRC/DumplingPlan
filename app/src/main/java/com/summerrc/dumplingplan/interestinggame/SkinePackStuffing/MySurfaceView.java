@@ -1,4 +1,4 @@
-package com.summerrc.dumplingplan.cutfood;
+package com.summerrc.dumplingplan.interestinggame.SkinePackStuffing;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -7,7 +7,7 @@ import android.view.SurfaceView;
 import android.view.WindowManager;
 
 /**
- * @author SummerRC on 2015/7/21 0011.
+ * @author SummerRC on 2015/7/22 0011.
  * 自定义的SurfaceView，拥有自己的生命周期
  */
 public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback{
@@ -19,11 +19,11 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
 	
 	public MySurfaceView(Context context) {
 		super(context);
-		mHolder = getHolder();
-		mHolder.addCallback(this);
 		WindowManager wm=(WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
 		PhoneWidth = wm.getDefaultDisplay().getWidth();
 		PhoneHeight = wm.getDefaultDisplay().getHeight();
+		mHolder = getHolder();
+		mHolder.addCallback(this);
 	}
 
 	@Override

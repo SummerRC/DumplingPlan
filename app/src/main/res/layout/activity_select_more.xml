@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.summerrc.dumplingplan.interestinggame.selectmore.SelectMoreActivity">
+
+    <GridView
+        android:id="@+id/gridView"
+        android:gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:numColumns="3"
+        android:layout_centerInParent="true">
+    </GridView>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40dp"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/clock"/>
+
+        <com.summerrc.dumplingplan.widget.VerticalSeekBar
+            android:id="@+id/timer"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:progressDrawable="@drawable/seek_bar_vertical" />
+    </LinearLayout>
+
+</RelativeLayout>

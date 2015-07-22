@@ -1,4 +1,4 @@
-package com.summerrc.dumplingplan.lianliankan;
+package com.summerrc.dumplingplan.interestinggame.lianliankan;
 
 import java.util.HashMap;
 import android.content.Context;

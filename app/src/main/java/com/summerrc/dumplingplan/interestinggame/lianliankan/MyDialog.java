@@ -1,9 +1,7 @@
-package com.summerrc.dumplingplan.lianliankan;
+package com.summerrc.dumplingplan.interestinggame.lianliankan;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;

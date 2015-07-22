@@ -24,7 +24,7 @@ public class MusicPlayer {
         if(music == null) {
             context = c;
             musicSt = GameDataManager.init(c).isMusicST();
-            music = MediaPlayer.create(context, R.raw.bg);
+            music = MediaPlayer.create(context, R.raw.lianliankan_bg_one);
             music.setLooping(true);
         }
     }

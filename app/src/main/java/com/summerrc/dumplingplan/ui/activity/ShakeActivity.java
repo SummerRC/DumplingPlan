@@ -67,7 +67,7 @@ public class ShakeActivity extends BaseActivity implements Animation.AnimationLi
         /** 这里指定声音池的最大音频流数目为10，声音品质为5大家可以自 己测试感受下效果 */
         soundPool = new SoundPool(10, AudioManager.STREAM_SYSTEM, 5);
         /**  载入音频流  */
-        hitOkSfx = soundPool.load(this, R.raw.shake, 0);
+        hitOkSfx = soundPool.load(this, R.raw.dumpling_plan_sd_shake, 0);
     }
 
     @Override

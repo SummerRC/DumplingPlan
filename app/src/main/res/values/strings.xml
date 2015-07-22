@@ -14,4 +14,5 @@
     <string name="sure_quit">确定退出第三关？</string>
     <string name="alert_dialog_ok">确定</string>
     <string name="alert_dialog_cancel">取消</string>
+    <string name="title_activity_select_more">SelectMoreActivity</string>
 </resources>

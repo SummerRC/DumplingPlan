@@ -1,4 +1,4 @@
-package com.summerrc.dumplingplan.lianliankan;
+package com.summerrc.dumplingplan.interestinggame.lianliankan;
 
 
 import android.app.Activity;
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -16,10 +17,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.GameDataManager;
-import com.summerrc.dumplingplan.config.IntentConstant;
+import com.summerrc.dumplingplan.utils.SoundUtil;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 import java.lang.ref.WeakReference;
@@ -42,7 +44,6 @@ public class LianliankanActivity extends Activity
 
 	private MyHandler handler;
 
-	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,7 +59,6 @@ public class LianliankanActivity extends Activity
 		progress = (SeekBar) findViewById(R.id.timer);
 		textRefreshNum = (TextView) findViewById(R.id.text_refresh_num);
 		textTipNum = (TextView) findViewById(R.id.text_tip_num);
-		//XXX
 		progress.setMax(gameView.getTotalTime());
 
 		btnPlay.setOnClickListener(this);
@@ -73,7 +73,7 @@ public class LianliankanActivity extends Activity
 		imgTitle.startAnimation(scale);
 		btnPlay.startAnimation(scale);
 
-		player = MediaPlayer.create(this, R.raw.bg);
+		player = MediaPlayer.create(this, R.raw.lianliankan_bg_one);
 		player.setLooping(true);//设置循环播放
 		player.start();
 
@@ -193,11 +193,24 @@ public class LianliankanActivity extends Activity
 				case 0:
 					activity.dialog = new MyDialog(activity, activity.gameView,"胜利！", activity.gameView.getTotalTime() - activity.progress.getProgress());
 					activity.dialog.show();
+					SoundUtil.initSounds(activity.getApplicationContext());
+					SoundUtil.playSounds(SoundUtil.WIN, 0, activity.getApplicationContext());
 					break;
 				case 1:
 					activity.dialog = new MyDialog(activity, activity.gameView,"失败！", activity.gameView.getTotalTime() - activity.progress.getProgress());
 					activity.dialog.show();
+					SoundUtil.initSounds(activity.getApplicationContext());
+					SoundUtil.playSounds(SoundUtil.LOSE, 0, activity.getApplicationContext());
 			}
 		}
+	}
+
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 }

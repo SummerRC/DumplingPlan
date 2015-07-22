@@ -24,6 +24,8 @@ public class SoundUtil  {
 	public static final int NINE_ONE = 13;
 	public static final int TEN_ONE = 14;
 	public static final int WATER = 15;
+	public static final int WIN = 15;
+	public static final int LOSE = 15;
 
 
 	public static SoundPool soundPool;				//声音缓冲池
@@ -47,21 +49,23 @@ public class SoundUtil  {
 
 		soundPoolMap = new HashMap<>();				//创建声音资源Map
 		/** 将加载的声音资源id放进此Map */
-		soundPoolMap.put(NEXT, soundPool.load(context, R.raw.next, 1));
-		soundPoolMap.put(BACK, soundPool.load(context, R.raw.back, 1));
-		soundPoolMap.put(REPLAY, soundPool.load(context, R.raw.replay, 1));
-		soundPoolMap.put(STOP, soundPool.load(context, R.raw.stop, 1));
-		soundPoolMap.put(SETTING, soundPool.load(context, R.raw.setting, 1));
-		soundPoolMap.put(ONE_ONE, soundPool.load(context, R.raw.one_one, 1));
-		soundPoolMap.put(ONE_TWO, soundPool.load(context, R.raw.one_two, 1));
-		soundPoolMap.put(ONE_THREE, soundPool.load(context, R.raw.one_three, 1));
-		soundPoolMap.put(TWO_ONE, soundPool.load(context, R.raw.two_one, 1));
-		soundPoolMap.put(TWO_TWO, soundPool.load(context, R.raw.two_two, 1));
-		soundPoolMap.put(TWO_THREE, soundPool.load(context, R.raw.two_three, 1));
-		soundPoolMap.put(FOUR_ONE, soundPool.load(context, R.raw.four_one, 1));
-		soundPoolMap.put(NINE_ONE, soundPool.load(context, R.raw.nine_one, 1));
-		soundPoolMap.put(TEN_ONE, soundPool.load(context, R.raw.ten_one, 1));
-		soundPoolMap.put(WATER, soundPool.load(context, R.raw.water, 1));
+		soundPoolMap.put(NEXT, soundPool.load(context, R.raw.dumpling_plan_sd_next, 1));
+		soundPoolMap.put(BACK, soundPool.load(context, R.raw.dumpling_plan_sd_back, 1));
+		soundPoolMap.put(REPLAY, soundPool.load(context, R.raw.dumpling_plan_sd_replay, 1));
+		soundPoolMap.put(STOP, soundPool.load(context, R.raw.dumpling_plan_sd_stop, 1));
+		soundPoolMap.put(SETTING, soundPool.load(context, R.raw.dumpling_plan_sd_setting, 1));
+		soundPoolMap.put(ONE_ONE, soundPool.load(context, R.raw.dumpling_plan_sd_one_one, 1));
+		soundPoolMap.put(ONE_TWO, soundPool.load(context, R.raw.dumpling_plan_sd_one_two, 1));
+		soundPoolMap.put(ONE_THREE, soundPool.load(context, R.raw.dumpling_plan_sd_one_three, 1));
+		soundPoolMap.put(TWO_ONE, soundPool.load(context, R.raw.dumpling_plan_sd_two_one, 1));
+		soundPoolMap.put(TWO_TWO, soundPool.load(context, R.raw.dumpling_plan_sd_two_two, 1));
+		soundPoolMap.put(TWO_THREE, soundPool.load(context, R.raw.dumpling_plan_sd_two_three, 1));
+		soundPoolMap.put(FOUR_ONE, soundPool.load(context, R.raw.dumpling_plan_sd_four_one, 1));
+		soundPoolMap.put(NINE_ONE, soundPool.load(context, R.raw.dumpling_plan_sd_nine_one, 1));
+		soundPoolMap.put(TEN_ONE, soundPool.load(context, R.raw.dumpling_plan_sd_ten_one, 1));
+		soundPoolMap.put(WATER, soundPool.load(context, R.raw.dumpling_plan_sd_water, 1));
+		soundPoolMap.put(WIN, soundPool.load(context, R.raw.lianliankan_sd_win, 1));
+		soundPoolMap.put(LOSE, soundPool.load(context, R.raw.lianliankan_sd_lose, 1));
 	}
 
 	/**

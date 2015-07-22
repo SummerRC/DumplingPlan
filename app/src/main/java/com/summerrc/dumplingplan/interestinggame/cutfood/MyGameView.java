@@ -1,4 +1,4 @@
-package com.summerrc.dumplingplan.cutfood;
+package com.summerrc.dumplingplan.interestinggame.cutfood;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -49,7 +49,7 @@ public class MyGameView extends MySurfaceView {
 	private Drawable mBackground;						//背景
 	private Handler handler;
 
-	public MyGameView(Context context, Handler handler) {
+	protected MyGameView(Context context, Handler handler) {
 		super(context);
 		this.handler = handler;
 		mContext = context;
@@ -60,7 +60,7 @@ public class MyGameView extends MySurfaceView {
 		mSpirits = new ArrayList<>();
 		mBooms = new ArrayList<>();
 		/** 初始化播放器 */
-		mPlayer=MediaPlayer.create(context, R.raw.background);
+		mPlayer=MediaPlayer.create(context, R.raw.lianliankan_bg_two);
 		mPlayer.setLooping(true);
 		mSoundPool = new SoundPool(5,AudioManager.STREAM_MUSIC,100);
 		mExplodeSoundId = mSoundPool.load(context,R.raw.bomb_explode,1);

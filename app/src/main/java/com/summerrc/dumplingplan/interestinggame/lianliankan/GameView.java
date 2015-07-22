@@ -1,4 +1,4 @@
-package com.summerrc.dumplingplan.lianliankan;
+package com.summerrc.dumplingplan.interestinggame.lianliankan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +49,7 @@ public class GameView extends BoardView {
 
 	public GameView(Context context, AttributeSet atts) {
 		super(context, atts);
-		player = MediaPlayer.create(context, R.raw.back2new);
+		player = MediaPlayer.create(context, R.raw.lianliankan_bg_two);
 		player.setLooping(true);//设置循环播放
 	}
 
@@ -85,13 +85,13 @@ public class GameView extends BoardView {
 	public static void initSound(Context context){
 		soundPlay = new SoundPlay();
 		soundPlay.initSounds(context);
-		soundPlay.loadSfx(context, R.raw.choose, ID_SOUND_CHOOSE);
-		soundPlay.loadSfx(context, R.raw.disappear1, ID_SOUND_DISAPEAR);
-		soundPlay.loadSfx(context, R.raw.win, ID_SOUND_WIN);
-		soundPlay.loadSfx(context, R.raw.lose, ID_SOUND_LOSE);
-		soundPlay.loadSfx(context, R.raw.item1, ID_SOUND_REFRESH);
-		soundPlay.loadSfx(context, R.raw.item2, ID_SOUND_TIP);
-		soundPlay.loadSfx(context, R.raw.alarm, ID_SOUND_ERROR);
+		soundPlay.loadSfx(context, R.raw.lianliankan_sd_choose, ID_SOUND_CHOOSE);
+		soundPlay.loadSfx(context, R.raw.lianliankan_sd_disappear, ID_SOUND_DISAPEAR);
+		soundPlay.loadSfx(context, R.raw.lianliankan_sd_win, ID_SOUND_WIN);
+		soundPlay.loadSfx(context, R.raw.lianliankan_sd_lose, ID_SOUND_LOSE);
+		soundPlay.loadSfx(context, R.raw.lianliankan_sd_refresh, ID_SOUND_REFRESH);
+		soundPlay.loadSfx(context, R.raw.lianliankan_sd_tip, ID_SOUND_TIP);
+		soundPlay.loadSfx(context, R.raw.lianliankan_sd_alarm, ID_SOUND_ERROR);
 	}
 
 	public void setOnTimerListener(OnTimerListener timerListener){

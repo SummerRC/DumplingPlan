@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -85,17 +84,24 @@
             android:theme="@style/DialogActivity" >
         </activity>
         <activity
-            android:name=".lianliankan.LianliankanActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask"
+            android:name=".interestinggame.lianliankan.LianliankanActivity"
             android:configChanges="keyboardHidden|orientation"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-        </activity>
-
-        <activity
-            android:name=".cutfood.CutFoodActivity"
-            android:screenOrientation="landscape"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name=".interestinggame.cutfood.CutFoodActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".interestinggame.selectmore.SelectMoreActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".interestinggame.SkinePackStuffing.SkinPackStuffingActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape" >
         </activity>
     </application>
 

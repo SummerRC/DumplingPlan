@@ -25,6 +25,7 @@ public class LockActivity extends BaseActivity implements View.OnLongClickListen
     protected void setView() {
         setContentView(R.layout.activity_lock);
         GameDataManager.init(getApplicationContext()).clean();
+        findViewById(R.id.iv_resume).setVisibility(View.GONE);
         unLock = GameDataManager.init(getApplicationContext()).getUnLock();
         iv_one = (ImageView) findViewById(R.id.iv_one);
         iv_one.setOnClickListener(this);
@@ -85,6 +86,7 @@ public class LockActivity extends BaseActivity implements View.OnLongClickListen
         } else {
             iv_nine.setBackgroundResource(R.mipmap.nine_lock);
         }
+        iv_one.setOnLongClickListener(this);
         iv_two.setOnLongClickListener(this);
         iv_three.setOnLongClickListener(this);
         iv_four.setOnLongClickListener(this);
@@ -109,6 +111,12 @@ public class LockActivity extends BaseActivity implements View.OnLongClickListen
             MusicPlayer.pauseMusic();
             GameDataManager.init(getApplicationContext()).setMusicST(false);
             UIHelper.openCutFoodActivity(this);
+            return;
+        }
+        if(v.getId() == R.id.iv_nine) {
+            MusicPlayer.pauseMusic();
+            GameDataManager.init(getApplicationContext()).setMusicST(false);
+            UIHelper.openSkinPackStuffingActivity(this);
             return;
         }
         int currentLock = 0;
@@ -191,10 +199,18 @@ public class LockActivity extends BaseActivity implements View.OnLongClickListen
             UIHelper.openCutFoodActivity(this);
             return false;
         }
+        if(v.getId() == R.id.iv_nine) {
+            MusicPlayer.pauseMusic();
+            GameDataManager.init(getApplicationContext()).setMusicST(false);
+            UIHelper.openSkinPackStuffingActivity(this);
+            return false;
+        }
         int currentLock = 0;
         switch (v.getId()) {
             case R.id.iv_one:
-                break;
+                GameDataManager.init(getApplicationContext()).setUnLock(1);
+                UIHelper.openWelcomeActivity(this);
+                return false;
             case R.id.iv_two:
                 currentLock = 2;
                 break;
