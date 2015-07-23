@@ -118,7 +118,7 @@ public class SelectFoodActivity extends BaseActivity implements View.OnClickList
         }
         switch (v.getId()) {
             case R.id.iv_next:
-                SoundUtil.playSounds(SoundUtil.NEXT, 0, getApplicationContext());
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 /** 进入下一步之前先设置馅类型 */
                 GameDataManager.init(getApplicationContext()).setStuffType();
                 UIHelper.openSelectSeasoningActivity(this);

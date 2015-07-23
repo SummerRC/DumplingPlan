@@ -2,7 +2,6 @@ package com.summerrc.dumplingplan.interestinggame.lianliankan;
 
 
 import android.app.Activity;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,10 +16,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.GameDataManager;
+import com.summerrc.dumplingplan.utils.MusicPlayer;
 import com.summerrc.dumplingplan.utils.SoundUtil;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
@@ -39,8 +37,6 @@ public class LianliankanActivity extends Activity
 	private ImageView clock;
 	private TextView textRefreshNum;
 	private TextView textTipNum;
-
-	private MediaPlayer player;
 
 	private MyHandler handler;
 
@@ -73,9 +69,7 @@ public class LianliankanActivity extends Activity
 		imgTitle.startAnimation(scale);
 		btnPlay.startAnimation(scale);
 
-		player = MediaPlayer.create(this, R.raw.lianliankan_bg_one);
-		player.setLooping(true);//设置循环播放
-		player.start();
+		MusicPlayer.startMusic();
 
 //        GameView.soundPlay.play(GameView.ID_SOUND_BACK2BG, -1);
 	}
@@ -115,7 +109,6 @@ public class LianliankanActivity extends Activity
 				btnRefresh.startAnimation(transIn);
 				btnTip.startAnimation(transIn);
 				gameView.startAnimation(transIn);
-				player.pause();
 				gameView.startPlay();
 				break;
 			case R.id.refresh_btn:
@@ -150,13 +143,9 @@ public class LianliankanActivity extends Activity
 				handler.sendEmptyMessage(1);
 				break;
 			case GameView.PAUSE:
-				player.stop();
-				gameView.player.stop();
 				gameView.stopTimer();
 				break;
 			case GameView.QUIT:
-				player.release();
-				gameView.player.release();
 				gameView.stopTimer();
 				break;
 		}
@@ -191,13 +180,11 @@ public class LianliankanActivity extends Activity
 			activity.setContentView(R.layout.activity_cut_food);
 			switch(msg.what){
 				case 0:
-					SoundUtil.initSounds(activity.getApplicationContext());
 					SoundUtil.playSounds(SoundUtil.WIN, 0, activity.getApplicationContext());
 					activity.dialog = new MyDialog(activity, activity.gameView,"胜利！", activity.gameView.getTotalTime() - activity.progress.getProgress());
 					activity.dialog.show();
 					break;
 				case 1:
-					SoundUtil.initSounds(activity.getApplicationContext());
 					SoundUtil.playSounds(SoundUtil.LOSE, 0, activity.getApplicationContext());
 					activity.dialog = new MyDialog(activity, activity.gameView,"失败！", activity.gameView.getTotalTime() - activity.progress.getProgress());
 					activity.dialog.show();
@@ -209,6 +196,7 @@ public class LianliankanActivity extends Activity
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			UIHelper.openLockActivity(this);
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);

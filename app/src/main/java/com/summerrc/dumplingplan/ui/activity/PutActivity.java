@@ -68,7 +68,7 @@ public class PutActivity extends BaseActivity  {
         super.onTouch(v, event);
         switch (v.getId()) {
             case R.id.iv_next:
-                SoundUtil.playSounds(SoundUtil.NEXT, 0, getApplicationContext());
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 UIHelper.openShakeActivity(this);
                 break;
             case R.id.iv_cover_pad:

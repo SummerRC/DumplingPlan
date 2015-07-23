@@ -9,11 +9,10 @@ import com.summerrc.dumplingplan.config.GameDataManager;
 
 public class SoundUtil  {
 	/** 音效编号 */
-	public static final int NEXT = 6;				//下一步
-	public static final int BACK = 2;				//返回
-	public static final int REPLAY = 3;			    //重玩
-	public static final int STOP = 4;			    //暂停
-	public static final int SETTING = 5;			//设置
+	public static final int BACK = 6;				//返回
+	public static final int REPLAY = 6;			    //重玩
+	public static final int STOP = 6;			    //暂停
+	public static final int SETTING = 6;			//设置
 	public static final int ONE_ONE = 6;			//欢迎界面
 	public static final int ONE_TWO = 7;
 	public static final int ONE_THREE = 8;
@@ -22,12 +21,13 @@ public class SoundUtil  {
 	public static final int TWO_THREE = 11;
 	public static final int FOUR_ONE = 12;			//切馅
 	public static final int NINE_ONE = 13;
-	public static final int TEN_ONE = 14;
 	public static final int WATER = 15;
 	public static final int WIN = 16;
 	public static final int LOSE = 17;
 	public static final int MINUS = 19;
 	public static final int CUT = 18;
+	public static final int BOMB = 20;
+
 
 
 	public static SoundPool soundPool;				//声音缓冲池
@@ -50,10 +50,6 @@ public class SoundUtil  {
 
 		soundPoolMap = new HashMap<>();				//创建声音资源Map
 		/** 将加载的声音资源id放进此Map */
-		soundPoolMap.put(BACK, soundPool.load(context, R.raw.dumpling_plan_sd_back, 1));
-		soundPoolMap.put(REPLAY, soundPool.load(context, R.raw.dumpling_plan_sd_replay, 1));
-		soundPoolMap.put(STOP, soundPool.load(context, R.raw.dumpling_plan_sd_stop, 1));
-		soundPoolMap.put(SETTING, soundPool.load(context, R.raw.dumpling_plan_sd_setting, 1));
 		soundPoolMap.put(ONE_ONE, soundPool.load(context, R.raw.dumpling_plan_sd_one_one, 1));
 		soundPoolMap.put(ONE_TWO, soundPool.load(context, R.raw.dumpling_plan_sd_one_two, 1));
 		soundPoolMap.put(ONE_THREE, soundPool.load(context, R.raw.dumpling_plan_sd_one_three, 1));
@@ -62,12 +58,12 @@ public class SoundUtil  {
 		soundPoolMap.put(TWO_THREE, soundPool.load(context, R.raw.dumpling_plan_sd_two_three, 1));
 		soundPoolMap.put(FOUR_ONE, soundPool.load(context, R.raw.dumpling_plan_sd_four_one, 1));
 		soundPoolMap.put(NINE_ONE, soundPool.load(context, R.raw.dumpling_plan_sd_nine_one, 1));
-		soundPoolMap.put(TEN_ONE, soundPool.load(context, R.raw.dumpling_plan_sd_ten_one, 1));
 		soundPoolMap.put(WATER, soundPool.load(context, R.raw.dumpling_plan_sd_water, 1));
 		soundPoolMap.put(WIN, soundPool.load(context, R.raw.lianliankan_sd_win, 1));
 		soundPoolMap.put(LOSE, soundPool.load(context, R.raw.lianliankan_sd_lose, 1));
 		soundPoolMap.put(MINUS, soundPool.load(context, R.raw.minus, 1));
 		soundPoolMap.put(CUT, soundPool.load(context, R.raw.cut, 1));
+		soundPoolMap.put(BOMB, soundPool.load(context, R.raw.bomb_explode, 1));
 	}
 
 	/**

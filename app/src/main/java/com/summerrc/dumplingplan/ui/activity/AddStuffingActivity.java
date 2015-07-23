@@ -79,7 +79,7 @@ public class AddStuffingActivity extends BaseActivity {
             case R.id.iv_next:
                 /** 记录每个饺子大小 */
                 gameDataManager.setDumplingTypeEntities();
-                SoundUtil.playSounds(SoundUtil.NEXT, 0, getApplicationContext());
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 UIHelper.openPackActivity(this);
                 break;
             case R.id.iv_skin_one:

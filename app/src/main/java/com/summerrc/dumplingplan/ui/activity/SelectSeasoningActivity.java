@@ -65,7 +65,7 @@ public class SelectSeasoningActivity extends BaseActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_next:
-                SoundUtil.playSounds(SoundUtil.NEXT, 0, getApplicationContext());
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 UIHelper.openStuffingActivity(this);
                 break;
             case R.id.iv_salt:

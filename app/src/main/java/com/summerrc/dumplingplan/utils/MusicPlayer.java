@@ -26,6 +26,7 @@ public class MusicPlayer {
             musicSt = GameDataManager.init(c).isMusicST();
             music = MediaPlayer.create(context, R.raw.lianliankan_bg_one);
             music.setLooping(true);
+            music.start();
         }
     }
 

@@ -21,6 +21,7 @@ import java.lang.ref.WeakReference;
 public class CutFoodActivity extends Activity {
 
     private MyHandler handler;
+    private MyGameView gameView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +30,20 @@ public class CutFoodActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-
         handler = new MyHandler(this);
-        MyGameView view = new MyGameView(this, handler);
-        setContentView(view);
+        gameView = new MyGameView(this, handler);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setContentView(gameView);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        gameView.mDrawThread.stop();
     }
 
     static class MyHandler extends Handler {
@@ -52,12 +63,10 @@ public class CutFoodActivity extends Activity {
                     if(GameDataManager.init(activity.getApplicationContext()).getUnLock() <= 6) {
                         GameDataManager.init(activity.getApplicationContext()).setUnLock(7);
                     }
-                    SoundUtil.initSounds(activity.getApplicationContext());
                     SoundUtil.playSounds(SoundUtil.WIN, 0, activity.getApplicationContext());
                     activity.findViewById(R.id.rootView).setBackgroundResource(R.mipmap.success);
                     break;
                 case IntentConstant.LOSE:
-                    SoundUtil.initSounds(activity.getApplicationContext());
                     SoundUtil.playSounds(SoundUtil.LOSE, 0, activity.getApplicationContext());
                     activity.findViewById(R.id.rootView).setBackgroundResource(R.mipmap.fail);
                     break;
@@ -74,6 +83,7 @@ public class CutFoodActivity extends Activity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+            UIHelper.openLockActivity(this);
             return true;
         }
         return super.onKeyDown(keyCode, event);

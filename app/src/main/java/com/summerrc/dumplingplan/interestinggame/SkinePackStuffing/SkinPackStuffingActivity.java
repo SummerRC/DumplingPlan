@@ -58,12 +58,10 @@ public class SkinPackStuffingActivity extends Activity {
                     if(GameDataManager.init(activity.getApplicationContext()).getUnLock() <= 8) {
                         GameDataManager.init(activity.getApplicationContext()).setUnLock(9);
                     }
-                    SoundUtil.initSounds(activity.getApplicationContext());
                     SoundUtil.playSounds(SoundUtil.WIN, 0, activity.getApplicationContext());
                     activity.findViewById(R.id.rootView).setBackgroundResource(R.mipmap.success);
                     break;
                 case IntentConstant.LOSE:
-                    SoundUtil.initSounds(activity.getApplicationContext());
                     SoundUtil.playSounds(SoundUtil.LOSE, 0, activity.getApplicationContext());
                     activity.findViewById(R.id.rootView).setBackgroundResource(R.mipmap.fail);
                     break;

@@ -68,7 +68,6 @@ public class RubActivity extends BaseActivity {
             case R.id.iv_dough_big:
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        SoundUtil.initSounds(getApplicationContext());
                         SoundUtil.playSounds(SoundUtil.SETTING, 0, getApplicationContext());
                         break;
                     case MotionEvent.ACTION_MOVE:
@@ -81,8 +80,7 @@ public class RubActivity extends BaseActivity {
                 }
                 break;
             case R.id.iv_next:
-                SoundUtil.initSounds(getApplicationContext());
-                SoundUtil.playSounds(SoundUtil.NEXT, 0, getApplicationContext());
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 UIHelper.openCutActivity(this);
                 break;
         }

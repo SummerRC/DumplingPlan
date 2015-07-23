@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rootView"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@mipmap/background_welcome"
     android:orientation="vertical" >
 
-    <include layout="@layout/activity_welcome_layer" />
+    <com.ant.liao.GifView
+        android:id="@+id/gif"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:enabled="true" />
 
 </RelativeLayout>

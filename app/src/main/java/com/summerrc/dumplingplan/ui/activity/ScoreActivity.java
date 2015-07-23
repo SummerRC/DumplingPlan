@@ -125,7 +125,7 @@ public class ScoreActivity extends Activity {
                 gameDataManager.clean();
                 UIHelper.openLockActivity(ScoreActivity.this);
             }
-        }, 11000);
+        }, 10000);
     }
 
     private void initView() {
@@ -135,7 +135,6 @@ public class ScoreActivity extends Activity {
     }
 
     private void initData() {
-        SoundUtil.initSounds(getApplicationContext());
         gameDataManager = GameDataManager.init(getApplicationContext());
         /** 煮的时间长短 */
         int count = gameDataManager.getCount();

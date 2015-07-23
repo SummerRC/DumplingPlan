@@ -1,21 +1,15 @@
 package com.summerrc.dumplingplan.interestinggame.cutfood;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Random;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Paint.Style;
 import android.graphics.Path;
 import android.graphics.PointF;
-import android.graphics.Paint.Style;
 import android.graphics.drawable.Drawable;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.os.Handler;
 import android.os.Message;
 import android.view.MotionEvent;
@@ -23,6 +17,11 @@ import android.view.SurfaceHolder;
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.IntentConstant;
 import com.summerrc.dumplingplan.config.ScoreResourceManager;
+import com.summerrc.dumplingplan.utils.MusicPlayer;
+import com.summerrc.dumplingplan.utils.SoundUtil;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * @author SummerRC on 2015/7/21 0011.
@@ -43,11 +42,6 @@ public class MyGameView extends MySurfaceView {
 	private long mTimeCount;							//显示右上角时间
 	public int count = 60;
 
-	private MediaPlayer mPlayer;						//背景音乐播放器
-	private SoundPool mSoundPool;						//音效
-	private int mExplodeSoundId;						//音效资源id
-	private int cutId;						//音效资源id
-
 	private Drawable mBackground;						//背景
 	private Handler handler;
 
@@ -61,13 +55,7 @@ public class MyGameView extends MySurfaceView {
 		/** 实例化容纳精灵的列表，请自行做好管理精灵的工作 */
 		mSpirits = new ArrayList<>();
 		mBooms = new ArrayList<>();
-		/** 初始化播放器 */
-		mPlayer=MediaPlayer.create(context, R.raw.lianliankan_bg_two);
-		mPlayer.setLooping(true);
-		mPlayer.start();
-		mSoundPool = new SoundPool(5,AudioManager.STREAM_MUSIC,100);
-		mExplodeSoundId = mSoundPool.load(context,R.raw.bomb_explode,1);
-		cutId = mSoundPool.load(context,R.raw.cut,1);
+		MusicPlayer.startMusic();
 	}
 
 	/**
@@ -82,10 +70,10 @@ public class MyGameView extends MySurfaceView {
 		/** 到了计算好的时间就生成精灵 ，间隔时间1秒钟左右，用了一个随机数 */
 		if(mNextTime<System.currentTimeMillis()){
 			generateSpirit();
-			mSoundPool.play(mExplodeSoundId, 1, 1, 1, 0, 1);
+			SoundUtil.playSounds(SoundUtil.BOMB, 0, mContext.getApplicationContext());
 			nextGenTime();
 		}
-		/** 炸弹是2-3秒钟出现一次 */
+		/** 炸弹是2-3秒钟出现一Sound次 */
 		if(mNextTimeBoom<System.currentTimeMillis()){
 			drawBoom();
 			nextGenTimeBoom();
@@ -254,8 +242,6 @@ public class MyGameView extends MySurfaceView {
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
 		super.surfaceDestroyed(holder);
-		mPlayer.stop();
-		mSoundPool.release();
 	}
 
 
@@ -570,7 +556,7 @@ public class MyGameView extends MySurfaceView {
 	 */
 	private void handleActionDown(MotionEvent event){
 		PointF point = new PointF(event.getX(),event.getY());
-		mSoundPool.play(cutId, 1, 1, 1, 0, 1);
+		SoundUtil.playSounds(SoundUtil.CUT, 0, mContext.getApplicationContext());
 		synchronized(mTrack){
 			mTrack.add(point);
 		}

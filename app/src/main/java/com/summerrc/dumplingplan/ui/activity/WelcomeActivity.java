@@ -1,17 +1,12 @@
 package com.summerrc.dumplingplan.ui.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import com.ant.liao.GifView;
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.GameDataManager;
 import com.summerrc.dumplingplan.utils.MusicPlayer;
@@ -24,11 +19,7 @@ import com.summerrc.dumplingplan.utils.UIHelper;
  * @author SummerRC
  */
 public class WelcomeActivity extends Activity implements OnClickListener {
-	private GifView gif;
-	private Handler handler;
 	private Bitmap bitmap;
-	private int PhoneWidth;
-	private int PhoneHeight;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +28,7 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-		WindowManager wm=(WindowManager)getSystemService(Context.WINDOW_SERVICE);
-		PhoneWidth = wm.getDefaultDisplay().getWidth();
-		PhoneHeight = wm.getDefaultDisplay().getHeight();
-
 		setContentView(R.layout.activity_welcome);
-		handler = new Handler();
 		initView();
 		GameDataManager.init(getApplicationContext()).clean();
 		GameDataManager.init(getApplicationContext());
@@ -57,25 +43,12 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 	}
 
 	public void initView() {
-		if(bitmap == null) {
-			bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.background_welcome);
-		}
-		gif = (GifView)findViewById(R.id.gif);
-		gif.setShowDimension(PhoneWidth, PhoneHeight);
-		gif.setGifImage(R.mipmap.welcome);
-
-		handler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				WelcomeActivity.this.gif.setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap));
-				WelcomeActivity.this.findViewById(R.id.rl).setVisibility(View.VISIBLE);
-				WelcomeActivity.this.findViewById(R.id.iv_student_mode).setOnClickListener(WelcomeActivity.this);
-				WelcomeActivity.this.findViewById(R.id.iv_cook_mode).setOnClickListener(WelcomeActivity.this);
-				WelcomeActivity.this.findViewById(R.id.iv_about).setOnClickListener(WelcomeActivity.this);
-				WelcomeActivity.this.findViewById(R.id.iv_setting).setOnClickListener(WelcomeActivity.this);
-				WelcomeActivity.this.findViewById(R.id.iv_help).setOnClickListener(WelcomeActivity.this);
-			}
-		}, 5000l);
+		findViewById(R.id.rl).setVisibility(View.VISIBLE);
+		findViewById(R.id.iv_student_mode).setOnClickListener(WelcomeActivity.this);
+		findViewById(R.id.iv_cook_mode).setOnClickListener(WelcomeActivity.this);
+		findViewById(R.id.iv_about).setOnClickListener(WelcomeActivity.this);
+		findViewById(R.id.iv_setting).setOnClickListener(WelcomeActivity.this);
+		findViewById(R.id.iv_help).setOnClickListener(WelcomeActivity.this);
 	}
 
 	@Override

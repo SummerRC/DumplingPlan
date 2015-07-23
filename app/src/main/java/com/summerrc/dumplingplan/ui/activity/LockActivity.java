@@ -102,19 +102,16 @@ public class LockActivity extends BaseActivity implements View.OnLongClickListen
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.iv_three) {
-            MusicPlayer.pauseMusic();
             GameDataManager.init(getApplicationContext()).setMusicST(false);
             UIHelper.openLianliankanActivity(this);
             return;
         }
         if(v.getId() == R.id.iv_six) {
-            MusicPlayer.pauseMusic();
             GameDataManager.init(getApplicationContext()).setMusicST(false);
             UIHelper.openCutFoodActivity(this);
             return;
         }
         if(v.getId() == R.id.iv_nine) {
-            MusicPlayer.pauseMusic();
             GameDataManager.init(getApplicationContext()).setMusicST(false);
             UIHelper.openSkinPackStuffingActivity(this);
             return;
@@ -188,19 +185,16 @@ public class LockActivity extends BaseActivity implements View.OnLongClickListen
     @Override
     public boolean onLongClick(View v) {
         if(v.getId() == R.id.iv_three) {
-            MusicPlayer.pauseMusic();
             GameDataManager.init(getApplicationContext()).setMusicST(false);
             UIHelper.openLianliankanActivity(this);
             return false;
         }
         if(v.getId() == R.id.iv_six) {
-            MusicPlayer.pauseMusic();
             GameDataManager.init(getApplicationContext()).setMusicST(false);
             UIHelper.openCutFoodActivity(this);
             return false;
         }
         if(v.getId() == R.id.iv_nine) {
-            MusicPlayer.pauseMusic();
             GameDataManager.init(getApplicationContext()).setMusicST(false);
             UIHelper.openSkinPackStuffingActivity(this);
             return false;

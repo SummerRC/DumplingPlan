@@ -50,7 +50,7 @@ public class CutActivity extends BaseActivity implements View.OnClickListener , 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_next:
-                SoundUtil.playSounds(SoundUtil.NEXT, 0, getApplicationContext());
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 UIHelper.openSkinActivity(this);
                 break;
             case R.id.iv_knife_cut:

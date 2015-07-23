@@ -60,7 +60,6 @@ public class AboutUsActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_back:					//设置
-                SoundUtil.initSounds(getApplicationContext());
                 SoundUtil.playSounds(SoundUtil.BACK, 0, getApplicationContext());
                 UIHelper.openWelcomeActivity(this);
                 break;
@@ -102,9 +101,12 @@ public class AboutUsActivity extends Activity implements View.OnClickListener {
     private class MyTask extends TimerTask {
         @Override
         public void run() {
-            Message message = new Message();
-            message.what = 1;
-            handler.sendMessage(message);
+
+                Message message = new Message();
+                message.what = 1;
+                handler.sendMessage(message);
+
+
         }
     }
 

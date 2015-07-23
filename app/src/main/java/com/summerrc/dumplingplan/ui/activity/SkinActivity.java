@@ -50,7 +50,6 @@ public class SkinActivity extends BaseActivity{
         iv_roll_pin = (ImageView) findViewById(R.id.iv_rolling_pin);
         iv_roll_pin.setOnTouchListener(this);
         iv_skin_big = (ImageView) findViewById(R.id.iv_skin_big);
-        SoundUtil.initSounds(getApplicationContext());
     }
 
     @Override
@@ -72,7 +71,7 @@ public class SkinActivity extends BaseActivity{
         super.onTouch(v, event);
         switch (v.getId()) {
             case R.id.iv_next:
-                SoundUtil.playSounds(SoundUtil.NEXT, 0, getApplicationContext());
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 UIHelper.openAddStuffingActivity(this);
                 break;
             case R.id.iv_rolling_pin:

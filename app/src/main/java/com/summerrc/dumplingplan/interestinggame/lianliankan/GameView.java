@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Random;
 import android.content.Context;
 import android.graphics.Point;
-import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
@@ -32,7 +31,7 @@ public class GameView extends BoardView {
 	private int leftTime;
 
 	public static SoundPlay soundPlay;
-	public MediaPlayer player;
+
 
 	private RefreshTime refreshTime;
 	private RefreshHandler refreshHandler = new RefreshHandler();
@@ -49,8 +48,7 @@ public class GameView extends BoardView {
 
 	public GameView(Context context, AttributeSet atts) {
 		super(context, atts);
-		player = MediaPlayer.create(context, R.raw.lianliankan_bg_two);
-		player.setLooping(true);//设置循环播放
+
 	}
 
 	public static final int ID_SOUND_CHOOSE = 0;
@@ -70,7 +68,6 @@ public class GameView extends BoardView {
 
 		leftTime = totalTime;
 		initMap();
-		player.start();
 		refreshTime = new RefreshTime();
 		refreshTime.start();
 		GameView.this.invalidate();

@@ -45,7 +45,6 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
         ACTIVITY_TYPE = getIntent().getStringExtra(IntentConstant.ACTIVITY_TYPE);
         setContentView(R.layout.activity_food_description);
         gameDataManager = GameDataManager.init(getApplicationContext());
-        SoundUtil.initSounds(getApplicationContext());
         initView();
     }
 

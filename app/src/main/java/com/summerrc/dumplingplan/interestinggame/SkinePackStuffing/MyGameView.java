@@ -16,6 +16,7 @@ import android.view.SurfaceHolder;
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.IntentConstant;
 import com.summerrc.dumplingplan.config.ScoreResourceManager;
+import com.summerrc.dumplingplan.utils.MusicPlayer;
 import com.summerrc.dumplingplan.utils.SoundUtil;
 
 import java.util.ArrayList;
@@ -34,8 +35,6 @@ public class MyGameView extends MySurfaceView {
 	private long mNextTime = 0L;						//计算下次生成精灵的时间
 	private long mTimeCount;							//显示右上角时间
 	public int count = 60;
-
-	private MediaPlayer mPlayer;						//背景音乐播放器
 
 	private Drawable mBackground;						//背景
 	private ArrayList<SkinSpirit> skinList;				//pi
@@ -56,10 +55,7 @@ public class MyGameView extends MySurfaceView {
 		/** 实例化容纳精灵的列表，请自行做好管理精灵的工作 */
 		mPieSpirits = new ArrayList<>();
 		times = 0;
-		/** 初始化播放器 */
-		mPlayer=MediaPlayer.create(context, R.raw.buyudaren_bg);
-		mPlayer.setLooping(true);
-		mPlayer.start();
+		MusicPlayer.startMusic();
 	}
 
 	/**
@@ -100,7 +96,9 @@ public class MyGameView extends MySurfaceView {
 		PieSpirit pieSpirit = new PieSpirit(mContext);
 		pieSpirit.loadBitmap(R.mipmap.pie);
 
-		switch(times%4){
+		Random rand = new Random();
+		int randNum = rand.nextInt(4);
+		switch(randNum%4){
 			case 0:
 				pieSpirit.setmType(1);
 				pieSpirit.mCoordinate.x = PhoneWidth/5-40;
@@ -130,7 +128,7 @@ public class MyGameView extends MySurfaceView {
 		times++;
 		Random r = new Random();
 		pieSpirit.mV.x = 0;
-		pieSpirit.mV.y = 2 + r.nextInt(5);
+		pieSpirit.mV.y = 2 + r.nextInt(10);
 		mPieSpirits.add(pieSpirit);
 	}
 
@@ -150,8 +148,6 @@ public class MyGameView extends MySurfaceView {
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
 		super.surfaceDestroyed(holder);
-		mPlayer.stop();
-		SoundUtil.release();
 	}
 
 
@@ -299,7 +295,6 @@ public class MyGameView extends MySurfaceView {
 			if(mPieSpirits.get(i).mCoordinate.y<SKIN_Y+50 && mPieSpirits.get(i).mCoordinate.y>SKIN_Y-50){
 				if(mPieSpirits.get(i).getmType() == skinType) {
 					score += skinType;
-					SoundUtil.initSounds(mContext.getApplicationContext());
 					SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, mContext.getApplicationContext());
 					mPieSpirits.get(i).loadBitmap(R.mipmap.little_dumpling);
 				}
