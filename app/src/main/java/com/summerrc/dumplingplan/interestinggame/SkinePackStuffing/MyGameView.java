@@ -16,6 +16,8 @@ import android.view.SurfaceHolder;
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.IntentConstant;
 import com.summerrc.dumplingplan.config.ScoreResourceManager;
+import com.summerrc.dumplingplan.utils.SoundUtil;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -31,16 +33,17 @@ public class MyGameView extends MySurfaceView {
 	private ArrayList<PieSpirit> mPieSpirits;			//用于容纳馅的精灵
 	private long mNextTime = 0L;						//计算下次生成精灵的时间
 	private long mTimeCount;							//显示右上角时间
-	public int count = 100;
+	public int count = 60;
 
 	private MediaPlayer mPlayer;						//背景音乐播放器
 
 	private Drawable mBackground;						//背景
-	private ArrayList<Drawable> skinLit;				//pi
+	private ArrayList<SkinSpirit> skinList;				//pi
 	private int SKIN_Y;
 	private Handler handler;
 
 	private static int times;							//饺子的个数
+
 
 	protected MyGameView(Context context, Handler handler) {
 		super(context);
@@ -48,7 +51,7 @@ public class MyGameView extends MySurfaceView {
 		mContext = context;
 		mPaint = new Paint();
 		SKIN_Y = PhoneHeight-250;
-		skinLit = new ArrayList<>();
+		skinList = new ArrayList<>();
 		mBackground = mContext.getResources().getDrawable(R.mipmap.background_cut_food);
 		/** 实例化容纳精灵的列表，请自行做好管理精灵的工作 */
 		mPieSpirits = new ArrayList<>();
@@ -56,6 +59,7 @@ public class MyGameView extends MySurfaceView {
 		/** 初始化播放器 */
 		mPlayer=MediaPlayer.create(context, R.raw.buyudaren_bg);
 		mPlayer.setLooping(true);
+		mPlayer.start();
 	}
 
 	/**
@@ -75,7 +79,6 @@ public class MyGameView extends MySurfaceView {
 		drawTime(canvas);
 		checkSpirits();
 		drawSpirits(canvas);
-		//isHit();
 		drawScore(canvas);
 	}
 
@@ -138,7 +141,6 @@ public class MyGameView extends MySurfaceView {
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		super.surfaceCreated(holder);
-		mPlayer.start();
 	}
 
 	/**
@@ -149,6 +151,7 @@ public class MyGameView extends MySurfaceView {
 	public void surfaceDestroyed(SurfaceHolder holder) {
 		super.surfaceDestroyed(holder);
 		mPlayer.stop();
+		SoundUtil.release();
 	}
 
 
@@ -188,10 +191,17 @@ public class MyGameView extends MySurfaceView {
 		Paint paint=new Paint();
 		paint.setColor(Color.WHITE);
 		paint.setTextSize(30);
-		Bitmap bitmap_num1 = BitmapFactory.decodeResource(getResources(), ScoreResourceManager.getScoreResource(score/10));
-		Bitmap bitmap_num2 = BitmapFactory.decodeResource(getResources(), ScoreResourceManager.getScoreResource(score%10));
-		canvas.drawBitmap(bitmap_num1, 50, 50, mPaint);
-		canvas.drawBitmap(bitmap_num2, 90, 50, mPaint);
+		int num0 = score/100;
+		int num1 = score%100/10;
+		int num2 = score%100%10;
+		if(num0 != 0) {
+			Bitmap bitmap_num0 = BitmapFactory.decodeResource(getResources(), ScoreResourceManager.getScoreResource(num0));
+			canvas.drawBitmap(bitmap_num0, 50, 50, mPaint);
+		}
+		Bitmap bitmap_num1 = BitmapFactory.decodeResource(getResources(), ScoreResourceManager.getScoreResource(num1));
+		Bitmap bitmap_num2 = BitmapFactory.decodeResource(getResources(), ScoreResourceManager.getScoreResource(num2));
+		canvas.drawBitmap(bitmap_num1, 90, 50, mPaint);
+		canvas.drawBitmap(bitmap_num2, 130, 50, mPaint);
 	}
 
 
@@ -206,10 +216,15 @@ public class MyGameView extends MySurfaceView {
 		mBackground.draw(canvas);
 		Bitmap bitmap_clock = BitmapFactory.decodeResource(getResources(), R.drawable.clock);
 		canvas.drawBitmap(bitmap_clock, PhoneWidth - 210, 35, mPaint);
+
 		/** 四个皮 */
-		Bitmap bitmap_skin = BitmapFactory.decodeResource(getResources(), R.mipmap.skin);
 		for(int i=1; i<5; i++) {
-			canvas.drawBitmap(bitmap_skin, (i*PhoneWidth/5-100), SKIN_Y, mPaint);
+			SkinSpirit skinSpirit = new SkinSpirit(mContext);
+			skinSpirit.loadBitmap(R.mipmap.skin);
+			skinSpirit.setmType(i);
+			skinSpirit.mCoordinate.x = i*PhoneWidth/5-100;
+			skinSpirit.mCoordinate.y = SKIN_Y;
+			skinSpirit.draw(canvas);
 		}
 	}
 
@@ -284,6 +299,8 @@ public class MyGameView extends MySurfaceView {
 			if(mPieSpirits.get(i).mCoordinate.y<SKIN_Y+50 && mPieSpirits.get(i).mCoordinate.y>SKIN_Y-50){
 				if(mPieSpirits.get(i).getmType() == skinType) {
 					score += skinType;
+					SoundUtil.initSounds(mContext.getApplicationContext());
+					SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, mContext.getApplicationContext());
 					mPieSpirits.get(i).loadBitmap(R.mipmap.little_dumpling);
 				}
 			}

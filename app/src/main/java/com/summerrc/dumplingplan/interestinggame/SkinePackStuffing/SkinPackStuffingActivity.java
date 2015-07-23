@@ -55,8 +55,8 @@ public class SkinPackStuffingActivity extends Activity {
             activity.setContentView(R.layout.activity_cut_food);
             switch (msg.what) {
                 case IntentConstant.WIN:
-                    if(GameDataManager.init(activity.getApplicationContext()).getUnLock() <= 6) {
-                        GameDataManager.init(activity.getApplicationContext()).setUnLock(7);
+                    if(GameDataManager.init(activity.getApplicationContext()).getUnLock() <= 8) {
+                        GameDataManager.init(activity.getApplicationContext()).setUnLock(9);
                     }
                     SoundUtil.initSounds(activity.getApplicationContext());
                     SoundUtil.playSounds(SoundUtil.WIN, 0, activity.getApplicationContext());
@@ -80,6 +80,8 @@ public class SkinPackStuffingActivity extends Activity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+            SoundUtil.release();
+            finish();
             return true;
         }
         return super.onKeyDown(keyCode, event);

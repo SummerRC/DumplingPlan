@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.summerrc.dumplingplan.R;
+import com.summerrc.dumplingplan.utils.SoundUtil;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
@@ -67,6 +68,8 @@ public class RubActivity extends BaseActivity {
             case R.id.iv_dough_big:
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
+                        SoundUtil.initSounds(getApplicationContext());
+                        SoundUtil.playSounds(SoundUtil.SETTING, 0, getApplicationContext());
                         break;
                     case MotionEvent.ACTION_MOVE:
                         scaleAnimation(findViewById(R.id.iv_hint_rub), 0, 0, 0, 0, 0);
@@ -78,6 +81,8 @@ public class RubActivity extends BaseActivity {
                 }
                 break;
             case R.id.iv_next:
+                SoundUtil.initSounds(getApplicationContext());
+                SoundUtil.playSounds(SoundUtil.NEXT, 0, getApplicationContext());
                 UIHelper.openCutActivity(this);
                 break;
         }

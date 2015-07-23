@@ -50,6 +50,7 @@ public class SkinActivity extends BaseActivity{
         iv_roll_pin = (ImageView) findViewById(R.id.iv_rolling_pin);
         iv_roll_pin.setOnTouchListener(this);
         iv_skin_big = (ImageView) findViewById(R.id.iv_skin_big);
+        SoundUtil.initSounds(getApplicationContext());
     }
 
     @Override
@@ -144,6 +145,7 @@ public class SkinActivity extends BaseActivity{
      * @param position 索引标记移动五个小面皮的哪一个
      */
     private void animation(final int position) {
+        SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
         View view;
         switch (position) {
             case 1:
@@ -245,7 +247,7 @@ public class SkinActivity extends BaseActivity{
      * @param view 选中的食材
      */
     private void animatorSetStart(View view) {
-        SoundUtil.playSounds(SoundUtil.TWO_THREE, 0, getApplicationContext());
+        SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
         AnimatorSet animatorSet = new AnimatorSet();
         int x = (int)findViewById(R.id.iv_basket).getX() - (int)view.getX();
         int y = (int)findViewById(R.id.iv_basket).getY() - (int)view.getY();

@@ -28,7 +28,7 @@ public class GameView extends BoardView {
 	/**
 	 * 第一关为150秒钟的时间
 	 */
-	private int totalTime = 150;
+	private int totalTime = 100;
 	private int leftTime;
 
 	public static SoundPlay soundPlay;

@@ -50,15 +50,9 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            long secondTime = System.currentTimeMillis();
-            if (secondTime - firstTime > 1000) {            //如果两次按键时间间隔大于800毫秒，则不退
-                Toast.makeText(BaseActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
-                firstTime = secondTime;
-                return true;
-            } else {                                                            //否则退出程序
-                moveTaskToBack(false);
-                return true;
-            }
+            SoundUtil.release();
+            finish();
+            return true;
         }
         return super.onKeyDown(keyCode, event);
     }

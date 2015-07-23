@@ -133,7 +133,7 @@ public class ShakeActivity extends BaseActivity implements Animation.AnimationLi
             switch (msg.what) {
                 case SENSOR_SHAKE:
                     activity.shake_count++;
-                    if(activity.shake_count == 80) {
+                    if(activity.shake_count == 60) {
                         activity.hintToNext();
                     }
                     activity.waterAlpha(activity.shake_count);

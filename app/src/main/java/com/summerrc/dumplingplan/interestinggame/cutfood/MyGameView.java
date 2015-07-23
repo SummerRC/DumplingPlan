@@ -1,5 +1,6 @@
 package com.summerrc.dumplingplan.interestinggame.cutfood;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import android.content.Context;
@@ -45,6 +46,7 @@ public class MyGameView extends MySurfaceView {
 	private MediaPlayer mPlayer;						//背景音乐播放器
 	private SoundPool mSoundPool;						//音效
 	private int mExplodeSoundId;						//音效资源id
+	private int cutId;						//音效资源id
 
 	private Drawable mBackground;						//背景
 	private Handler handler;
@@ -62,8 +64,10 @@ public class MyGameView extends MySurfaceView {
 		/** 初始化播放器 */
 		mPlayer=MediaPlayer.create(context, R.raw.lianliankan_bg_two);
 		mPlayer.setLooping(true);
+		mPlayer.start();
 		mSoundPool = new SoundPool(5,AudioManager.STREAM_MUSIC,100);
 		mExplodeSoundId = mSoundPool.load(context,R.raw.bomb_explode,1);
+		cutId = mSoundPool.load(context,R.raw.cut,1);
 	}
 
 	/**
@@ -81,7 +85,7 @@ public class MyGameView extends MySurfaceView {
 			mSoundPool.play(mExplodeSoundId, 1, 1, 1, 0, 1);
 			nextGenTime();
 		}
-		/** 炸弹是4-6秒钟出现一次 */
+		/** 炸弹是2-3秒钟出现一次 */
 		if(mNextTimeBoom<System.currentTimeMillis()){
 			drawBoom();
 			nextGenTimeBoom();
@@ -89,6 +93,7 @@ public class MyGameView extends MySurfaceView {
 
 		drawTime(canvas);
 		checkSpirites();
+		checkBooms();
 		drawSpirits(canvas);
 		/** 画刀光 */
 		drawBlade(canvas);
@@ -108,12 +113,12 @@ public class MyGameView extends MySurfaceView {
 	}
 
 	/**
-	 * 下一次生成炸弹的时间，间隔时间4-6秒
+	 * 下一次生成炸弹的时间，间隔时间2-3秒
 	 */
 	private void nextGenTimeBoom(){
 		mNextTimeBoom = System.currentTimeMillis()+1000;
 		Random r = new Random();
-		int interval = 3000+r.nextInt(2000);
+		int interval = 2000+r.nextInt(1000);
 		mNextTimeBoom += interval;
 	}
 
@@ -126,35 +131,59 @@ public class MyGameView extends MySurfaceView {
 		spirit.loadBitmap(R.mipmap.ic_launcher);
 
 		Random rand = new Random();
-		int randNum = 1 + rand.nextInt(5);
+		int randNum = 1 + rand.nextInt(9);
 		int cakeId;
 		switch(randNum){
 			case 1:
-				cakeId=R.drawable.orange;
+				cakeId=R.mipmap.cut_food_cabbage;
 				spirit.loadBitmap(cakeId);
 				spirit.setmType(cakeId);
 				//t_num=randNum;
 				break;
 			case 2:
-				cakeId=R.drawable.papaya;
+				cakeId=R.mipmap.cut_food_cucumber;
 				spirit.loadBitmap(cakeId);
 				spirit.setmType(cakeId);
 				//t_num=randNum;
 				break;
 			case 3:
-				cakeId=R.drawable.peach;
+				cakeId=R.mipmap.cut_food_eggplant;
 				spirit.loadBitmap(cakeId);
 				spirit.setmType(cakeId);
 				//t_num=randNum;
 				break;
 			case 4:
-				cakeId=R.drawable.watermellon;
+				cakeId=R.mipmap.cut_food_tomato;
 				spirit.loadBitmap(cakeId);
 				spirit.setmType(cakeId);
 				//t_num=randNum;
 				break;
 			case 5:
-				cakeId=R.drawable.strawberry;
+				cakeId=R.mipmap.cut_food_beef;
+				spirit.loadBitmap(cakeId);
+				spirit.setmType(cakeId);
+				//t_num=randNum;
+				break;
+			case 6:
+				cakeId=R.mipmap.cut_food_beef;
+				spirit.loadBitmap(cakeId);
+				spirit.setmType(cakeId);
+				//t_num=randNum;
+				break;
+			case 7:
+				cakeId=R.mipmap.cut_food_pork;
+				spirit.loadBitmap(cakeId);
+				spirit.setmType(cakeId);
+				//t_num=randNum;
+				break;
+			case 8:
+				cakeId=R.mipmap.cut_food_chicken;
+				spirit.loadBitmap(cakeId);
+				spirit.setmType(cakeId);
+				//t_num=randNum;
+				break;
+			case 9:
+				cakeId=R.mipmap.cut_food_crab;
 				spirit.loadBitmap(cakeId);
 				spirit.setmType(cakeId);
 				//t_num=randNum;
@@ -164,8 +193,8 @@ public class MyGameView extends MySurfaceView {
 		Random r = new Random();
 		spirit.mCoord.x = PhoneWidth/4-300 + r.nextInt(400);
 		spirit.mCoord.y = PhoneHeight;
-		spirit.mV.x = 10+r.nextInt(5);
-		spirit.mV.y = -(45 + (r.nextInt(20)+10));
+		spirit.mV.x = 7+r.nextInt(5);
+		spirit.mV.y = -(30 + (r.nextInt(10)));
 		/*mSpirits.get(0).setmType(mType);*/
 		mSpirits.add(spirit);
 	}
@@ -175,13 +204,36 @@ public class MyGameView extends MySurfaceView {
 	 */
 	private void drawBoom(){
 		Spirit spirit = new Spirit(mContext);
-		spirit.loadBitmap(R.drawable.boom);
+		spirit.loadBitmap(R.mipmap.cut_food_oil);
 		Random r = new Random();
 
+		Random rand = new Random();
+		int randNum = 1 + rand.nextInt(3);
+		int cakeId;
+		switch(randNum) {
+			case 1:
+				cakeId = R.mipmap.cut_food_oil;
+				spirit.loadBitmap(cakeId);
+				spirit.setmType(cakeId);
+				//t_num=randNum;
+				break;
+			case 2:
+				cakeId = R.mipmap.cut_food_salt;
+				spirit.loadBitmap(cakeId);
+				spirit.setmType(cakeId);
+				//t_num=randNum;
+				break;
+			case 3:
+				cakeId = R.mipmap.cut_food_sauce;
+				spirit.loadBitmap(cakeId);
+				spirit.setmType(cakeId);
+				//t_num=randNum;
+				break;
+		}
 		spirit.mCoord.x = PhoneWidth/4-300 + r.nextInt(400);
 		spirit.mCoord.y = PhoneHeight;
-		spirit.mV.x = 10+r.nextInt(5);
-		spirit.mV.y = -(45 + (r.nextInt(20)+10));
+		spirit.mV.x = 7+r.nextInt(5);
+		spirit.mV.y = -(30 + (r.nextInt(10)));
 		/*mSpirits.get(0).setmType(mType);*/
 		mBooms.add(spirit);
 	}
@@ -193,7 +245,6 @@ public class MyGameView extends MySurfaceView {
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		super.surfaceCreated(holder);
-		mPlayer.start();
 	}
 
 	/**
@@ -219,6 +270,31 @@ public class MyGameView extends MySurfaceView {
 		for(int i=0;i<mBooms.size();i++){
 			mBooms.get(i).draw(canvas);
 		}
+	}
+
+	/**
+	 * 检查精灵是否还在屏幕内，不在屏幕内则移除
+	 */
+	private void checkBooms(){
+		for(int i=0; i<mBooms.size(); i++ ){
+			if(isBoomValidate(i)){
+				mBooms.remove(i);
+				i -=1;
+			}
+		}
+	}
+
+	/**
+	 * 具体检查精灵是否在屏幕内的方法
+	 * @param i
+	 * @return
+	 */
+	private boolean isBoomValidate(int i){
+		PointF coord = mBooms.get(i).mCoord;
+		if(coord.x<-mBooms.get(i).mDimention.x  || coord.x>PhoneWidth || coord.y>PhoneHeight){
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -250,10 +326,17 @@ public class MyGameView extends MySurfaceView {
 		Paint paint=new Paint();
 		paint.setColor(Color.WHITE);
 		paint.setTextSize(30);
-		Bitmap bitmap_num1 = BitmapFactory.decodeResource(getResources(), ScoreResourceManager.getScoreResource(score/10));
-		Bitmap bitmap_num2 = BitmapFactory.decodeResource(getResources(), ScoreResourceManager.getScoreResource(score%10));
-		canvas.drawBitmap(bitmap_num1, 50, 50, mPaint);
-		canvas.drawBitmap(bitmap_num2, 90, 50, mPaint);
+		int num0 = score/100;
+		int num1 = score%100/10;
+		int num2 = score%100%10;
+		if(num0 != 0) {
+			Bitmap bitmap_num0 = BitmapFactory.decodeResource(getResources(), ScoreResourceManager.getScoreResource(num0));
+			canvas.drawBitmap(bitmap_num0, 50, 50, mPaint);
+		}
+		Bitmap bitmap_num1 = BitmapFactory.decodeResource(getResources(), ScoreResourceManager.getScoreResource(num1));
+		Bitmap bitmap_num2 = BitmapFactory.decodeResource(getResources(), ScoreResourceManager.getScoreResource(num2));
+		canvas.drawBitmap(bitmap_num1, 90, 50, mPaint);
+		canvas.drawBitmap(bitmap_num2, 130, 50, mPaint);
 
 		//canvas.drawText("Score:"+score, 100, 50, paint);
 	}
@@ -267,25 +350,37 @@ public class MyGameView extends MySurfaceView {
 					if(mTrack.get(i).x>mSpirits.get(z).mCoord.x&&mTrack.get(i).x<mSpirits.get(z).mCoord.x+mSpirits.get(z).mDimention.x){
 						if(mTrack.get(i).y>mSpirits.get(z).mCoord.y&&mTrack.get(i).y<mSpirits.get(z).mCoord.y+mSpirits.get(z).mDimention.y){
 							switch(mSpirits.get(z).getmType()){
-								case R.drawable.orange:
-									initCutCake(R.drawable.orangep1, R.drawable.orangep2, z);
+								case R.mipmap.cut_food_cabbage:
+									initCutCake(R.mipmap.cut_food_cabbage_cut, R.mipmap.cut_food_cabbage_cut, z);
+									score+=4;
+									break;
+								case R.mipmap.cut_food_cucumber:
+									initCutCake(R.mipmap.cut_food_cucumber_cut, R.mipmap.cut_food_cucumber_cut, z);
+									score+=4;
+									break;
+								case R.mipmap.cut_food_eggplant:
+									initCutCake(R.mipmap.cut_food_eggplant_cut, R.mipmap.cut_food_eggplant_cut, z);
+									score+=6;
+									break;
+								case R.mipmap.cut_food_tomato:
+									initCutCake(R.mipmap.cut_food_tomato_cut, R.mipmap.cut_food_tomato_cut, z);
+									score+=6;
+									break;
+								case R.mipmap.cut_food_beef:
+									initCutCake(R.mipmap.cut_food_beef_cut, R.mipmap.cut_food_beef_cut, z);
+									score+=8;
+									break;
+								case R.mipmap.cut_food_pork:
+									initCutCake(R.mipmap.cut_food_pork_cut, R.mipmap.cut_food_pork_cut, z);
+									score+=8;
+									break;
+								case R.mipmap.cut_food_chicken:
+									initCutCake(R.mipmap.cut_food_chicken_cut, R.mipmap.cut_food_chicken_cut, z);
 									score+=10;
 									break;
-								case R.drawable.papaya:
-									initCutCake(R.drawable.papayap1, R.drawable.papayap2, z);
+								case R.mipmap.cut_food_crab:
+									initCutCake(R.mipmap.cut_food_crab_cut, R.mipmap.cut_food_crab_cut, z);
 									score+=10;
-									break;
-								case R.drawable.peach:
-									initCutCake(R.drawable.peachp1, R.drawable.peachp2, z);
-									score+=1;
-									break;
-								case R.drawable.strawberry:
-									initCutCake(R.drawable.strawberryp1, R.drawable.strawberryp2, z);
-									score+=1;
-									break;
-								case R.drawable.watermellon:
-									initCutCake(R.drawable.watermellonp1, R.drawable.watermellonp2, z);
-									score+=1;
 									break;
 							}
 						}
@@ -303,11 +398,23 @@ public class MyGameView extends MySurfaceView {
 					if(mTrack.get(i).x>mBooms.get(z).mCoord.x && mTrack.get(i).x<mBooms.get(z).mCoord.x+mBooms.get(z).mDimention.x){
 						if(mTrack.get(i).y>mBooms.get(z).mCoord.y && mTrack.get(i).y<mBooms.get(z).mCoord.y+mBooms.get(z).mDimention.y){
 							if(score >= 10){
-								score -= 10;
+								switch (mBooms.get(z).getmType()) {
+									case R.mipmap.cut_food_salt:
+										initCutBoom(R.mipmap.cut_food_salt_cut, z);
+										score -= 4;
+										break;
+									case R.mipmap.cut_food_oil:
+										initCutBoom(R.mipmap.cut_food_oil_cut, z);
+										score -= 6;
+										break;
+									case R.mipmap.cut_food_sauce:
+										initCutBoom(R.mipmap.cut_food_sauce_cut, z);
+										score -= 8;
+										break;
+								}
 							}else{
 								score = 0;
 							}
-							mBooms.remove(z);
 							mSpirits.removeAll(mSpirits);
 						}
 					}
@@ -318,17 +425,27 @@ public class MyGameView extends MySurfaceView {
 
 	private void initCutCake(int id1, int id2, int z) {
 		Spirit spirit_left = new Spirit(mContext);
-		Spirit spirit_right = new Spirit(mContext);
 		spirit_left.loadBitmap(id1);
 		spirit_left.mCoord.x=mSpirits.get(z).mCoord.x+60;
 		spirit_left.mCoord.y=mSpirits.get(z).mCoord.y;
 		mSpirits.add(spirit_left);
 
+		/*Spirit spirit_right = new Spirit(mContext);
 		spirit_right.loadBitmap(id2);
 		spirit_right.mCoord.x=mSpirits.get(z).mCoord.x-60;
 		spirit_right.mCoord.y=mSpirits.get(z).mCoord.y;
-		mSpirits.add(spirit_right);
+		mSpirits.add(spirit_right);*/
+
 		mSpirits.remove(z);
+	}
+
+	private void initCutBoom(int id1, int z) {
+		Spirit spirit_left = new Spirit(mContext);
+		spirit_left.loadBitmap(id1);
+		spirit_left.mCoord.x=mSpirits.get(z).mCoord.x+60;
+		spirit_left.mCoord.y=mSpirits.get(z).mCoord.y;
+		mBooms.add(spirit_left);
+		mBooms.remove(z);
 	}
 
 
@@ -453,6 +570,7 @@ public class MyGameView extends MySurfaceView {
 	 */
 	private void handleActionDown(MotionEvent event){
 		PointF point = new PointF(event.getX(),event.getY());
+		mSoundPool.play(cutId, 1, 1, 1, 0, 1);
 		synchronized(mTrack){
 			mTrack.add(point);
 		}

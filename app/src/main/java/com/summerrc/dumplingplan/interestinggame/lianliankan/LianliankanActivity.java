@@ -191,16 +191,16 @@ public class LianliankanActivity extends Activity
 			activity.setContentView(R.layout.activity_cut_food);
 			switch(msg.what){
 				case 0:
-					activity.dialog = new MyDialog(activity, activity.gameView,"胜利！", activity.gameView.getTotalTime() - activity.progress.getProgress());
-					activity.dialog.show();
 					SoundUtil.initSounds(activity.getApplicationContext());
 					SoundUtil.playSounds(SoundUtil.WIN, 0, activity.getApplicationContext());
+					activity.dialog = new MyDialog(activity, activity.gameView,"胜利！", activity.gameView.getTotalTime() - activity.progress.getProgress());
+					activity.dialog.show();
 					break;
 				case 1:
-					activity.dialog = new MyDialog(activity, activity.gameView,"失败！", activity.gameView.getTotalTime() - activity.progress.getProgress());
-					activity.dialog.show();
 					SoundUtil.initSounds(activity.getApplicationContext());
 					SoundUtil.playSounds(SoundUtil.LOSE, 0, activity.getApplicationContext());
+					activity.dialog = new MyDialog(activity, activity.gameView,"失败！", activity.gameView.getTotalTime() - activity.progress.getProgress());
+					activity.dialog.show();
 			}
 		}
 	}

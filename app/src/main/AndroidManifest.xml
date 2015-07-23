@@ -92,7 +92,7 @@
         </activity>
         <activity
             android:name=".interestinggame.cutfood.CutFoodActivity"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".interestinggame.selectmore.SelectMoreActivity"
@@ -100,7 +100,11 @@
         </activity>
         <activity
             android:name=".interestinggame.SkinePackStuffing.SkinPackStuffingActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name=".ui.activity.AboutUsActivity"
             android:screenOrientation="landscape" >
         </activity>
     </application>

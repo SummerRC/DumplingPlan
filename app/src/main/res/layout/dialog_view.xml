@@ -30,7 +30,7 @@
   			<ImageButton 
   				android:id="@+id/menu_imgbtn"
   				android:src="@drawable/buttons_quit"
-  				android:background="@drawable/buttons_bg20"
+  				android:background="@mipmap/ic_launcher"
   				android:layout_marginRight="15dip"
   				android:layout_height="wrap_content"
   				android:layout_width="wrap_content"
@@ -38,13 +38,13 @@
 		  	<ImageButton 
 		  				android:id="@+id/replay_imgbtn"
 		  				android:src="@drawable/buttons_replay"
-		  				android:background="@drawable/buttons_bg20"
+		  				android:background="@mipmap/ic_launcher"
 		  				android:layout_height="wrap_content"
 		  				android:layout_width="wrap_content"/>
 		  	<ImageButton 
 		  				android:id="@+id/next_imgbtn"
 		  				android:src="@drawable/buttons_next"
-		  				android:background="@drawable/buttons_bg20"
+		  				android:background="@mipmap/ic_launcher"
 		  				android:layout_height="wrap_content"
 		  				android:layout_width="wrap_content"
 		  				android:layout_marginLeft="15dip"/>

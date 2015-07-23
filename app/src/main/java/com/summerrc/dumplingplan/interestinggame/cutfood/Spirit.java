@@ -11,7 +11,7 @@ public class Spirit {
 	private Context mContext;
 	private Bitmap mBitmap;
 
-	private final static float ACCLERATIONY = 3.5F;		//Y方向加速度
+	private final static float ACCLERATIONY = 1F;		//Y方向加速度
 	private final static float ACCLERATIONX = 0F;		//X方向加速度
 	public PointF mCoord;								//精灵的坐标
 	public PointF mV;									//精灵的速度

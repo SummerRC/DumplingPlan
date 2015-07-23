@@ -9,7 +9,7 @@ import com.summerrc.dumplingplan.config.GameDataManager;
 
 public class SoundUtil  {
 	/** 音效编号 */
-	public static final int NEXT = 1;				//下一步
+	public static final int NEXT = 6;				//下一步
 	public static final int BACK = 2;				//返回
 	public static final int REPLAY = 3;			    //重玩
 	public static final int STOP = 4;			    //暂停
@@ -24,8 +24,10 @@ public class SoundUtil  {
 	public static final int NINE_ONE = 13;
 	public static final int TEN_ONE = 14;
 	public static final int WATER = 15;
-	public static final int WIN = 15;
-	public static final int LOSE = 15;
+	public static final int WIN = 16;
+	public static final int LOSE = 17;
+	public static final int MINUS = 19;
+	public static final int CUT = 18;
 
 
 	public static SoundPool soundPool;				//声音缓冲池
@@ -46,10 +48,8 @@ public class SoundUtil  {
 						100							//声音的播放质量，目前无效
 		);
 
-
 		soundPoolMap = new HashMap<>();				//创建声音资源Map
 		/** 将加载的声音资源id放进此Map */
-		soundPoolMap.put(NEXT, soundPool.load(context, R.raw.dumpling_plan_sd_next, 1));
 		soundPoolMap.put(BACK, soundPool.load(context, R.raw.dumpling_plan_sd_back, 1));
 		soundPoolMap.put(REPLAY, soundPool.load(context, R.raw.dumpling_plan_sd_replay, 1));
 		soundPoolMap.put(STOP, soundPool.load(context, R.raw.dumpling_plan_sd_stop, 1));
@@ -66,6 +66,8 @@ public class SoundUtil  {
 		soundPoolMap.put(WATER, soundPool.load(context, R.raw.dumpling_plan_sd_water, 1));
 		soundPoolMap.put(WIN, soundPool.load(context, R.raw.lianliankan_sd_win, 1));
 		soundPoolMap.put(LOSE, soundPool.load(context, R.raw.lianliankan_sd_lose, 1));
+		soundPoolMap.put(MINUS, soundPool.load(context, R.raw.minus, 1));
+		soundPoolMap.put(CUT, soundPool.load(context, R.raw.cut, 1));
 	}
 
 	/**
@@ -86,11 +88,15 @@ public class SoundUtil  {
 		float volume = streamVolumeCurrent / streamVolumeMax;
 		soundPool.play(
 				soundPoolMap.get(key), 						//声音id
-				1, 									//左声道
+				1, 									        //左声道
 				1, 											//右声道
 				1,											//优先级
 				loop,										//是否循环
 				0.5f										//rate
 		);
+	}
+
+	public static void release() {
+		soundPool.release();
 	}
 }

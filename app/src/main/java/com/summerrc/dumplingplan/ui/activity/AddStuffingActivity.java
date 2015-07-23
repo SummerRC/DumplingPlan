@@ -136,7 +136,6 @@ public class AddStuffingActivity extends BaseActivity {
         } else {
             TOUCH_ABLE = false;
         }
-        SoundUtil.playSounds(SoundUtil.TWO_THREE, 0, getApplicationContext());
         if(findViewById(R.id.ll_hint_click_skin).getVisibility()==View.VISIBLE) {
             translateAnimationStop(findViewById(R.id.ll_hint_click_skin));
             findViewById(R.id.ll_hint_click_skin).setVisibility(View.INVISIBLE);
@@ -185,6 +184,7 @@ public class AddStuffingActivity extends BaseActivity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
+                SoundUtil.playSounds(SoundUtil.TWO_THREE, 0, getApplicationContext());
                 iv_spoon.setBackgroundResource(R.mipmap.wood_spoon_full);
             }
 

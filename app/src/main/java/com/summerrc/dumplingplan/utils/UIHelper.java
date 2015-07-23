@@ -8,6 +8,7 @@ import com.summerrc.dumplingplan.config.FoodTypeManager;
 import com.summerrc.dumplingplan.interestinggame.SkinePackStuffing.SkinPackStuffingActivity;
 import com.summerrc.dumplingplan.interestinggame.cutfood.CutFoodActivity;
 import com.summerrc.dumplingplan.interestinggame.lianliankan.LianliankanActivity;
+import com.summerrc.dumplingplan.ui.activity.AboutUsActivity;
 import com.summerrc.dumplingplan.ui.activity.BasketActivity;
 import com.summerrc.dumplingplan.ui.activity.CutActivity;
 import com.summerrc.dumplingplan.ui.activity.DoughActivity;
@@ -251,6 +252,16 @@ public class UIHelper {
      */
     public static void openSkinPackStuffingActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, SkinPackStuffingActivity.class);
+        currentActivity.startActivity(intent);
+        currentActivity.finish();
+    }
+
+    /**
+     * 关于我们
+     * @param currentActivity 当前运行的Activity的实例
+     */
+    public static void openAboutUsActivity(Activity currentActivity) {
+        Intent intent = new Intent(currentActivity, AboutUsActivity.class);
         currentActivity.startActivity(intent);
         currentActivity.finish();
     }

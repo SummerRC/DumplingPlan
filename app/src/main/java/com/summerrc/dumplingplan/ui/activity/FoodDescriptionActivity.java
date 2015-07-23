@@ -45,6 +45,7 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
         ACTIVITY_TYPE = getIntent().getStringExtra(IntentConstant.ACTIVITY_TYPE);
         setContentView(R.layout.activity_food_description);
         gameDataManager = GameDataManager.init(getApplicationContext());
+        SoundUtil.initSounds(getApplicationContext());
         initView();
     }
 
@@ -95,7 +96,7 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_yes:
-                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
+                SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
                 if(isAdd()) {
                     if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_FOOD)) {               //食材
                         if(gameDataManager.getFoodList().size() >= 3) {
@@ -120,7 +121,7 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
                 }
                 break;
             case R.id.iv_no:
-                SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
+                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(IntentConstant.SELECTED_FOOD, FoodTypeManager.Food.DEFAULT);
@@ -129,12 +130,12 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
                 finish();
                 break;
             case R.id.iv_add:
-                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
+                SoundUtil.playSounds(SoundUtil.MINUS, 0, getApplicationContext());
                 number++;
                 ((TextView)findViewById(R.id.tv_number)).setText(number+"");
                 break;
             case R.id.iv_decrease:
-                SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
+                SoundUtil.playSounds(SoundUtil.MINUS, 0, getApplicationContext());
                 if(number>0) {
                     number--;
                     ((TextView)findViewById(R.id.tv_number)).setText(number+"");

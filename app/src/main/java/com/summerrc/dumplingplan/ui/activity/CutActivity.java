@@ -54,7 +54,7 @@ public class CutActivity extends BaseActivity implements View.OnClickListener , 
                 UIHelper.openSkinActivity(this);
                 break;
             case R.id.iv_knife_cut:
-                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
+                SoundUtil.playSounds(SoundUtil.CUT, 0, getApplicationContext());
                 if(findViewById(R.id.ll_hint_cut).getVisibility() == View.VISIBLE) {
                     translateAnimationStop(findViewById(R.id.ll_hint_cut));
                     findViewById(R.id.ll_hint_cut).setVisibility(View.GONE);
