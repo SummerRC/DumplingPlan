@@ -15,6 +15,7 @@ import com.summerrc.dumplingplan.ui.activity.DoughActivity;
 import com.summerrc.dumplingplan.ui.activity.FoodDescriptionActivity;
 import com.summerrc.dumplingplan.ui.activity.AddStuffingActivity;
 import com.summerrc.dumplingplan.ui.activity.LockActivity;
+import com.summerrc.dumplingplan.ui.activity.OpenActivity;
 import com.summerrc.dumplingplan.ui.activity.PackActivity;
 import com.summerrc.dumplingplan.ui.activity.PutActivity;
 import com.summerrc.dumplingplan.ui.activity.RubActivity;
@@ -40,7 +41,7 @@ public class UIHelper {
     public static void openWelcomeActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, WelcomeActivity.class);
         currentActivity.startActivity(intent);
-        currentActivity.finish();
+//        currentActivity.finish();
     }
 
 
@@ -52,7 +53,7 @@ public class UIHelper {
     public static void openSelectFoodActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, SelectFoodActivity.class);
         currentActivity.startActivity(intent);
-        currentActivity.finish();
+//        currentActivity.finish();
     }
 
     /**
@@ -63,7 +64,7 @@ public class UIHelper {
     public static void openSelectSeasoningActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, SelectSeasoningActivity.class);
         currentActivity.startActivity(intent);
-        currentActivity.finish();
+//        currentActivity.finish();
     }
 
     /**
@@ -74,7 +75,7 @@ public class UIHelper {
     public static void openStuffingActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, StuffingActivity.class);
         currentActivity.startActivity(intent);
-        currentActivity.finish();
+//        currentActivity.finish();
     }
 
     /**
@@ -85,7 +86,7 @@ public class UIHelper {
     public static void openDoughActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, DoughActivity.class);
         currentActivity.startActivity(intent);
-        currentActivity.finish();
+//        currentActivity.finish();
     }
 
     /**
@@ -96,7 +97,7 @@ public class UIHelper {
     public static void openRubActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, RubActivity.class);
         currentActivity.startActivity(intent);
-        currentActivity.finish();
+//        currentActivity.finish();
     }
 
     /**
@@ -107,7 +108,7 @@ public class UIHelper {
     public static void openCutActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, CutActivity.class);
         currentActivity.startActivity(intent);
-        currentActivity.finish();
+//        currentActivity.finish();
     }
 
     /**
@@ -118,7 +119,7 @@ public class UIHelper {
     public static void openSkinActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, SkinActivity.class);
         currentActivity.startActivity(intent);
-        currentActivity.finish();
+//        currentActivity.finish();
     }
 
     /**
@@ -129,7 +130,7 @@ public class UIHelper {
     public static void openAddStuffingActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, AddStuffingActivity.class);
         currentActivity.startActivity(intent);
-        currentActivity.finish();
+//        currentActivity.finish();
     }
 
     /**
@@ -140,7 +141,7 @@ public class UIHelper {
     public static void openPackActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, PackActivity.class);
         currentActivity.startActivity(intent);
-        currentActivity.finish();
+//        currentActivity.finish();
     }
 
     /**
@@ -151,7 +152,7 @@ public class UIHelper {
     public static void openPutActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, PutActivity.class);
         currentActivity.startActivity(intent);
-        currentActivity.finish();
+//        currentActivity.finish();
     }
 
     /**
@@ -162,7 +163,7 @@ public class UIHelper {
     public static void openShakeActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, ShakeActivity.class);
         currentActivity.startActivity(intent);
-        currentActivity.finish();
+//        currentActivity.finish();
     }
 
     /**
@@ -201,7 +202,7 @@ public class UIHelper {
     public static void openScoreActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, ScoreActivity.class);
         currentActivity.startActivity(intent);
-        currentActivity.finish();
+//        currentActivity.finish();
     }
 
     /**
@@ -212,7 +213,7 @@ public class UIHelper {
     public static void openLockActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, LockActivity.class);
         currentActivity.startActivity(intent);
-        currentActivity.finish();
+//        currentActivity.finish();
     }
 
 
@@ -243,7 +244,7 @@ public class UIHelper {
     public static void openCutFoodActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, CutFoodActivity.class);
         currentActivity.startActivity(intent);
-        currentActivity.finish();
+//        currentActivity.finish();
     }
 
     /**
@@ -253,7 +254,7 @@ public class UIHelper {
     public static void openSkinPackStuffingActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, SkinPackStuffingActivity.class);
         currentActivity.startActivity(intent);
-        currentActivity.finish();
+//        currentActivity.finish();
     }
 
     /**
@@ -263,6 +264,18 @@ public class UIHelper {
     public static void openAboutUsActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, AboutUsActivity.class);
         currentActivity.startActivity(intent);
-        currentActivity.finish();
+//        currentActivity.finish();
+    }
+
+
+    /**
+     * 选择启动页面
+     *
+     * @param currentActivity 当前运行的Activity的实例
+     */
+    public static void openOpenActivity(Activity currentActivity) {
+        Intent intent = new Intent(currentActivity, OpenActivity.class);
+        currentActivity.startActivity(intent);
+//        currentActivity.finish();
     }
 }

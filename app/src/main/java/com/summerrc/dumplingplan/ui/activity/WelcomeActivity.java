@@ -7,10 +7,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
+
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.GameDataManager;
-import com.summerrc.dumplingplan.utils.MusicPlayer;
-import com.summerrc.dumplingplan.utils.SoundUtil;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
@@ -32,46 +31,43 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		initView();
 		GameDataManager.init(getApplicationContext()).clean();
 		GameDataManager.init(getApplicationContext());
-		MusicPlayer.init(getApplicationContext());
-		SoundUtil.initSounds(getApplicationContext());
+//		MusicPlayer.init(getApplicationContext());
+//		SoundUtil.initSounds(getApplicationContext());
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		MusicPlayer.startMusic();
+//		MusicPlayer.startMusic();
 	}
 
 	public void initView() {
-		findViewById(R.id.rl).setVisibility(View.VISIBLE);
-		findViewById(R.id.iv_student_mode).setOnClickListener(WelcomeActivity.this);
-		findViewById(R.id.iv_cook_mode).setOnClickListener(WelcomeActivity.this);
-		findViewById(R.id.iv_about).setOnClickListener(WelcomeActivity.this);
+		findViewById(R.id.iv_stock).setOnClickListener(WelcomeActivity.this);
+		findViewById(R.id.iv_ventilator).setOnClickListener(WelcomeActivity.this);
 		findViewById(R.id.iv_setting).setOnClickListener(WelcomeActivity.this);
-		findViewById(R.id.iv_help).setOnClickListener(WelcomeActivity.this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-			case R.id.iv_student_mode:		//学徒模式
-				SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
+			case R.id.iv_stock:
+//				SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
 				UIHelper.openSelectFoodActivity(this);
 				break;
-			case R.id.iv_cook_mode:			//厨神之路
-				SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
-				UIHelper.openLockActivity(this);
+			case R.id.iv_cook_mode:
+//				SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
+//				UIHelper.openLockActivity(this);
 				break;
 			case R.id.iv_about:				//关于我们
-				SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
-				UIHelper.openAboutUsActivity(this);
+//				SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
+//				UIHelper.openAboutUsActivity(this);
 				break;
 			case R.id.iv_help:				//帮助
-				SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
+//				SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
 				break;
 			case R.id.iv_setting:			//设置
-				SoundUtil.playSounds(SoundUtil.SETTING, 0, getApplicationContext());
-				UIHelper.openSettingActivity(this);
+//				SoundUtil.playSounds(SoundUtil.SETTING, 0, getApplicationContext());
+//				UIHelper.openSettingActivity(this);
 				break;
 		}
 	}

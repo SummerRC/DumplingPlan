@@ -1,36 +1,10 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/rootView">
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/iv_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/viewContainer" />
-
-
-    <ImageView
-        android:id="@+id/iv_stuff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-
-
-    <ImageView
-        android:id="@+id/iv_kitchen_knife_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginRight="70dp"
-        android:background="@mipmap/kitchen_knife_left"/>
-
-    <ImageView
-        android:id="@+id/iv_kitchen_knife_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="70dp"
-        android:background="@mipmap/kitchen_knife_right"/>
-
-    <include layout="@layout/view_common"/>
-</FrameLayout>
+        android:layout_height="match_parent" />
+</RelativeLayout>

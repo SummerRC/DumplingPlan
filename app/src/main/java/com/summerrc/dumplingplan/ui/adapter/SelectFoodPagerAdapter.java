@@ -7,8 +7,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.summerrc.dumplingplan.R;
-import com.summerrc.dumplingplan.ui.activity.SelectFoodActivity;
+
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,7 +43,7 @@ public class SelectFoodPagerAdapter extends PagerAdapter{
             Bitmap bitmap = BitmapFactory.decodeResource(curActivity.getResources(), res[position % list.size()]);
             addBitmapToCache(position % list.size(), bitmap);
             view.findViewById(R.id.viewPager_viewContainer).setBackgroundDrawable(new BitmapDrawable(curActivity.getResources(), bitmap));
-            ((SelectFoodActivity) curActivity).setListener(position, view);
+//            ((SelectFoodActivity) curActivity).setListener(position, view);
         } else {
             view.findViewById(R.id.viewPager_viewContainer).setBackgroundDrawable(new BitmapDrawable(curActivity.getResources(), (Bitmap) softReference.get()));
         }
