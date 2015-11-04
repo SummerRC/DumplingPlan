@@ -5,31 +5,70 @@
     android:layout_height="fill_parent"
     android:background="@mipmap/soho_background_welcome">
 
-
     <ImageView
         android:id="@+id/iv_stock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="210dp"
-        android:layout_marginTop="74dp"
-        android:background="@mipmap/soho_welcome_stock"/>
+        android:layout_width="72dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="215dp"
+        android:layout_marginTop="80dp"
+        android:background="@mipmap/soho_welcome_stock" />
 
     <ImageView
         android:id="@+id/iv_ventilator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
+        android:layout_width="138dp"
+        android:layout_height="96dp"
         android:layout_alignParentEnd="true"
-        android:background="@mipmap/soho_welcome_ventilator"/>
+        android:layout_marginEnd="60dp"
+        android:background="@mipmap/soho_welcome_ventilator" />
+
 
     <ImageView
-        android:id="@+id/iv_setting"
+        android:id="@+id/iv_one"
+        android:layout_marginLeft="36dp"
+        android:layout_marginBottom="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="17dp"
         android:layout_alignParentBottom="true"
-        android:background="@mipmap/soho_welcome_btn_setting"/>
+        android:background="@mipmap/welcome_shezhi" />
 
+    <ImageView
+        android:id="@+id/iv_two"
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/iv_one"
+        android:background="@mipmap/welcome_kaishi" />
+
+    <ImageView
+        android:id="@+id/iv_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:background="@mipmap/welcome_logo" />
+
+    <ImageView
+        android:id="@+id/iv_four"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/iv_three"
+        android:background="@mipmap/welcome_bangzhu" />
+
+    <ImageView
+        android:id="@+id/iv_five"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/iv_four"
+        android:background="@mipmap/welcome_jiangbei" />
 
 
 </RelativeLayout>
