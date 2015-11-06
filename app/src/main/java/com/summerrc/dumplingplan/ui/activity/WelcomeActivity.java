@@ -42,33 +42,47 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 	}
 
 	public void initView() {
-		findViewById(R.id.iv_stock).setOnClickListener(WelcomeActivity.this);
-		findViewById(R.id.iv_ventilator).setOnClickListener(WelcomeActivity.this);
-		findViewById(R.id.iv_setting).setOnClickListener(WelcomeActivity.this);
+		findViewById(R.id.iv_stock).setOnClickListener(WelcomeActivity.this);			//原木
+		findViewById(R.id.iv_ventilator).setOnClickListener(WelcomeActivity.this);		//抽油烟机
+		findViewById(R.id.iv_setting).setOnClickListener(WelcomeActivity.this);			//设置
+		findViewById(R.id.iv_start).setOnClickListener(WelcomeActivity.this);			//开始
+		findViewById(R.id.iv_logo).setOnClickListener(WelcomeActivity.this);			//logo
+		findViewById(R.id.iv_help).setOnClickListener(WelcomeActivity.this);			//帮助
+		findViewById(R.id.iv_jiangbei).setOnClickListener(WelcomeActivity.this);		//奖杯
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-			case R.id.iv_stock:
+			case R.id.iv_stock:         //原木
 //				SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
 				UIHelper.openSelectFoodActivity(this);
 				break;
-			case R.id.iv_cook_mode:
+			case R.id.iv_ventilator:    //抽油烟机
 //				SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
 //				UIHelper.openLockActivity(this);
 				break;
-			case R.id.iv_about:				//关于我们
+			case R.id.iv_setting:		//设置
 //				SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
 //				UIHelper.openAboutUsActivity(this);
 				break;
-			case R.id.iv_help:				//帮助
+			case R.id.iv_start:			//开始
+                UIHelper.openSelectFoodActivity(this);
 //				SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
 				break;
-			case R.id.iv_setting:			//设置
+			case R.id.iv_logo:			//logo
 //				SoundUtil.playSounds(SoundUtil.SETTING, 0, getApplicationContext());
 //				UIHelper.openSettingActivity(this);
 				break;
+            case R.id.iv_help:			//帮助
+//				SoundUtil.playSounds(SoundUtil.SETTING, 0, getApplicationContext());
+//				UIHelper.openSettingActivity(this);
+                break;
+            case R.id.iv_jiangbei:		//奖杯
+//				SoundUtil.playSounds(SoundUtil.SETTING, 0, getApplicationContext());
+//				UIHelper.openSettingActivity(this);
+                break;
+
 		}
 	}
 

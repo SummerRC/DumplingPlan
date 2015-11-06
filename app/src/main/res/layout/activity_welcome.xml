@@ -23,7 +23,7 @@
 
 
     <ImageView
-        android:id="@+id/iv_one"
+        android:id="@+id/iv_setting"
         android:layout_marginLeft="36dp"
         android:layout_marginBottom="8dp"
         android:layout_width="wrap_content"
@@ -32,17 +32,17 @@
         android:background="@mipmap/welcome_shezhi" />
 
     <ImageView
-        android:id="@+id/iv_two"
+        android:id="@+id/iv_start"
         android:layout_marginLeft="40dp"
         android:layout_marginBottom="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/iv_one"
+        android:layout_toRightOf="@+id/iv_setting"
         android:background="@mipmap/welcome_kaishi" />
 
     <ImageView
-        android:id="@+id/iv_three"
+        android:id="@+id/iv_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -51,23 +51,23 @@
         android:background="@mipmap/welcome_logo" />
 
     <ImageView
-        android:id="@+id/iv_four"
+        android:id="@+id/iv_help"
         android:layout_marginLeft="50dp"
         android:layout_marginBottom="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/iv_three"
+        android:layout_toRightOf="@+id/iv_logo"
         android:background="@mipmap/welcome_bangzhu" />
 
     <ImageView
-        android:id="@+id/iv_five"
+        android:id="@+id/iv_jiangbei"
         android:layout_marginLeft="50dp"
         android:layout_marginBottom="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/iv_four"
+        android:layout_toEndOf="@+id/iv_help"
         android:background="@mipmap/welcome_jiangbei" />
 
 

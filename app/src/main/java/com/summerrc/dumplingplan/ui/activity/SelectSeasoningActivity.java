@@ -7,6 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.summerrc.dumplingplan.R;
+import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
  * @author SummerRC on 2015.07.12
@@ -20,10 +21,31 @@ public class SelectSeasoningActivity extends Activity implements View.OnClickLis
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_seasoning);
+        initView();
+    }
+
+    private void initView() {
+        findViewById(R.id.iv_one).setOnClickListener(this);
+        findViewById(R.id.iv_two).setOnClickListener(this);
+        findViewById(R.id.iv_three).setOnClickListener(this);
+        findViewById(R.id.iv_four).setOnClickListener(this);
+        findViewById(R.id.iv_five).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.iv_one:
+                UIHelper.openStuffingActivity(this);
+                break;
+            case R.id.iv_two:
+                break;
+            case R.id.iv_three:
+                break;
+            case R.id.iv_four:
+                break;
+            case R.id.iv_five:
+                break;
+        }
     }
 }

@@ -53,7 +53,7 @@ public class UIHelper {
     public static void openSelectFoodActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, SelectFoodActivity.class);
         currentActivity.startActivity(intent);
-//        currentActivity.finish();
+        currentActivity.finish();
     }
 
     /**
@@ -64,7 +64,7 @@ public class UIHelper {
     public static void openSelectSeasoningActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, SelectSeasoningActivity.class);
         currentActivity.startActivity(intent);
-//        currentActivity.finish();
+        currentActivity.finish();
     }
 
     /**
@@ -75,7 +75,7 @@ public class UIHelper {
     public static void openStuffingActivity(Activity currentActivity) {
         Intent intent = new Intent(currentActivity, StuffingActivity.class);
         currentActivity.startActivity(intent);
-//        currentActivity.finish();
+        currentActivity.finish();
     }
 
     /**
