@@ -32,7 +32,7 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".ui.activity.StuffingActivity"
+            android:name=".ui.activity.DoughActivity"
             android:screenOrientation="landscape" >
         </activity>
         <activity
@@ -40,15 +40,15 @@
             android:screenOrientation="landscape">
         </activity>
         <activity
-            android:name=".ui.activity.DoughActivity"
-            android:screenOrientation="landscape" >
-        </activity>
-        <activity
             android:name=".ui.activity.RubActivity"
             android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".ui.activity.CutActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".ui.activity.StuffingActivity"
             android:screenOrientation="landscape" >
         </activity>
         <activity
@@ -60,7 +60,7 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".ui.activity.PackActivity"
+            android:name=".ui.activity.ShakeActivity"
             android:screenOrientation="landscape" >
         </activity>
         <activity
@@ -68,7 +68,7 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".ui.activity.ShakeActivity"
+            android:name=".ui.activity.PackActivity"
             android:screenOrientation="landscape" >
         </activity>
         <activity

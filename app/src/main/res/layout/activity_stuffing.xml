@@ -1,10 +1,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/soho_stuffing_background"
     android:id="@+id/rootView">
 
-    <ImageView
-        android:id="@+id/iv_frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_marginLeft="60dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/sdv_soho_stuffing"
+        android:layout_marginBottom="20dp"
+        android:layout_height="190dp"
+        android:layout_width="460dp" />
 </RelativeLayout>

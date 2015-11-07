@@ -15,8 +15,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="4dp"
         android:gravity="bottom"
         android:orientation="horizontal">
 
@@ -28,26 +28,26 @@
 
         <ImageView
             android:id="@+id/iv_two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="83dp"
+            android:layout_height="143dp"
             android:background="@mipmap/soho_select_seasoning_two" />
 
         <ImageView
             android:id="@+id/iv_three"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="76dp"
+            android:layout_height="77dp"
             android:background="@mipmap/soho_select_seasoning_three" />
 
         <ImageView
             android:id="@+id/iv_four"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="77dp"
+            android:layout_height="60dp"
             android:background="@mipmap/soho_select_seasoning_four" />
 
         <ImageView
             android:id="@+id/iv_five"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="81dp"
+            android:layout_height="92dp"
             android:background="@mipmap/soho_select_seasoning_five" />
     </LinearLayout>
 

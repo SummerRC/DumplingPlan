@@ -1,113 +1,14 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/soho_cut_background"
     android:id="@+id/rootView">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/viewContainer" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|right">
-
-        <ImageView
-            android:id="@+id/iv_strip"
-            android:background="@mipmap/strip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="130dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_hint_cut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_gravity="center">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/arrow" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/hint_cut" />
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/iv_piece_one"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="150dp"
-        android:background="@mipmap/dough_one"/>
-
-    <ImageView
-        android:id="@+id/iv_piece_two"
-        android:visibility="gone"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="90dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/dough_two"/>
-
-    <ImageView
-        android:id="@+id/iv_piece_three"
-        android:visibility="gone"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/dough_three"/>
-
-    <ImageView
-        android:id="@+id/iv_piece_four"
-        android:visibility="gone"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/dough_four"/>
-
-    <ImageView
-        android:id="@+id/iv_piece_five"
-        android:visibility="gone"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="90dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/dough_five"/>
-
-    <ImageView
-        android:id="@+id/iv_piece_six"
-        android:visibility="gone"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="150dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/dough_six"/>
-
-    <ImageView
-        android:id="@+id/iv_knife_cut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right|center_vertical"
-        android:layout_marginRight="360dp"
-        android:layout_marginTop="12dp"
-        android:background="@mipmap/knife_cut" />
-
-    <include layout="@layout/view_common"/>
-
-</FrameLayout>
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_marginLeft="60dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/sdv_soho_cut"
+        android:layout_marginBottom="20dp"
+        android:layout_height="190dp"
+        android:layout_width="460dp" />
+</RelativeLayout>

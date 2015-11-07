@@ -3,7 +3,7 @@
     android:layout_height="match_parent">
 
     <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/sdv_frame"
+        android:id="@+id/sdv_soho_mixture_gif"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

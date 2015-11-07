@@ -1,52 +1,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/soho_cut_background"
     android:id="@+id/rootView">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/viewContainer" />
-
-    <TextView
-        android:id="@+id/iv_hint"
-        android:text="SummerRC"
-        android:layout_margin="50dp"
-        android:textColor="@android:color/holo_red_dark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
-
-        <ImageView
-            android:id="@+id/iv_dough_big"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="12dp"
-            android:background="@mipmap/dough"/>
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/iv_hint_rub"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@mipmap/double_arrow"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/hint_rub"/>
-    </FrameLayout>
-
-    <include layout="@layout/view_common"/>
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_marginLeft="60dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/sdv_soho_rub"
+        android:background="@drawable/soho_animation_rub"
+        android:layout_marginBottom="20dp"
+        android:layout_height="190dp"
+        android:layout_width="460dp" />
 </RelativeLayout>

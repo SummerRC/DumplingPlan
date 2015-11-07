@@ -1,34 +1,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rootView">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/viewContainer" />
+    android:background="@mipmap/soho_shake_background">
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        android:layout_centerInParent="true">
-
-        <ImageView
-            android:id="@+id/iv_colander"
-            android:paddingTop="20dp"
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/colander"/>
+        android:layout_centerInParent="true"
+        android:paddingTop="10dp">
 
         <ImageView
             android:id="@+id/iv_water"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/water"/>
+            android:layout_gravity="center"
+            android:background="@mipmap/soho_water" />
     </FrameLayout>
 
     <ImageView
@@ -39,6 +26,5 @@
         android:layout_centerInParent="true"
         android:background="@mipmap/hint_shake"/>
 
-
-    <include layout="@layout/view_common"/>
 </RelativeLayout>
+

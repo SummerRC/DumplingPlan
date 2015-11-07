@@ -1,116 +1,14 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/background_skin"
+    android:background="@mipmap/soho_stuffing_background"
     android:id="@+id/rootView">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/viewContainer" />
-
-    <ImageView
-        android:id="@+id/iv_basket"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_margin="8dp"
-        android:background="@mipmap/little_cover_pad"/>
-
-    <ImageView
-        android:id="@+id/iv_skin_one"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_marginLeft="100dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/sdv_soho_skin"
         android:layout_marginBottom="20dp"
-        android:background="@mipmap/skin_one"/>
-
-    <ImageView
-        android:id="@+id/iv_skin_two"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="60dp"
-        android:background="@mipmap/skin_two"/>
-
-    <ImageView
-        android:id="@+id/iv_skin_three"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="120dp"
-        android:background="@mipmap/skin_three"/>
-
-    <ImageView
-        android:id="@+id/iv_skin_four"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="60dp"
-        android:background="@mipmap/skin_four"/>
-
-    <ImageView
-        android:id="@+id/iv_skin_five"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="120dp"
-        android:background="@mipmap/skin_five"/>
-
-    <ImageView
-        android:id="@+id/iv_skin_big"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:background="@mipmap/skin_big"/>
-
-    <ImageView
-        android:id="@+id/iv_rolling_pin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:background="@mipmap/rolling_pin"/>
-
-    <RelativeLayout
-        android:id="@+id/rl_hint_skin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
-                android:layout_marginRight="160dp"
-                android:background="@mipmap/double_arrow_left"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
-                android:background="@mipmap/double_arrow_right"/>
-        </LinearLayout>
-
-        <ImageView
-            android:layout_marginTop="40dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/hint_skin"/>
-
-    </RelativeLayout>
-
-
-
-    <include layout="@layout/view_common"/>
-
-</FrameLayout>
+        android:layout_height="190dp"
+        android:layout_width="460dp" />
+</RelativeLayout>

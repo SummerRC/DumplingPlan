@@ -1,13 +1,24 @@
 package com.summerrc.dumplingplan.ui.activity;
 
 import android.app.Activity;
-import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Animatable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.controller.BaseControllerListener;
+import com.facebook.drawee.controller.ControllerListener;
+import com.facebook.drawee.interfaces.DraweeController;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.image.ImageInfo;
 import com.summerrc.dumplingplan.R;
+import com.summerrc.dumplingplan.activion.listener.PlayAnimClickListener;
+import com.summerrc.dumplingplan.utils.UIHelper;
+
 
 /**
  * @author SummerRC on 2015.07.12
@@ -21,9 +32,38 @@ public class StuffingActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_stuffing);
-        ImageView iv_frame = (ImageView) findViewById(R.id.iv_frame);
-        iv_frame.setImageResource(R.drawable.animation_cut_food);
-        final AnimationDrawable animationDrawable = (AnimationDrawable) iv_frame.getDrawable();
-        animationDrawable.start();
+        initView();
     }
+
+
+    private void initView() {
+        final Handler handler = new Handler();
+        final SimpleDraweeView sdv_soho_stuffing = (SimpleDraweeView) findViewById(R.id.sdv_soho_stuffing);
+        ControllerListener controllerListener = new BaseControllerListener<ImageInfo>() {
+            @Override
+            public void onFinalImageSet(String id, @Nullable ImageInfo imageInfo, @Nullable Animatable anim) {
+                if (anim != null) {
+                    sdv_soho_stuffing.setOnClickListener(new PlayAnimClickListener(anim, handler, 2000,
+                            new PlayAnimClickListener.AnimStopCallBack() {
+                                @Override
+                                public void afterAnimStop() {
+                                    UIHelper.openDoughActivity(StuffingActivity.this);
+                                }
+                            }));
+                }
+            }
+        };
+
+        Uri uri = Uri.parse("res://com.summerrc.dumplingplan/" + R.mipmap.soho_stuffing_gif);
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setUri(uri)
+                .setAutoPlayAnimations(false)
+                .setControllerListener(controllerListener)
+                .build();
+
+        /** 设置Controller */
+        sdv_soho_stuffing.setController(controller);
+    }
+
+
 }
