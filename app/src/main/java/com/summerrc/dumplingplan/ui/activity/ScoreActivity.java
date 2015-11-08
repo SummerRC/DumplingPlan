@@ -19,9 +19,6 @@ import com.summerrc.dumplingplan.config.ScoreResourceManager;
 import com.summerrc.dumplingplan.utils.SoundUtil;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 /**
  * @author SummerRC on 2015.07.12
  * description : 品——评分界面
@@ -113,7 +110,7 @@ public class ScoreActivity extends Activity {
                 } else if(score >= currentLockScore) {
                     findViewById(R.id.iv_word).setBackgroundResource(R.mipmap.good);
                 } else {
-                    findViewById(R.id.iv_word).setBackgroundResource(R.mipmap.awful);
+
                 }
             }
         }, 9000);
@@ -149,9 +146,9 @@ public class ScoreActivity extends Activity {
             iv_time.setBackgroundResource(R.mipmap.time_more);
         }
         /** 调料 */
-        setSeasoning(FoodTypeManager.Food.SALT);
-        setSeasoning(FoodTypeManager.Food.SAUCE);
-        setSeasoning(FoodTypeManager.Food.OIL);
+        setSeasoning(FoodTypeManager.Food.O_ONE);
+        setSeasoning(FoodTypeManager.Food.O_THREE);
+        setSeasoning(FoodTypeManager.Food.O_TWO);
         /** 饺子馅 */
         int n = 0;
         for (int i=1; i<7; i++) {
@@ -209,7 +206,7 @@ public class ScoreActivity extends Activity {
         ImageView imageView;
         int count = gameDataManager.getSeasoningNumberMap(food);
         switch (food) {
-            case SALT:
+            case O_ONE:
                 imageView = (ImageView)findViewById(R.id.iv_salt);
                 switch (count) {
                     case 0:
@@ -230,7 +227,7 @@ public class ScoreActivity extends Activity {
                         break;
                 }
                 break;
-            case OIL:
+            case O_TWO:
                 imageView = (ImageView)findViewById(R.id.iv_oil);
                 switch (count) {
                     case 0:
@@ -247,7 +244,7 @@ public class ScoreActivity extends Activity {
                         break;
                 }
                 break;
-            case SAUCE:
+            case O_THREE:
                 imageView = (ImageView)findViewById(R.id.iv_sauce);
                 switch (count) {
                     case 0:

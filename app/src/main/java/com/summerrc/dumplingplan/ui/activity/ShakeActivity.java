@@ -29,7 +29,7 @@ import java.lang.ref.WeakReference;
  * @author SummerRC on 2015.07.12
  *         description : 甩水界面
  */
-public class ShakeActivity extends Activity implements Animation.AnimationListener, SensorEventListener {
+public class ShakeActivity extends Activity implements Animation.AnimationListener, SensorEventListener, View.OnClickListener {
 
     public RotateAnimation rotateAnimation;             // 旋转动画
     private SoundPool soundPool;                        // 音频池
@@ -38,12 +38,14 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
     private Sensor mSensor;
 
     private MyHandler handler;
-    private ImageView iv_hint_shake;
     private ImageView iv_water;
     private int index = 0;
     private int shake_count = 0;
     private static final int SENSOR_SHAKE = 10;
     private int hitOkSfx;
+    private ImageView iv_jiangbei;
+    private ImageView iv_finish;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +58,11 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
     }
 
     protected void initView() {
-        iv_hint_shake = (ImageView) findViewById(R.id.iv_hint_shake);
         iv_water = (ImageView) findViewById(R.id.iv_water);
+        iv_jiangbei = (ImageView) findViewById(R.id.iv_jiangbei);
+        iv_finish = (ImageView) findViewById(R.id.iv_finish);
+        iv_jiangbei.setOnClickListener(this);
+        iv_finish.setOnClickListener(this);
     }
 
     private void initShake() {
@@ -67,7 +72,7 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mVibrator = (Vibrator) getApplication().getSystemService(Context.VIBRATOR_SERVICE);
 
-        iv_hint_shake.setOnClickListener(new View.OnClickListener() {
+        iv_water.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startAnimation();
@@ -78,6 +83,16 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
         soundPool = new SoundPool(10, AudioManager.STREAM_SYSTEM, 5);
         /**  载入音频流  */
         hitOkSfx = soundPool.load(this, R.raw.dumpling_plan_sd_shake, 0);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_jiangbei:
+                break;
+            case R.id.iv_finish:
+                break;
+        }
     }
 
     private static class MyHandler extends Handler {
@@ -96,7 +111,8 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
                 case SENSOR_SHAKE:
                     activity.shake_count++;
                     if (activity.shake_count == 60) {
-
+                        activity.iv_jiangbei.setVisibility(View.VISIBLE);
+                        activity.iv_finish.setVisibility(View.VISIBLE);
                     }
                     activity.waterAlpha(activity.shake_count);
                     activity.startAnimation();
@@ -110,7 +126,7 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
         rotateAnimation = new RotateAnimation(0, -10, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         rotateAnimation.setDuration(200);
         rotateAnimation.setAnimationListener(this);
-        iv_hint_shake.startAnimation(rotateAnimation);
+        iv_water.startAnimation(rotateAnimation);
         /** 速率最低0.5最高为2，1代表 正常速度 */
         soundPool.play(hitOkSfx, 1, 1, 0, 0, 1);
         mVibrator.vibrate(300);
@@ -148,7 +164,7 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
                         Animation.RELATIVE_TO_SELF, 0.5f);
                 rotateAnimation.setDuration(200);
                 rotateAnimation.setAnimationListener(this);
-                iv_hint_shake.startAnimation(rotateAnimation);
+                iv_water.startAnimation(rotateAnimation);
                 break;
             case 2:                 // 第二个动画
                 index++;
@@ -157,7 +173,7 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
                         Animation.RELATIVE_TO_SELF, 0.5f);
                 rotateAnimation.setDuration(200);
                 rotateAnimation.setAnimationListener(this);
-                iv_hint_shake.startAnimation(rotateAnimation);
+                iv_water.startAnimation(rotateAnimation);
                 break;
             case 3:                 // 第三个动画
                 index++;
@@ -166,7 +182,7 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
                         Animation.RELATIVE_TO_SELF, 0.5f);
                 rotateAnimation.setDuration(200);
                 rotateAnimation.setAnimationListener(this);
-                iv_hint_shake.startAnimation(rotateAnimation);
+                iv_water.startAnimation(rotateAnimation);
                 break;
             case 4:                 // 第四个动画
                 index = 0;
@@ -175,7 +191,7 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
                         Animation.RELATIVE_TO_SELF, 0.5f);
                 rotateAnimation.setDuration(200);
                 rotateAnimation.setAnimationListener(this);
-                iv_hint_shake.startAnimation(rotateAnimation);
+                iv_water.startAnimation(rotateAnimation);
                 break;
             default:
                 break;

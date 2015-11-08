@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
-import android.widget.Toast;
+
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.GameDataManager;
 import com.summerrc.dumplingplan.utils.SoundUtil;
@@ -167,7 +167,6 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         findViewById(R.id.rl_dialog_background).setOnTouchListener(this);
         findViewById(R.id.rl_dialog_background).setBackgroundResource(R.mipmap.pause_black_);
         findViewById(R.id.iv_tip_content).setVisibility(View.VISIBLE);
-        findViewById(R.id.iv_tip_content).setBackgroundResource(R.mipmap.continue_game);
         findViewById(R.id.iv_tip_content).setOnTouchListener(this);
         findViewById(R.id.ll_yes_and_no).setVisibility(View.GONE);
     }

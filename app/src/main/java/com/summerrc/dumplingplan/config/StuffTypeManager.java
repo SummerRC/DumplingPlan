@@ -18,7 +18,7 @@ public class StuffTypeManager {
      * @return   true : 是蔬菜
      */
     public static boolean isVegetable(FoodTypeManager.Food food) {
-        return(food== FoodTypeManager.Food.CABBAGE || food== FoodTypeManager.Food.CUCUMBER || food== FoodTypeManager.Food.EGGPLANT || food== FoodTypeManager.Food.PIMIENTO || food== FoodTypeManager.Food.TOMATO);
+        return(food== FoodTypeManager.Food.O_ONE || food== FoodTypeManager.Food.O_ONE || food== FoodTypeManager.Food.O_ONE || food== FoodTypeManager.Food.O_ONE || food== FoodTypeManager.Food.O_ONE);
     }
 
     /**
@@ -26,7 +26,7 @@ public class StuffTypeManager {
      * @return   true  : 是肉类
      */
     public static boolean isMeat(FoodTypeManager.Food food) {
-        return(food== FoodTypeManager.Food.BEEF || food== FoodTypeManager.Food.CHICKEN || food== FoodTypeManager.Food.CRAB || food== FoodTypeManager.Food.PORK || food== FoodTypeManager.Food.SHRIMP);
+        return(food== FoodTypeManager.Food.O_ONE || food== FoodTypeManager.Food.O_ONE || food== FoodTypeManager.Food.O_ONE || food== FoodTypeManager.Food.O_ONE || food== FoodTypeManager.Food.O_ONE);
     }
 
     /**

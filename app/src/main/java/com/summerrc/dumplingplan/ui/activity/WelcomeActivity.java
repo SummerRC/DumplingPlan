@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.GameDataManager;
@@ -56,11 +58,13 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 			case R.id.iv_stock:         //原木
 //				SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
-				UIHelper.openSelectFoodActivity(this);
+				Animation shake01 = AnimationUtils.loadAnimation(this, R.anim.shake);
+				findViewById(R.id.iv_stock).startAnimation(shake01);
 				break;
 			case R.id.iv_ventilator:    //抽油烟机
 //				SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
-//				UIHelper.openLockActivity(this);
+				Animation shake02 = AnimationUtils.loadAnimation(this, R.anim.shake);
+				findViewById(R.id.iv_ventilator).startAnimation(shake02);
 				break;
 			case R.id.iv_setting:		//设置
 //				SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
@@ -80,7 +84,7 @@ public class WelcomeActivity extends Activity implements OnClickListener {
                 break;
             case R.id.iv_jiangbei:		//奖杯
 //				SoundUtil.playSounds(SoundUtil.SETTING, 0, getApplicationContext());
-//				UIHelper.openSettingActivity(this);
+				UIHelper.openAwardActivity(this);
                 break;
 
 		}

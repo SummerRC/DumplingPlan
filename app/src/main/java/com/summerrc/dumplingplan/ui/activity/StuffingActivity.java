@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -33,8 +34,8 @@ public class StuffingActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_stuffing);
         initView();
+        initOnClick();
     }
-
 
     private void initView() {
         final Handler handler = new Handler();
@@ -43,7 +44,7 @@ public class StuffingActivity extends Activity {
             @Override
             public void onFinalImageSet(String id, @Nullable ImageInfo imageInfo, @Nullable Animatable anim) {
                 if (anim != null) {
-                    sdv_soho_stuffing.setOnClickListener(new PlayAnimClickListener(anim, handler, 2000,
+                    sdv_soho_stuffing.setOnClickListener(new PlayAnimClickListener(anim, handler, 3500,
                             new PlayAnimClickListener.AnimStopCallBack() {
                                 @Override
                                 public void afterAnimStop() {
@@ -65,5 +66,20 @@ public class StuffingActivity extends Activity {
         sdv_soho_stuffing.setController(controller);
     }
 
+    private void initOnClick() {
+        findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
+        findViewById(R.id.iv_setting).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.iv_yingxiao).setVisibility(View.INVISIBLE);
+                findViewById(R.id.iv_yingyue).setVisibility(View.INVISIBLE);
+            }
+        });
+    }
 }

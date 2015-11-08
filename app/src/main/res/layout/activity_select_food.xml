@@ -3,88 +3,99 @@
     android:id="@+id/rootView"
     android:layout_width="wrap_content"
     android:layout_height="fill_parent"
-    android:background="@mipmap/soho_select_food_background"
     android:scrollbars="none"
     tools:context="com.summerrc.dumplingplan.ui.activity.SelectFoodActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="90dp"
-        android:gravity="bottom"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/iv_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:background="@mipmap/soho_food_one" />
+            android:scaleType="fitXY"
+            android:background="@mipmap/soho_bakground"/>
 
-        <ImageView
-            android:id="@+id/iv_two"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:background="@mipmap/soho_food_two" />
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="90dp"
+            android:gravity="bottom"
+            android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/iv_three"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:background="@mipmap/soho_food_three" />
+            <ImageView
+                android:id="@+id/iv_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:background="@mipmap/soho_food_one" />
 
-        <ImageView
-            android:id="@+id/iv_four"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:background="@mipmap/soho_food_four" />
+            <ImageView
+                android:id="@+id/iv_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:background="@mipmap/soho_food_two" />
 
-        <ImageView
-            android:id="@+id/iv_five"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:background="@mipmap/soho_food_five" />
+            <ImageView
+                android:id="@+id/iv_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:background="@mipmap/soho_food_three" />
 
-        <ImageView
-            android:id="@+id/iv_six"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:background="@mipmap/soho_food_six" />
+            <ImageView
+                android:id="@+id/iv_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:background="@mipmap/soho_food_four" />
 
-        <ImageView
-            android:id="@+id/iv_seven"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:background="@mipmap/soho_food_seven" />
+            <ImageView
+                android:id="@+id/iv_five"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:background="@mipmap/soho_food_five" />
 
-        <ImageView
-            android:id="@+id/iv_eight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:background="@mipmap/soho_food_eight" />
+            <ImageView
+                android:id="@+id/iv_six"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:background="@mipmap/soho_food_six" />
 
-        <ImageView
-            android:id="@+id/iv_nine"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:background="@mipmap/soho_food_nine" />
+            <ImageView
+                android:id="@+id/iv_seven"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:background="@mipmap/soho_food_seven" />
 
-        <ImageView
-            android:id="@+id/iv_ten"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:background="@mipmap/soho_food_tent" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/iv_eight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:background="@mipmap/soho_food_eight" />
 
+            <ImageView
+                android:id="@+id/iv_nine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:background="@mipmap/soho_food_nine" />
+
+            <ImageView
+                android:id="@+id/iv_ten"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:background="@mipmap/soho_food_ten" />
+        </LinearLayout>
+
+        <include layout="@layout/view_all_use" />
+    </RelativeLayout>
 
 </HorizontalScrollView>

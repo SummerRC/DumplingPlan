@@ -40,7 +40,7 @@ public class AddStuffingActivity extends Activity {
             @Override
             public void onFinalImageSet(String id, @Nullable ImageInfo imageInfo, @Nullable Animatable anim) {
                 if (anim != null) {
-                    sdv_soho_add_stuff.setOnClickListener(new PlayAnimClickListener(anim, handler, 9000,
+                    sdv_soho_add_stuff.setOnClickListener(new PlayAnimClickListener(anim, handler, 2500,
                             new PlayAnimClickListener.AnimStopCallBack() {
                                 @Override
                                 public void afterAnimStop() {

@@ -41,7 +41,7 @@ public class SkinActivity extends Activity {
             @Override
             public void onFinalImageSet(String id, @Nullable ImageInfo imageInfo, @Nullable Animatable anim) {
                 if (anim != null) {
-                    sdv_soho_skin.setOnClickListener(new PlayAnimClickListener(anim, handler, 9000,
+                    sdv_soho_skin.setOnClickListener(new PlayAnimClickListener(anim, handler, 4000,
                             new PlayAnimClickListener.AnimStopCallBack() {
                                 @Override
                                 public void afterAnimStop() {

@@ -41,7 +41,7 @@ public class CutActivity extends Activity {
             @Override
             public void onFinalImageSet(String id, @Nullable ImageInfo imageInfo, @Nullable Animatable anim) {
                 if (anim != null) {
-                    sdv_soho_cut.setOnClickListener(new PlayAnimClickListener(anim, handler, 4000,
+                    sdv_soho_cut.setOnClickListener(new PlayAnimClickListener(anim, handler, 3800,
                             new PlayAnimClickListener.AnimStopCallBack() {
                                 @Override
                                 public void afterAnimStop() {

@@ -1,14 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.facebook.drawee.view.SimpleDraweeView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sdv_soho_cut"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/soho_cut_background"
-    android:id="@+id/rootView">
-
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:layout_marginLeft="60dp"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/sdv_soho_cut"
-        android:layout_marginBottom="20dp"
-        android:layout_height="190dp"
-        android:layout_width="460dp" />
-</RelativeLayout>
+    android:background="@mipmap/soho_cut_gif_place_holder" />

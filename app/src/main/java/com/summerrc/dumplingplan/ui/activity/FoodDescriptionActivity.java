@@ -9,15 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.TextView;
 import android.widget.Toast;
+
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.FoodTypeManager;
 import com.summerrc.dumplingplan.config.GameDataManager;
 import com.summerrc.dumplingplan.config.IntentConstant;
-import com.summerrc.dumplingplan.utils.SoundUtil;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -27,10 +24,7 @@ import java.util.ArrayList;
  */
 public class FoodDescriptionActivity extends Activity implements View.OnClickListener{
     private FoodTypeManager.Food food;
-    private Bitmap bitmap_background_board_one;
-    private Bitmap bitmap_select_food;
     private String ACTIVITY_TYPE;
-    private int number = 0;                 //选择调料的份数
     private GameDataManager gameDataManager;
 
     @Override
@@ -48,55 +42,24 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
         initView();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (bitmap_background_board_one == null || bitmap_background_board_one.isRecycled()) {
-            if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_FOOD)) {
-                bitmap_background_board_one = BitmapFactory.decodeResource(getResources(), R.mipmap.food_description);
-            } else {
-                bitmap_background_board_one = BitmapFactory.decodeResource(getResources(), R.mipmap.seasoning_description);
-            }
-        }
-        findViewById(R.id.viewContainer).setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap_background_board_one));
-    }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (bitmap_background_board_one != null && !bitmap_background_board_one.isRecycled()) {
-            bitmap_background_board_one.isRecycled();
-            bitmap_background_board_one = null;
-        }
-        if (bitmap_select_food != null && !bitmap_select_food.isRecycled()) {
-            bitmap_select_food.isRecycled();
-            bitmap_select_food = null;
-        }
-        System.gc();
-    }
+
 
     private void initView() {
         /** 显示被介绍的食材 */
-        bitmap_select_food = BitmapFactory.decodeResource(getResources(), FoodTypeManager.getFoodResourceId(food));
-        findViewById(R.id.iv_food_description).setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap_select_food));
+        Bitmap bitmap_select_food = BitmapFactory.decodeResource(getResources(), FoodTypeManager.getFoodResourceId(food));
+        findViewById(R.id.viewContainer).setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap_select_food));
         /** 设置相关的监听 */
         findViewById(R.id.iv_yes).setOnClickListener(this);
         findViewById(R.id.iv_no).setOnClickListener(this);
-        findViewById(R.id.iv_add).setOnClickListener(this);
-        findViewById(R.id.iv_decrease).setOnClickListener(this);
-        if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_SEASONING)) {
-            findViewById(R.id.ll_number).setVisibility(View.VISIBLE);
-            number = gameDataManager.getSeasoningNumberMap(food);
-            ((TextView)findViewById(R.id.tv_number)).setText(number + "");
-        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_yes:
-                SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
-                if(isAdd()) {
+//                SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
+                /*if(isAdd()) {
                     if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_FOOD)) {               //食材
                         if(gameDataManager.getFoodList().size() >= 3) {
                             Toast.makeText(this, "最多一次只能选择三种食材！", Toast.LENGTH_SHORT).show();
@@ -117,28 +80,18 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
                     intent.putExtras(bundle);
                     setResult(RESULT_OK, intent);
                     finish();
-                }
-                break;
-            case R.id.iv_no:
-                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
+                }*/
+
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(IntentConstant.SELECTED_FOOD, FoodTypeManager.Food.DEFAULT);
+                bundle.putSerializable(IntentConstant.SELECTED_FOOD, food);
                 intent.putExtras(bundle);
                 setResult(RESULT_OK, intent);
                 finish();
                 break;
-            case R.id.iv_add:
-                SoundUtil.playSounds(SoundUtil.MINUS, 0, getApplicationContext());
-                number++;
-                ((TextView)findViewById(R.id.tv_number)).setText(number+"");
-                break;
-            case R.id.iv_decrease:
-                SoundUtil.playSounds(SoundUtil.MINUS, 0, getApplicationContext());
-                if(number>0) {
-                    number--;
-                    ((TextView)findViewById(R.id.tv_number)).setText(number+"");
-                }
+            case R.id.iv_no:
+//                SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
+                finish();
                 break;
         }
     }

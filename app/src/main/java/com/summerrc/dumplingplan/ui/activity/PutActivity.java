@@ -41,7 +41,7 @@ public class PutActivity extends Activity {
             @Override
             public void onFinalImageSet(String id, @Nullable ImageInfo imageInfo, @Nullable Animatable anim) {
                 if (anim != null) {
-                    sdv_soho_put.setOnClickListener(new PlayAnimClickListener(anim, handler, 9000,
+                    sdv_soho_put.setOnClickListener(new PlayAnimClickListener(anim, handler, 1700,
                             new PlayAnimClickListener.AnimStopCallBack() {
                                 @Override
                                 public void afterAnimStop() {

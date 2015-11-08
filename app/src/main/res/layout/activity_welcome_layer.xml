@@ -52,7 +52,6 @@
             android:id="@+id/iv_cook_mode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/cook_mode"
             android:text="厨神之路" />
     </LinearLayout>
 

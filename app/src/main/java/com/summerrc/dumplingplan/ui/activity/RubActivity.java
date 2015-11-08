@@ -61,7 +61,7 @@ public class RubActivity extends Activity implements View.OnTouchListener{
                     public void run() {
                         UIHelper.openCutActivity(RubActivity.this);
                     }
-                }, 2000);
+                }, 1800);
                 break;
         }
         return true;            //返回false会导致只响应down事件，true导致事件不会传递给父view

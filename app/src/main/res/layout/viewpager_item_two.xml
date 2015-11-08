@@ -30,7 +30,7 @@
         android:layout_above="@+id/iv_pork"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="6dp"
-        android:background="@mipmap/crab_lock"/>
+ />
 
     <ImageView
         android:id="@+id/iv_chicken"
@@ -40,7 +40,7 @@
         android:layout_above="@+id/iv_pork"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="6dp"
-        android:background="@mipmap/chicken_lock"/>
+      />
 
     <ImageView
         android:id="@+id/iv_shrimp"

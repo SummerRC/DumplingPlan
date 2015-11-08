@@ -11,6 +11,7 @@ import com.summerrc.dumplingplan.interestinggame.cutfood.CutFoodActivity;
 import com.summerrc.dumplingplan.interestinggame.lianliankan.LianliankanActivity;
 import com.summerrc.dumplingplan.ui.activity.AboutUsActivity;
 import com.summerrc.dumplingplan.ui.activity.AddStuffingActivity;
+import com.summerrc.dumplingplan.ui.activity.AwardActivity;
 import com.summerrc.dumplingplan.ui.activity.BasketActivity;
 import com.summerrc.dumplingplan.ui.activity.CutActivity;
 import com.summerrc.dumplingplan.ui.activity.DoughActivity;
@@ -298,5 +299,16 @@ public class UIHelper {
         currentActivity.startActivity(intent);
         currentActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         currentActivity.finish();
+    }
+
+    /**
+     * 启动设置界面
+     *
+     * @param currentActivity 当前运行的Activity的实例
+     */
+    public static void openAwardActivity(Activity currentActivity) {
+        Intent intent = new Intent(currentActivity, AwardActivity.class);
+        currentActivity.startActivity(intent);
+        currentActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 }

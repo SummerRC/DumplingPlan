@@ -23,7 +23,7 @@ public class SelectFoodPagerAdapter extends PagerAdapter{
     private ArrayList<View> list;
     private Activity curActivity;
     private Map<Integer, SoftReference<Bitmap>> imageCache = new HashMap<>();
-    private int res[] = {R.mipmap.cabinet_one, R.mipmap.cabinet_two, R.mipmap.cabinet_three, R.mipmap.cabinet_four};
+    private int res[] = {};
 
     public  SelectFoodPagerAdapter(ArrayList<View> list, Activity curActivity){
         this.list = list;

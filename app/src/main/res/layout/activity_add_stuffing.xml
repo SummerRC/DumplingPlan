@@ -1,5 +1,6 @@
 <com.facebook.drawee.view.SimpleDraweeView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/sdv_soho_add_stuff"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent"
+    android:background="@mipmap/soho_add_stuffing_gif_place_holder"/>
 

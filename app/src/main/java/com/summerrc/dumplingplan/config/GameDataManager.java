@@ -40,9 +40,9 @@ public class GameDataManager {
         foodList = new ArrayList<>();
         seasoningList = new ArrayList<>();
         seasoningNumberMap = new HashMap<>();
-        seasoningNumberMap.put(FoodTypeManager.Food.OIL, 0);
-        seasoningNumberMap.put(FoodTypeManager.Food.SALT, 0);
-        seasoningNumberMap.put(FoodTypeManager.Food.SAUCE, 0);
+        seasoningNumberMap.put(FoodTypeManager.Food.O_ONE, 0);
+        seasoningNumberMap.put(FoodTypeManager.Food.O_TWO, 0);
+        seasoningNumberMap.put(FoodTypeManager.Food.O_THREE, 0);
         stuffNumMap = new HashMap<>();
         stuffNumMap.put(1, 0);
         stuffNumMap.put(2, 0);

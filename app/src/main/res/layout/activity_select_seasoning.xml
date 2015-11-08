@@ -4,14 +4,6 @@
     android:layout_height="match_parent"
     android:background="@mipmap/soho_background_select_seasoning">
 
-    <ImageView
-        android:id="@+id/iv_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@mipmap/soho_select_seasion_back" />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,29 +43,7 @@
             android:background="@mipmap/soho_select_seasoning_five" />
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="36dp"
-        android:layout_marginLeft="20dp"
-        android:background="@mipmap/soho_select_seasoning_yinxiao" />
 
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="36dp"
-        android:layout_marginLeft="32dp"
-        android:background="@mipmap/soho_select_seasoning_yinuser" />
-
-    <ImageView
-        android:id="@+id/iv_setting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="12dp"
-        android:background="@mipmap/soho_select_seasoning_setting" />
+    <include layout="@layout/view_all_use" />
 
 </RelativeLayout>
