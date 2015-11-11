@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.FoodTypeManager;
 import com.summerrc.dumplingplan.config.IntentConstant;
+import com.summerrc.dumplingplan.config.MMApplication;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
@@ -19,10 +20,12 @@ import com.summerrc.dumplingplan.utils.UIHelper;
  */
 public class SelectSeasoningActivity extends Activity implements View.OnClickListener{
     private Handler handler;
+    private int num = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_seasoning);
@@ -36,6 +39,62 @@ public class SelectSeasoningActivity extends Activity implements View.OnClickLis
         findViewById(R.id.iv_three).setOnClickListener(this);
         findViewById(R.id.iv_four).setOnClickListener(this);
         findViewById(R.id.iv_five).setOnClickListener(this);
+        setBackground();
+        setVisible();
+        findViewById(R.id.iv_setting).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MMApplication.isSelected = !MMApplication.isSelected;
+                setVisible();
+            }
+        });
+    }
+
+    private void setVisible() {
+        if(MMApplication.isSelected) {
+            findViewById(R.id.iv_yingxiao).setVisibility(View.VISIBLE);
+            findViewById(R.id.iv_yingyue).setVisibility(View.VISIBLE);
+        } else {
+            findViewById(R.id.iv_yingxiao).setVisibility(View.GONE);
+            findViewById(R.id.iv_yingyue).setVisibility(View.GONE);
+            findViewById(R.id.iv_yingxiao).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MMApplication.isSelected_yinxiao = !MMApplication.isSelected_yinxiao;
+                    if(MMApplication.isSelected_yinxiao) {
+                        findViewById(R.id.iv_yingxiao).setBackgroundResource(R.mipmap.soho_select_seasoning_yinxiao_selected);
+                        findViewById(R.id.iv_yingyue).setBackgroundResource(R.mipmap.soho_select_seasoning_yinuser_selected);
+                    } else {
+                        findViewById(R.id.iv_yingxiao).setBackgroundResource(R.mipmap.soho_select_seasoning_yinxiao_unselected);
+                        findViewById(R.id.iv_yingyue).setBackgroundResource(R.mipmap.soho_select_seasoning_yinuser_unselected);
+                    }
+                }
+            });
+            findViewById(R.id.iv_yingyue).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MMApplication.isSelected_yinyue = !MMApplication.isSelected_yinyue;
+                    if(MMApplication.isSelected_yinyue) {
+                        findViewById(R.id.iv_yingxiao).setBackgroundResource(R.mipmap.soho_select_seasoning_yinxiao_selected);
+                        findViewById(R.id.iv_yingyue).setBackgroundResource(R.mipmap.soho_select_seasoning_yinuser_selected);
+                    } else {
+                        findViewById(R.id.iv_yingxiao).setBackgroundResource(R.mipmap.soho_select_seasoning_yinxiao_unselected);
+                        findViewById(R.id.iv_yingyue).setBackgroundResource(R.mipmap.soho_select_seasoning_yinuser_unselected);
+                    }
+                }
+            });
+
+        }
+    }
+
+    private void setBackground() {
+        if(MMApplication.isSelected) {
+            findViewById(R.id.iv_yingxiao).setBackgroundResource(R.mipmap.soho_select_seasoning_yinxiao_selected);
+            findViewById(R.id.iv_yingyue).setBackgroundResource(R.mipmap.soho_select_seasoning_yinuser_selected);
+        } else {
+            findViewById(R.id.iv_yingxiao).setBackgroundResource(R.mipmap.soho_select_seasoning_yinxiao_unselected);
+            findViewById(R.id.iv_yingyue).setBackgroundResource(R.mipmap.soho_select_seasoning_yinuser_unselected);
+        }
     }
 
     @Override
@@ -83,12 +142,15 @@ public class SelectSeasoningActivity extends Activity implements View.OnClickLis
                 default:
                     return;
             }
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    UIHelper.openStuffingActivity(SelectSeasoningActivity.this);
-                }
-            }, 300);
+            num++;
+            if(num == 1) {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        UIHelper.openStuffingActivity(SelectSeasoningActivity.this);
+                    }
+                }, 500);
+            }
         }
     }
 }

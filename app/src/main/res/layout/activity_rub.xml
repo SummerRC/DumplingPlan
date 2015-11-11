@@ -5,11 +5,13 @@
     android:id="@+id/rootView">
 
     <com.facebook.drawee.view.SimpleDraweeView
-        android:layout_marginLeft="60dp"
+        android:layout_marginLeft="120dp"
         android:layout_alignParentBottom="true"
         android:id="@+id/sdv_soho_rub"
         android:background="@drawable/soho_animation_rub"
         android:layout_marginBottom="20dp"
         android:layout_height="190dp"
         android:layout_width="460dp" />
+
+    <include layout="@layout/view_all_use" />
 </RelativeLayout>

@@ -27,6 +27,7 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		/** 去掉标题栏和信息栏 */
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.activity_welcome);

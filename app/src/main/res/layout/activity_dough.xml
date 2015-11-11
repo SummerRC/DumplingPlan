@@ -8,4 +8,5 @@
         android:layout_height="match_parent"
         android:background="@mipmap/soho_mixture_gif_place_holder"/>
 
+    <include layout="@layout/view_all_use" />
 </RelativeLayout>

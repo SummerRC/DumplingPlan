@@ -1,7 +1,5 @@
 package com.summerrc.dumplingplan.config;
 
-import com.summerrc.dumplingplan.R;
-
 /**
  * @author : SummerRC on 2015/7/14 0014
  * @version :  V1.0 <当前版本>
@@ -34,7 +32,7 @@ public class StuffTypeManager {
      * @return   true  : 是水果
      */
     public static boolean isFruit(FoodTypeManager.Food food) {
-        return !(isVegetable(food) || isMeat(food));
+        return false;
     }
 
     /**
@@ -43,23 +41,6 @@ public class StuffTypeManager {
      * @return            指定类型馅的资源id
      */
     public static int getStuffResourceId(StuffType stuffType) {
-        switch (stuffType) {
-            case VEGETABLE:
-                return R.mipmap.vegetable;
-            case FRUIT:
-                return R.mipmap.fruit;
-            case MEAT:
-                return R.mipmap.meat;
-            case VEGETABLE_FRUIT:
-                return R.mipmap.fruit_vegetable;
-            case VEGETABLE_MEAT:
-                return R.mipmap.meat_vegetable;
-            case FRUIT_MEAT:
-                return R.mipmap.meat_fruit;
-            case VEGETABLE_FRUIT_MEAT:
-                return R.mipmap.meat_fruit_vegetable;
-            default:
-                return R.mipmap.vegetable;
-        }
+        return 1;
     }
 }

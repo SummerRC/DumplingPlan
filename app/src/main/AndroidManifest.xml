@@ -22,10 +22,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.SplashActivity"
-            android:screenOrientation="landscape" >
-        </activity>
-        <activity
             android:name=".ui.activity.CutActivity"
             android:screenOrientation="landscape" >
         </activity>
@@ -38,15 +34,11 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".ui.activity.OpenActivity"
-            android:screenOrientation="landscape" >
-        </activity>
-        <activity
             android:name=".ui.activity.RubActivity"
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".ui.activity.SelectFoodActivity"
+            android:name=".ui.activity.ShakeActivity"
             android:screenOrientation="landscape" >
         </activity>
         <activity
@@ -62,7 +54,7 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".ui.activity.ShakeActivity"
+            android:name=".ui.activity.SelectFoodActivity"
             android:screenOrientation="landscape" >
         </activity>
         <activity
@@ -74,26 +66,11 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".ui.activity.ScoreActivity"
-            android:screenOrientation="landscape" >
-        </activity>
-        <activity
             android:name=".ui.activity.FoodDescriptionActivity"
             android:screenOrientation="landscape"
             android:theme="@style/DialogActivity" >
         </activity>
-        <activity
-            android:name=".ui.activity.BasketActivity"
-            android:theme="@style/DialogActivity" >
-        </activity>
-        <activity
-            android:name=".ui.activity.LockActivity"
-            android:screenOrientation="landscape" >
-        </activity>
-        <activity
-            android:name=".ui.activity.SettingActivity"
-            android:theme="@style/DialogActivity" >
-        </activity>
+
         <activity
             android:name=".interestinggame.lianliankan.LianliankanActivity"
             android:configChanges="keyboardHidden|orientation"
@@ -113,10 +90,6 @@
             android:name=".interestinggame.SkinePackStuffing.SkinPackStuffingActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-        </activity>
-        <activity
-            android:name=".ui.activity.AboutUsActivity"
-            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".ui.activity.AwardActivity"

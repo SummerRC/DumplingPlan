@@ -8,10 +8,10 @@
     <style name="DialogActivity">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>                        //背景透明
-        <item name="android:windowCloseOnTouchOutside">false</item>        //悬浮层之外点击不消失
-        <item name="android:windowIsFloating">true</item>                               //居中显示
+        <item name="android:windowCloseOnTouchOutside">false</item>                 //悬浮层之外点击不消失
+        <item name="android:windowIsFloating">true</item>                           //居中显示
         <item name="android:windowNoTitle">true</item>
-        // <item name="android:windowAnimationStyle">@null</item>          显示时不采用 动画
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
     </style>
 
     <style name="DialogActivity1" >
@@ -50,5 +50,11 @@
         <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
 
+    <style name="DialogAnimationActivity" parent="@android:style/Animation.Activity">
+          <item name="android:activityOpenEnterAnimation">@anim/trans_in</item>
+          <item name="android:activityOpenExitAnimation">@anim/trans_out</item>
+          <item name="android:activityCloseEnterAnimation">@anim/trans_in</item>
+          <item name="android:activityCloseExitAnimation">@anim/trans_out</item>
+    </style>
 
 </resources>

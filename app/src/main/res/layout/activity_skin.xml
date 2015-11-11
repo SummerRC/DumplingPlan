@@ -1,6 +1,12 @@
-<com.facebook.drawee.view.SimpleDraweeView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/sdv_soho_skin"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@mipmap/soho_skin_gif_place_holder" />
+    android:layout_height="match_parent">
 
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/sdv_soho_skin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/soho_skin_gif_place_holder" />
+
+    <include layout="@layout/view_all_use" />
+</RelativeLayout>

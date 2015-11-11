@@ -9,22 +9,16 @@ import com.summerrc.dumplingplan.config.IntentConstant;
 import com.summerrc.dumplingplan.interestinggame.SkinePackStuffing.SkinPackStuffingActivity;
 import com.summerrc.dumplingplan.interestinggame.cutfood.CutFoodActivity;
 import com.summerrc.dumplingplan.interestinggame.lianliankan.LianliankanActivity;
-import com.summerrc.dumplingplan.ui.activity.AboutUsActivity;
 import com.summerrc.dumplingplan.ui.activity.AddStuffingActivity;
 import com.summerrc.dumplingplan.ui.activity.AwardActivity;
-import com.summerrc.dumplingplan.ui.activity.BasketActivity;
 import com.summerrc.dumplingplan.ui.activity.CutActivity;
 import com.summerrc.dumplingplan.ui.activity.DoughActivity;
 import com.summerrc.dumplingplan.ui.activity.FoodDescriptionActivity;
-import com.summerrc.dumplingplan.ui.activity.LockActivity;
-import com.summerrc.dumplingplan.ui.activity.OpenActivity;
 import com.summerrc.dumplingplan.ui.activity.PackActivity;
 import com.summerrc.dumplingplan.ui.activity.PutActivity;
 import com.summerrc.dumplingplan.ui.activity.RubActivity;
-import com.summerrc.dumplingplan.ui.activity.ScoreActivity;
 import com.summerrc.dumplingplan.ui.activity.SelectFoodActivity;
 import com.summerrc.dumplingplan.ui.activity.SelectSeasoningActivity;
-import com.summerrc.dumplingplan.ui.activity.SettingActivity;
 import com.summerrc.dumplingplan.ui.activity.ShakeActivity;
 import com.summerrc.dumplingplan.ui.activity.SkinActivity;
 import com.summerrc.dumplingplan.ui.activity.StuffingActivity;
@@ -193,32 +187,9 @@ public class UIHelper {
         intent.putExtra(IntentConstant.SELECTED_FOOD, food);
         intent.putExtra(IntentConstant.ACTIVITY_TYPE, activity_type);
         currentActivity.startActivityForResult(intent, requestCode);
+        currentActivity.overridePendingTransition(R.anim.trans_in, R.anim.trans_out);
     }
 
-    /**
-     * 启动菜篮详情界面
-     *
-     * @param currentActivity 当前运行的Activity的实例
-     * @param activity_type   用于标识由哪个Activity来启动
-     * @param requestCode     用于标识由哪个Activity来启动
-     */
-    public static void openBasketActivity(Activity currentActivity, String activity_type, int requestCode) {
-        Intent intent = new Intent(currentActivity, BasketActivity.class);
-        intent.putExtra(IntentConstant.ACTIVITY_TYPE, activity_type);
-        currentActivity.startActivityForResult(intent, requestCode);
-    }
-
-    /**
-     * 启动评分界面
-     *
-     * @param currentActivity 当前运行的Activity的实例
-     */
-    public static void openScoreActivity(Activity currentActivity) {
-        Intent intent = new Intent(currentActivity, ScoreActivity.class);
-        currentActivity.startActivity(intent);
-        currentActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        currentActivity.finish();
-    }
 
     /**
      * 解锁界面界面
@@ -226,26 +197,13 @@ public class UIHelper {
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openLockActivity(Activity currentActivity) {
-        Intent intent = new Intent(currentActivity, LockActivity.class);
-        currentActivity.startActivity(intent);
-        currentActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        currentActivity.finish();
     }
 
 
-    /**
-     * 启动设置界面
-     *
-     * @param currentActivity 当前运行的Activity的实例
-     */
-    public static void openSettingActivity(Activity currentActivity) {
-        Intent intent = new Intent(currentActivity, SettingActivity.class);
-        currentActivity.startActivity(intent);
-        currentActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-    }
 
     /**
      * 连连看
+     *
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openLianliankanActivity(Activity currentActivity) {
@@ -257,6 +215,7 @@ public class UIHelper {
 
     /**
      * 切食材
+     *
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openCutFoodActivity(Activity currentActivity) {
@@ -268,6 +227,7 @@ public class UIHelper {
 
     /**
      * 切食材
+     *
      * @param currentActivity 当前运行的Activity的实例
      */
     public static void openSkinPackStuffingActivity(Activity currentActivity) {
@@ -277,29 +237,9 @@ public class UIHelper {
         currentActivity.finish();
     }
 
-    /**
-     * 关于我们
-     * @param currentActivity 当前运行的Activity的实例
-     */
-    public static void openAboutUsActivity(Activity currentActivity) {
-        Intent intent = new Intent(currentActivity, AboutUsActivity.class);
-        currentActivity.startActivity(intent);
-        currentActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        currentActivity.finish();
-    }
 
 
-    /**
-     * 选择启动页面
-     *
-     * @param currentActivity 当前运行的Activity的实例
-     */
-    public static void openOpenActivity(Activity currentActivity) {
-        Intent intent = new Intent(currentActivity, OpenActivity.class);
-        currentActivity.startActivity(intent);
-        currentActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        currentActivity.finish();
-    }
+
 
     /**
      * 启动设置界面
@@ -310,5 +250,6 @@ public class UIHelper {
         Intent intent = new Intent(currentActivity, AwardActivity.class);
         currentActivity.startActivity(intent);
         currentActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        currentActivity.finish();
     }
 }

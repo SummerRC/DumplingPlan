@@ -22,6 +22,8 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
 import com.summerrc.dumplingplan.R;
+import com.summerrc.dumplingplan.config.MMApplication;
+import com.summerrc.dumplingplan.utils.UIHelper;
 
 import java.lang.ref.WeakReference;
 
@@ -51,6 +53,7 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_shake);
         initView();
@@ -63,6 +66,62 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
         iv_finish = (ImageView) findViewById(R.id.iv_finish);
         iv_jiangbei.setOnClickListener(this);
         iv_finish.setOnClickListener(this);
+        setBackground();
+        setVisible();
+        findViewById(R.id.iv_setting).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MMApplication. isSelected = !MMApplication.isSelected;
+                setVisible();
+            }
+        });
+    }
+
+    private void setVisible() {
+        if(MMApplication.isSelected) {
+            findViewById(R.id.iv_yingxiao).setVisibility(View.VISIBLE);
+            findViewById(R.id.iv_yingyue).setVisibility(View.VISIBLE);
+        } else {
+            findViewById(R.id.iv_yingxiao).setVisibility(View.GONE);
+            findViewById(R.id.iv_yingyue).setVisibility(View.GONE);
+            findViewById(R.id.iv_yingxiao).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MMApplication.isSelected_yinxiao = !MMApplication.isSelected_yinxiao;
+                    if(MMApplication.isSelected_yinxiao) {
+                        findViewById(R.id.iv_yingxiao).setBackgroundResource(R.mipmap.soho_select_seasoning_yinxiao_selected);
+                        findViewById(R.id.iv_yingyue).setBackgroundResource(R.mipmap.soho_select_seasoning_yinuser_selected);
+                    } else {
+                        findViewById(R.id.iv_yingxiao).setBackgroundResource(R.mipmap.soho_select_seasoning_yinxiao_unselected);
+                        findViewById(R.id.iv_yingyue).setBackgroundResource(R.mipmap.soho_select_seasoning_yinuser_unselected);
+                    }
+                }
+            });
+            findViewById(R.id.iv_yingyue).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MMApplication.isSelected_yinyue = !MMApplication.isSelected_yinyue;
+                    if(MMApplication.isSelected_yinyue) {
+                        findViewById(R.id.iv_yingxiao).setBackgroundResource(R.mipmap.soho_select_seasoning_yinxiao_selected);
+                        findViewById(R.id.iv_yingyue).setBackgroundResource(R.mipmap.soho_select_seasoning_yinuser_selected);
+                    } else {
+                        findViewById(R.id.iv_yingxiao).setBackgroundResource(R.mipmap.soho_select_seasoning_yinxiao_unselected);
+                        findViewById(R.id.iv_yingyue).setBackgroundResource(R.mipmap.soho_select_seasoning_yinuser_unselected);
+                    }
+                }
+            });
+
+        }
+    }
+
+    private void setBackground() {
+        if(MMApplication.isSelected) {
+            findViewById(R.id.iv_yingxiao).setBackgroundResource(R.mipmap.soho_select_seasoning_yinxiao_selected);
+            findViewById(R.id.iv_yingyue).setBackgroundResource(R.mipmap.soho_select_seasoning_yinuser_selected);
+        } else {
+            findViewById(R.id.iv_yingxiao).setBackgroundResource(R.mipmap.soho_select_seasoning_yinxiao_unselected);
+            findViewById(R.id.iv_yingyue).setBackgroundResource(R.mipmap.soho_select_seasoning_yinuser_unselected);
+        }
     }
 
     private void initShake() {
@@ -83,14 +142,22 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
         soundPool = new SoundPool(10, AudioManager.STREAM_SYSTEM, 5);
         /**  载入音频流  */
         hitOkSfx = soundPool.load(this, R.raw.dumpling_plan_sd_shake, 0);
+
+        if (mSensorManager != null) {            // 注册监听器
+            /** 第一个参数是Listener，第二个参数是所得传感器类型，第三个参数值获取传感器信息的频率 */
+            mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_jiangbei:
+                UIHelper.openAwardActivity(this);
                 break;
             case R.id.iv_finish:
+                UIHelper.openWelcomeActivity(this);
+                finish();
                 break;
         }
     }
@@ -110,12 +177,16 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
             switch (msg.what) {
                 case SENSOR_SHAKE:
                     activity.shake_count++;
-                    if (activity.shake_count == 60) {
+                    if (activity.shake_count == 15) {
                         activity.iv_jiangbei.setVisibility(View.VISIBLE);
                         activity.iv_finish.setVisibility(View.VISIBLE);
+                        if (activity.mSensorManager != null) { // 取消监听器
+                            activity.mSensorManager.unregisterListener(activity, activity.mSensor);
+                            activity.mVibrator.cancel();
+                        }
                     }
                     activity.waterAlpha(activity.shake_count);
-                    activity.startAnimation();
+//                    activity.startAnimation();
                     break;
             }
         }
@@ -126,10 +197,10 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
         rotateAnimation = new RotateAnimation(0, -10, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         rotateAnimation.setDuration(200);
         rotateAnimation.setAnimationListener(this);
-        iv_water.startAnimation(rotateAnimation);
+//        iv_water.startAnimation(rotateAnimation);
         /** 速率最低0.5最高为2，1代表 正常速度 */
         soundPool.play(hitOkSfx, 1, 1, 0, 0, 1);
-        mVibrator.vibrate(300);
+//        mVibrator.vibrate(50);
         /** 第一个｛｝里面是节奏数组， 第二个参数是重复次数，-1为不重复，非-1俄日从pattern的指定下标开始重复 */
         mVibrator.vibrate(new long[]{100, 200, 100, 300}, -1);
         Thread updateThread = new Thread(new Runnable() {
@@ -164,7 +235,7 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
                         Animation.RELATIVE_TO_SELF, 0.5f);
                 rotateAnimation.setDuration(200);
                 rotateAnimation.setAnimationListener(this);
-                iv_water.startAnimation(rotateAnimation);
+//                iv_water.startAnimation(rotateAnimation);
                 break;
             case 2:                 // 第二个动画
                 index++;
@@ -173,7 +244,7 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
                         Animation.RELATIVE_TO_SELF, 0.5f);
                 rotateAnimation.setDuration(200);
                 rotateAnimation.setAnimationListener(this);
-                iv_water.startAnimation(rotateAnimation);
+//                iv_water.startAnimation(rotateAnimation);
                 break;
             case 3:                 // 第三个动画
                 index++;
@@ -182,7 +253,7 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
                         Animation.RELATIVE_TO_SELF, 0.5f);
                 rotateAnimation.setDuration(200);
                 rotateAnimation.setAnimationListener(this);
-                iv_water.startAnimation(rotateAnimation);
+//                iv_water.startAnimation(rotateAnimation);
                 break;
             case 4:                 // 第四个动画
                 index = 0;
@@ -191,7 +262,7 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
                         Animation.RELATIVE_TO_SELF, 0.5f);
                 rotateAnimation.setDuration(200);
                 rotateAnimation.setAnimationListener(this);
-                iv_water.startAnimation(rotateAnimation);
+//                iv_water.startAnimation(rotateAnimation);
                 break;
             default:
                 break;
@@ -232,16 +303,13 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
     @Override
     public void onResume() {
         super.onResume();
-        if (mSensorManager != null) {            // 注册监听器
-            /** 第一个参数是Listener，第二个参数是所得传感器类型，第三个参数值获取传感器信息的频率 */
-            mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
-        }
     }
 
     @Override
     public void onPause() {
         if (mSensorManager != null) { // 取消监听器
-            mSensorManager.unregisterListener(this);
+            mSensorManager.unregisterListener(this, mSensor);
+            mVibrator.cancel();
         }
         super.onPause();
     }
