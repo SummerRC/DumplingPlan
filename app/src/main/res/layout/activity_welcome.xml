@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rootView"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@mipmap/soho_background_welcome">
+    android:layout_height="fill_parent">
 
     <ImageView
         android:id="@+id/iv_stock"

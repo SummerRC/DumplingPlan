@@ -177,7 +177,7 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
             switch (msg.what) {
                 case SENSOR_SHAKE:
                     activity.shake_count++;
-                    if (activity.shake_count == 15) {
+                    if (activity.shake_count == 10) {
                         activity.iv_jiangbei.setVisibility(View.VISIBLE);
                         activity.iv_finish.setVisibility(View.VISIBLE);
                         if (activity.mSensorManager != null) { // 取消监听器
@@ -286,7 +286,7 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
         /** 一般在这三个方向的重力加速度达到40就达到了摇晃手机的状态。*/
         double mediumValue = 15;                   // 三星  User.sensitivity i9250怎么晃都不会超过20，没办法，只设置19了
         if (Math.abs(x) > mediumValue || Math.abs(y) > mediumValue || Math.abs(z) > mediumValue) {
-            mVibrator.vibrate(200);
+            mVibrator.vibrate(500);
             Message msg = new Message();
             msg.what = SENSOR_SHAKE;
             handler.sendMessage(msg);
@@ -315,8 +315,8 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
     }
 
     private void waterAlpha(int i) {
-        float start = 1 - 0.01f * (i - 1);
-        float end = 1 - 0.01f * i;
+        float start = 1 - 0.1f * (i - 1);
+        float end = 1 - 0.1f * i;
         ObjectAnimator waterObjectAnimator = ObjectAnimator.ofFloat(iv_water, "alpha", start, end);
         waterObjectAnimator.setDuration(500);
         waterObjectAnimator.start();

@@ -39,6 +39,7 @@ public class StuffingActivity extends Activity {
         initOnClick();
     }
 
+    private boolean tag = false;
     private void initView() {
         final Handler handler = new Handler();
         final SimpleDraweeView sdv_soho_stuffing = (SimpleDraweeView) findViewById(R.id.sdv_soho_stuffing);

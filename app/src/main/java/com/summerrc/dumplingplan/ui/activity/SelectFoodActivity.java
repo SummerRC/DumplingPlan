@@ -2,6 +2,9 @@ package com.summerrc.dumplingplan.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -22,6 +25,27 @@ public class SelectFoodActivity extends Activity implements View.OnClickListener
     private Handler handler;
     private int num = 0;
 
+
+    private Bitmap bitmap_background;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(bitmap_background==null || bitmap_background.isRecycled()) {
+            bitmap_background = BitmapFactory.decodeResource(getResources(), R.mipmap.soho_bakground);
+        }
+        findViewById(R.id.rootView).setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap_background));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(bitmap_background != null && !bitmap_background.isRecycled()) {
+            bitmap_background.recycle();
+            bitmap_background = null;
+            System.gc();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

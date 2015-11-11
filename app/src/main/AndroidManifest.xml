@@ -14,7 +14,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".ui.activity.WelcomeActivity"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,52 +24,63 @@
         </activity>
         <activity
             android:name=".ui.activity.CutActivity"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name=".ui.activity.SelectSeasoningActivity"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name=".ui.activity.DoughActivity"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name=".ui.activity.RubActivity"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name=".ui.activity.ShakeActivity"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name=".ui.activity.StuffingActivity"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name=".ui.activity.SkinActivity"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name=".ui.activity.AddStuffingActivity"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name=".ui.activity.SelectFoodActivity"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name=".ui.activity.PutActivity"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name=".ui.activity.PackActivity"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name=".ui.activity.FoodDescriptionActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/DialogActivity" >
+            android:theme="@style/DialogActivity">
         </activity>
 
         <activity
@@ -80,19 +92,23 @@
         </activity>
         <activity
             android:name=".interestinggame.cutfood.CutFoodActivity"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name=".interestinggame.selectmore.SelectMoreActivity"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name=".interestinggame.SkinePackStuffing.SkinPackStuffingActivity"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name=".ui.activity.AwardActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="landscape"
             android:label="@string/title_activity_award" >
         </activity>

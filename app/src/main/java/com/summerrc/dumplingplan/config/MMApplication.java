@@ -11,8 +11,8 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 public class MMApplication  extends Application{
 
     public static boolean isSelected = false;
-    public static boolean isSelected_yinxiao = true;
-    public static boolean isSelected_yinyue = true;
+    public static boolean isSelected_yinxiao = false;
+    public static boolean isSelected_yinyue = false;
 
     @Override
     public void onCreate() {

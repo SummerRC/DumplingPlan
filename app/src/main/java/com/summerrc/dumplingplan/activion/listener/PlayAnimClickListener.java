@@ -14,6 +14,7 @@ public class PlayAnimClickListener implements View.OnClickListener {
     private Handler handler;
     private long playTime;
     private AnimStopCallBack animStopCallBack;
+    private boolean isPlay = false;
 
     public PlayAnimClickListener(Animatable animatable, Handler handler, long playTime, AnimStopCallBack animStopCallBack) {
         this.animatable = animatable;
@@ -24,14 +25,18 @@ public class PlayAnimClickListener implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        animatable.start();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                stopAnim();
-                animStopCallBack.afterAnimStop();
-            }
-        }, playTime);
+        if(!isPlay) {
+            isPlay = true;
+            animatable.start();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    stopAnim();
+                    animStopCallBack.afterAnimStop();
+                }
+            }, playTime);
+        }
+
     }
 
     private void stopAnim() {

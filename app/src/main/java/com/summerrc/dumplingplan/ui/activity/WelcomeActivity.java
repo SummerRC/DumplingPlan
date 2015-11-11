@@ -2,6 +2,8 @@ package com.summerrc.dumplingplan.ui.activity;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,7 +13,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.summerrc.dumplingplan.R;
-import com.summerrc.dumplingplan.config.GameDataManager;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 /**
@@ -20,7 +21,26 @@ import com.summerrc.dumplingplan.utils.UIHelper;
  * @author SummerRC
  */
 public class WelcomeActivity extends Activity implements OnClickListener {
-	private Bitmap bitmap;
+    private Bitmap bitmap_background;
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		if(bitmap_background==null || bitmap_background.isRecycled()) {
+            bitmap_background = BitmapFactory.decodeResource(getResources(), R.mipmap.soho_background_welcome);
+		}
+		findViewById(R.id.rootView).setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap_background));
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		if(bitmap_background != null && !bitmap_background.isRecycled()) {
+            bitmap_background.recycle();
+            bitmap_background = null;
+			System.gc();
+		}
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +52,8 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 
 		setContentView(R.layout.activity_welcome);
 		initView();
-		GameDataManager.init(getApplicationContext()).clean();
-		GameDataManager.init(getApplicationContext());
+//		GameDataManager.init(getApplicationContext()).clean();
+//		GameDataManager.init(getApplicationContext());
 //		MusicPlayer.init(getApplicationContext());
 //		SoundUtil.initSounds(getApplicationContext());
 	}
@@ -88,16 +108,6 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 				UIHelper.openAwardActivity(this);
                 break;
 
-		}
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-		if(bitmap != null && !bitmap.isRecycled()) {
-			bitmap.isRecycled();
-			bitmap = null;
-			System.gc();
 		}
 	}
 }

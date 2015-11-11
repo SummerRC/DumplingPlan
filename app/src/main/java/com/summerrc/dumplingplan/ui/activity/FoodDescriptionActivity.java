@@ -9,14 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.config.FoodTypeManager;
-import com.summerrc.dumplingplan.config.GameDataManager;
 import com.summerrc.dumplingplan.config.IntentConstant;
-
-import java.util.ArrayList;
 
 /**
  * @author SummerRC on 2015.07.12
@@ -25,7 +21,6 @@ import java.util.ArrayList;
 public class FoodDescriptionActivity extends Activity implements View.OnClickListener{
     private FoodTypeManager.Food food;
     private String ACTIVITY_TYPE;
-    private GameDataManager gameDataManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +33,6 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
         food = (FoodTypeManager.Food)getIntent().getSerializableExtra(IntentConstant.SELECTED_FOOD);
         ACTIVITY_TYPE = getIntent().getStringExtra(IntentConstant.ACTIVITY_TYPE);
         setContentView(R.layout.activity_food_description);
-        gameDataManager = GameDataManager.init(getApplicationContext());
         initView();
     }
 
@@ -96,26 +90,10 @@ public class FoodDescriptionActivity extends Activity implements View.OnClickLis
         }
     }
 
-    /**
-     * @return true : 可以添加   false ：存在或已满3种
-     */
-    private boolean isAdd() {
-        ArrayList<FoodTypeManager.Food> list = new ArrayList<>();
-        if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_FOOD)) {                    //食材
-            list = gameDataManager.getFoodList();
-        } else if(ACTIVITY_TYPE.equals(IntentConstant.ACTIVITY_FROM_SELECT_SEASONING)) {        //调料
-            list = gameDataManager.getSeasoningList();
-        }
-        if(list.size() >= 3) {
-            Toast.makeText(this, "最多只能选择3种食材！", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        for(int i=0; i< list.size(); i++) {
-            if(list.get(i) == food){
-                Toast.makeText(this, "菜篮中已存在，请不要重复选取！", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        }
-        return true;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        System.gc();
     }
 }
