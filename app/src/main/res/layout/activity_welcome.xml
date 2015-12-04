@@ -4,6 +4,16 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.summerrc.dumplingplan.widget.WelcomeSurfaceView
+            android:id="@+id/welcomeView"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
+    </FrameLayout>
+
     <ImageView
         android:id="@+id/iv_stock"
         android:layout_width="72dp"
@@ -19,7 +29,6 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="60dp"
         android:background="@mipmap/soho_welcome_ventilator" />
-
 
     <ImageView
         android:id="@+id/iv_setting"
@@ -68,4 +77,5 @@
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/iv_help"
         android:background="@mipmap/soho_welcome_jiangbei" />
+
 </RelativeLayout>

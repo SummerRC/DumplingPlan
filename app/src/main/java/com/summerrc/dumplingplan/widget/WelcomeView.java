@@ -5,18 +5,17 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Paint.Style;
-import android.graphics.Path;
+
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
-import android.os.Handler;
+
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.interestinggame.cutfood.Spirit;
 
-import com.summerrc.dumplingplan.utils.SoundUtil;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -27,24 +26,21 @@ import java.util.Random;
  */
 public class WelcomeView extends WelcomeSurfaceView {
     private Context mContext;
-    private ArrayList<PointF> mTrack;                    //运动轨迹的坐标集合
+    private final ArrayList<PointF> mTrack;             //运动轨迹:包含一系列坐标点
     private final static int POINT_LIMIT = 5;
     private Paint mPaint;
 
-    private int mBladeColor = 0xFFFFFFFF;                //此变量用于修改刀光的颜色
     private ArrayList<Spirit> mSpirits;                    //用于容纳食材精灵
     private ArrayList<Spirit> mBooms;                    //用于容纳炸弹精灵
     private long mNextTime = 0L;                        //计算下次生成精灵的时间
 
     private Drawable mBackground;                        //背景
-    private Handler handler;
 
-    protected WelcomeView(Context context, Handler handler) {
-        super(context);
-        this.handler = handler;
+    protected WelcomeView(Context context, AttributeSet attrs) {
+        super(context, attrs);
         mContext = context;
         mPaint = new Paint();
-        mBackground = mContext.getResources().getDrawable(R.mipmap.background_cut_food);
+        mBackground = mContext.getResources().getDrawable(R.mipmap.soho_background_welcome);
         mTrack = new ArrayList<>();
         /** 实例化容纳精灵的列表，请自行做好管理精灵的工作 */
         mSpirits = new ArrayList<>();
@@ -66,10 +62,8 @@ public class WelcomeView extends WelcomeSurfaceView {
             nextGenTime();
         }
 
-        checkSpirites();
+        checkSpirits();
         drawSpirits(canvas);
-        /** 画刀光 */
-        drawBlade(canvas);
         isHit();
     }
 
@@ -107,48 +101,6 @@ public class WelcomeView extends WelcomeSurfaceView {
                 spirit.setmType(cakeId);
                 //t_num=randNum;
                 break;
-            case 3:
-                cakeId = R.mipmap.cut_food_eggplant;
-                spirit.loadBitmap(cakeId);
-                spirit.setmType(cakeId);
-                //t_num=randNum;
-                break;
-            case 4:
-                cakeId = R.mipmap.cut_food_tomato;
-                spirit.loadBitmap(cakeId);
-                spirit.setmType(cakeId);
-                //t_num=randNum;
-                break;
-            case 5:
-                cakeId = R.mipmap.cut_food_beef;
-                spirit.loadBitmap(cakeId);
-                spirit.setmType(cakeId);
-                //t_num=randNum;
-                break;
-            case 6:
-                cakeId = R.mipmap.cut_food_beef;
-                spirit.loadBitmap(cakeId);
-                spirit.setmType(cakeId);
-                //t_num=randNum;
-                break;
-            case 7:
-                cakeId = R.mipmap.cut_food_pork;
-                spirit.loadBitmap(cakeId);
-                spirit.setmType(cakeId);
-                //t_num=randNum;
-                break;
-            case 8:
-                cakeId = R.mipmap.cut_food_chicken;
-                spirit.loadBitmap(cakeId);
-                spirit.setmType(cakeId);
-                //t_num=randNum;
-                break;
-            case 9:
-                cakeId = R.mipmap.cut_food_crab;
-                spirit.loadBitmap(cakeId);
-                spirit.setmType(cakeId);
-                //t_num=randNum;
-                break;
         }
 
         Random r = new Random();
@@ -163,7 +115,7 @@ public class WelcomeView extends WelcomeSurfaceView {
     /**
      * 开始和停止背景音乐
      *
-     * @param holder
+     * @param holder SurfaceHolder
      */
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
@@ -173,7 +125,7 @@ public class WelcomeView extends WelcomeSurfaceView {
     /**
      * 开始和停止背景音乐
      *
-     * @param holder
+     * @param holder SurfaceHolder
      */
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
@@ -198,9 +150,9 @@ public class WelcomeView extends WelcomeSurfaceView {
     /**
      * 检查精灵是否还在屏幕内，不在屏幕内则移除
      */
-    private void checkSpirites() {
+    private void checkSpirits() {
         for (int i = 0; i < mSpirits.size(); i++) {
-            if (isSpiriteValidate(i)) {
+            if (isSpiritValidate(i)) {
                 mSpirits.remove(i);
                 i -= 1;
             }
@@ -210,15 +162,12 @@ public class WelcomeView extends WelcomeSurfaceView {
     /**
      * 具体检查精灵是否在屏幕内的方法
      *
-     * @param i
-     * @return
+     * @param i index
+     * @return boolean
      */
-    private boolean isSpiriteValidate(int i) {
-        PointF coord = mSpirits.get(i).mCoord;
-        if (coord.x < -mSpirits.get(i).mDimention.x || coord.x > PhoneWidth || coord.y > PhoneHeight) {
-            return true;
-        }
-        return false;
+    private boolean isSpiritValidate(int i) {
+        PointF coordinate = mSpirits.get(i).mCoord;
+        return (coordinate.x < -mSpirits.get(i).mDimention.x || coordinate.x > PhoneWidth || coordinate.y > PhoneHeight);
     }
 
     private void isHit() {
@@ -240,17 +189,6 @@ public class WelcomeView extends WelcomeSurfaceView {
         }
     }
 
-
-    private void initCutCake(int id1, int id2, int z) {
-        Spirit spirit_left = new Spirit(mContext);
-        spirit_left.loadBitmap(id1);
-        spirit_left.mCoord.x = mSpirits.get(z).mCoord.x + 60;
-        spirit_left.mCoord.y = mSpirits.get(z).mCoord.y;
-        mSpirits.add(spirit_left);
-        mSpirits.remove(z);
-    }
-
-
     /**
      * 修改画背景的方法
      *
@@ -264,62 +202,12 @@ public class WelcomeView extends WelcomeSurfaceView {
         canvas.drawBitmap(bitmap_clock, PhoneWidth - 210, 35, mPaint);
     }
 
-    /**
-     * 画刀光到画布上
-     *
-     * @param canvas 画布
-     */
-    private void drawBlade(Canvas canvas) {
-        mPaint.setColor(0xFFFFFFFF);
-        synchronized (mTrack) {
-            Path path = new Path();
-            Float startX, startY;
-            Float controlX, controlY;
-            Float endX, endY;
-
-            int strokeWidth = 8;
-            mPaint.setStyle(Style.STROKE);
-
-            if (mTrack.size() > 1) {
-                endX = mTrack.get(0).x;
-                endY = mTrack.get(0).y;
-
-                for (int i = 0; i < mTrack.size() - 1; i++) {
-                    startX = endX;
-                    startY = endY;
-                    controlX = mTrack.get(i).x;
-                    controlY = mTrack.get(i).y;
-                    endX = (controlX + mTrack.get(i + 1).x) / 2;
-                    endY = (controlY + mTrack.get(i + 1).y) / 2;
-                    path.moveTo(startX, startY);
-                    path.quadTo(controlX, controlY, endX, endY);
-                    mPaint.setColor(mBladeColor);
-                    mPaint.setStrokeWidth(strokeWidth++);
-                    canvas.drawPath(path, mPaint);
-
-                    path.reset();
-                }
-
-                startX = endX;
-                startY = endY;
-                endX = mTrack.get(mTrack.size() - 1).x;
-                endY = mTrack.get(mTrack.size() - 1).y;
-                path.moveTo(startX, startY);
-                path.lineTo(endX, endY);
-                mPaint.setStrokeWidth(strokeWidth++);
-                mPaint.setColor(mBladeColor);
-                canvas.drawPath(path, mPaint);
-
-                mTrack.remove(0);
-            }
-        }
-    }
 
     /**
      * 屏幕点击事件的响应方法
      *
-     * @param event
-     * @return
+     * @param event event
+     * @return boolean
      */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -336,11 +224,10 @@ public class WelcomeView extends WelcomeSurfaceView {
     /**
      * 手指按下的响应方法
      *
-     * @param event
+     * @param event event
      */
     private void handleActionDown(MotionEvent event) {
         PointF point = new PointF(event.getX(), event.getY());
-        SoundUtil.playSounds(SoundUtil.CUT, 0, mContext.getApplicationContext());
         synchronized (mTrack) {
             mTrack.add(point);
         }
@@ -349,7 +236,7 @@ public class WelcomeView extends WelcomeSurfaceView {
     /**
      * 手指拖动的响应方法
      *
-     * @param event
+     * @param event event
      */
     private void handleActionMove(MotionEvent event) {
         PointF point = new PointF(event.getX(), event.getY());
