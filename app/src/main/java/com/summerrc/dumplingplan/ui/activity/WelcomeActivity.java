@@ -24,27 +24,10 @@ import com.summerrc.dumplingplan.widget.WelcomeView;
  * @author SummerRC
  */
 public class WelcomeActivity extends Activity implements OnClickListener {
-//    private Bitmap bitmap_background;
-
-
-	@Override
-	protected void onStart() {
-		super.onStart();
-//		if(bitmap_background==null || bitmap_background.isRecycled()) {
-//            bitmap_background = BitmapFactory.decodeResource(getResources(), R.mipmap.soho_background_welcome);
-//		}
-//		findViewById(R.id.rootView).setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap_background));
-
-	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
-//		if(bitmap_background != null && !bitmap_background.isRecycled()) {
-//            bitmap_background.recycle();
-//            bitmap_background = null;
-//			System.gc();
-//		}
 	}
 
 	@Override

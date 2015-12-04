@@ -8,13 +8,13 @@ import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.WindowManager;
 
 import com.summerrc.dumplingplan.R;
-import com.summerrc.dumplingplan.interestinggame.cutfood.Spirit;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -33,21 +33,21 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
     private final ArrayList<PointF> mTrack;             //运动轨迹:包含一系列坐标点
     private final static int POINT_LIMIT = 5;
     private Paint mPaint;
-    private ArrayList<Spirit> mSpirits;                 //用于容纳食材精灵
+    private ArrayList<AnimationSpirit> mSpirits;                 //用于容纳食材精灵
     private long mNextTime = 0L;                        //计算下次生成精灵的时间
     private Drawable mBackground;                       //背景
 
     public WelcomeSurfaceView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
+        mTrack = new ArrayList<>();
         mHolder = getHolder();
         mHolder.addCallback(this);
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         PhoneWidth = wm.getDefaultDisplay().getWidth();
         PhoneHeight = wm.getDefaultDisplay().getHeight();
         mPaint = new Paint();
         mBackground = mContext.getResources().getDrawable(R.mipmap.soho_background_welcome);
-        mTrack = new ArrayList<>();
         /** 实例化容纳精灵的列表，请自行做好管理精灵的工作 */
         mSpirits = new ArrayList<>();
     }
@@ -83,6 +83,11 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
         public void stop() {
             mRun = false;
         }
+
+        public void start() {
+            mRun = true;
+        }
+
     }
 
     /**
@@ -120,33 +125,12 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
      */
     private void generateSpirit() {
         /** 请修改此方法，使精灵从更多方向抛出 */
-        Spirit spirit = new Spirit(mContext);
-        spirit.loadBitmap(R.mipmap.ic_launcher);
-
-        Random rand = new Random();
-        int randNum = 1 + rand.nextInt(9);
-        int cakeId;
-        switch (randNum) {
-            case 1:
-                cakeId = R.mipmap.cut_food_cabbage;
-                spirit.loadBitmap(cakeId);
-                spirit.setmType(cakeId);
-                //t_num=randNum;
-                break;
-            case 2:
-                cakeId = R.mipmap.cut_food_cucumber;
-                spirit.loadBitmap(cakeId);
-                spirit.setmType(cakeId);
-                //t_num=randNum;
-                break;
-        }
-
-        Random r = new Random();
-        spirit.mCoord.x = PhoneWidth / 4 - 300 + r.nextInt(400);
-        spirit.mCoord.y = PhoneHeight;
-        spirit.mV.x = 7 + r.nextInt(5);
-        spirit.mV.y = -(30 + (r.nextInt(10)));
-        mSpirits.add(spirit);
+        AnimationSpirit leftSpirit = new AnimationSpirit(mContext);
+        leftSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.LEFT);
+        AnimationSpirit rightSpirit = new AnimationSpirit(mContext);
+        rightSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.RIGHT);
+        mSpirits.add(leftSpirit);
+        mSpirits.add(rightSpirit);
     }
 
     /**
@@ -179,22 +163,17 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
      * @return boolean
      */
     private boolean isSpiritValidate(int i) {
-        PointF coordinate = mSpirits.get(i).mCoord;
-        return (coordinate.x < -mSpirits.get(i).mDimention.x || coordinate.x > PhoneWidth || coordinate.y > PhoneHeight);
+        PointF coordinate = mSpirits.get(i).mCoordinate;
+        return (coordinate.x < -mSpirits.get(i).mDimension.x || coordinate.x > PhoneWidth || coordinate.y > PhoneHeight);
     }
 
     private void isHit() {
         synchronized (mTrack) {
             for (int i = 0; i < mTrack.size(); i++) {
                 for (int z = 0; z < mSpirits.size(); z++) {
-                    if (mTrack.get(i).x > mSpirits.get(z).mCoord.x && mTrack.get(i).x < mSpirits.get(z).mCoord.x + mSpirits.get(z).mDimention.x) {
-                        if (mTrack.get(i).y > mSpirits.get(z).mCoord.y && mTrack.get(i).y < mSpirits.get(z).mCoord.y + mSpirits.get(z).mDimention.y) {
-                            switch (mSpirits.get(z).getmType()) {
-                                case R.mipmap.cut_food_cabbage:
-                                    break;
-                                case R.mipmap.cut_food_cucumber:
-                                    break;
-                            }
+                    if (mTrack.get(i).x > mSpirits.get(z).mCoordinate.x && mTrack.get(i).x < mSpirits.get(z).mCoordinate.x + mSpirits.get(z).mDimension.x) {
+                        if (mTrack.get(i).y > mSpirits.get(z).mCoordinate.y && mTrack.get(i).y < mSpirits.get(z).mCoordinate.y + mSpirits.get(z).mDimension.y) {
+                            Log.e("isHit", "isHit");
                         }
                     }
                 }
