@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -14,6 +15,8 @@ import android.view.animation.AnimationUtils;
 
 import com.summerrc.dumplingplan.R;
 import com.summerrc.dumplingplan.utils.UIHelper;
+import com.summerrc.dumplingplan.widget.WelcomeSurfaceView;
+import com.summerrc.dumplingplan.widget.WelcomeView;
 
 /**
  * 自定义FrameLayout文字飞入飞出效果
@@ -21,25 +24,10 @@ import com.summerrc.dumplingplan.utils.UIHelper;
  * @author SummerRC
  */
 public class WelcomeActivity extends Activity implements OnClickListener {
-    private Bitmap bitmap_background;
-
-	@Override
-	protected void onStart() {
-		super.onStart();
-		if(bitmap_background==null || bitmap_background.isRecycled()) {
-            bitmap_background = BitmapFactory.decodeResource(getResources(), R.mipmap.soho_background_welcome);
-		}
-		findViewById(R.id.rootView).setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap_background));
-	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
-		if(bitmap_background != null && !bitmap_background.isRecycled()) {
-            bitmap_background.recycle();
-            bitmap_background = null;
-			System.gc();
-		}
 	}
 
 	@Override
