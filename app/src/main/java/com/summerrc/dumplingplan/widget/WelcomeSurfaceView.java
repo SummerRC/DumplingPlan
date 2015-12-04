@@ -8,12 +8,12 @@ import android.view.WindowManager;
 
 /**
  * @author SummerRC on 2015/12/3 0011.
- *         自定义的SurfaceView，用于播放弹出动画
+ *         自定义的SurfaceView，用于管理生命周期,子类实现具体的绘制逻辑
  */
 public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
 
     private SurfaceHolder mHolder;
-    public DrawThread mDrawThread;
+    private DrawThread mDrawThread;
     public int PhoneWidth;
     public int PhoneHeight;
 
@@ -42,11 +42,7 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
         mDrawThread.stop();
     }
 
-    protected void myDraw(Canvas canvas) {
-
-    }
-
-    public class DrawThread implements Runnable {
+    private class DrawThread implements Runnable {
         private boolean mRun = true;
 
         @Override
@@ -61,5 +57,13 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
         public void stop() {
             mRun = false;
         }
+    }
+
+    /**
+     * 提供子类的接口,有子类实现具体逻辑
+     * @param canvas    画布
+     */
+    protected void myDraw(Canvas canvas) {
+
     }
 }
