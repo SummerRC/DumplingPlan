@@ -1,10 +1,9 @@
 package com.summerrc.dumplingplan.widget;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+
 import android.graphics.Canvas;
-import android.graphics.Paint;
+
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -32,24 +31,31 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
     private Context mContext;
     private final ArrayList<PointF> mTrack;             //运动轨迹:包含一系列坐标点
     private final static int POINT_LIMIT = 5;
-    private Paint mPaint;
-    private ArrayList<AnimationSpirit> mSpirits;                 //用于容纳食材精灵
+    private ArrayList<AnimationSpirit> animationSpirits;//用于容纳运动的精灵
+    private ArrayList<StaticSpirit> staticSpirits;      //用于容纳静止的的精灵
     private long mNextTime = 0L;                        //计算下次生成精灵的时间
     private Drawable mBackground;                       //背景
+    private boolean play = false;                       //播放动画
 
     public WelcomeSurfaceView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
-        mTrack = new ArrayList<>();
-        mHolder = getHolder();
-        mHolder.addCallback(this);
         WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         PhoneWidth = wm.getDefaultDisplay().getWidth();
         PhoneHeight = wm.getDefaultDisplay().getHeight();
-        mPaint = new Paint();
+
+        mHolder = getHolder();
+        mHolder.addCallback(this);
+
+        /** 用于记录手指触摸点的轨迹 */
+        mTrack = new ArrayList<>();
+        /** 运动的精灵集合,注意运动出屏幕之后要及时从集合移除 */
+        animationSpirits = new ArrayList<>();
+        /** 初始化静止的精灵集合 */
+        staticSpirits = new ArrayList<>();
+        initStaticSpirit();
+        /** 背景 */
         mBackground = mContext.getResources().getDrawable(R.mipmap.soho_background_welcome);
-        /** 实例化容纳精灵的列表，请自行做好管理精灵的工作 */
-        mSpirits = new ArrayList<>();
     }
 
     @Override
@@ -75,7 +81,22 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
         public void run() {
             while (mRun) {
                 Canvas canvas = mHolder.lockCanvas();
-                myDraw(canvas);
+                /** 画背景 */
+                drawBackground(canvas);
+                /** 绘制静态精灵集合到屏幕上 */
+                drawStaticSpirits(canvas);
+                /** 检查动态精灵是否还在屏幕内 */
+                checkSpirits();
+                if(play) {
+                    /** 到了计算好的时间就生成精灵 ，间隔时间1秒钟左右，用了一个随机数 */
+                    if (mNextTime < System.currentTimeMillis()) {
+                        initAnimationSpirit();
+                        nextGenTime();
+                    }
+                    drawAnimationSpirits(canvas);
+                }
+                /** 捕获屏幕点击触摸事件 */
+                isHit();
                 mHolder.unlockCanvasAndPost(canvas);
             }
         }
@@ -91,23 +112,30 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
     }
 
     /**
-     * 提供子类的接口,有子类实现具体逻辑
+     * 修改画背景的方法
+     */
+    private void initStaticSpirit() {
+        StaticSpirit setting = new StaticSpirit(mContext, StaticSpirit.Type.SETTING);
+        StaticSpirit start = new StaticSpirit(mContext, StaticSpirit.Type.START);
+        StaticSpirit logo = new StaticSpirit(mContext, StaticSpirit.Type.LOGO);
+        StaticSpirit help = new StaticSpirit(mContext, StaticSpirit.Type.HELP);
+        StaticSpirit award = new StaticSpirit(mContext, StaticSpirit.Type.AWARD);
+        staticSpirits.add(setting);
+        staticSpirits.add(start);
+        staticSpirits.add(logo);
+        staticSpirits.add(help);
+        staticSpirits.add(award);
+    }
+
+    /**
+     * 画精灵到画布上
      *
      * @param canvas 画布
      */
-    protected void myDraw(Canvas canvas) {
-        /** 用户画背景 */
-        drawBackground(canvas);
-
-        /** 到了计算好的时间就生成精灵 ，间隔时间1秒钟左右，用了一个随机数 */
-        if (mNextTime < System.currentTimeMillis()) {
-            generateSpirit();
-            nextGenTime();
+    private void drawStaticSpirits(Canvas canvas) {
+        for (int i = 0; i < staticSpirits.size(); i++) {
+            staticSpirits.get(i).draw(canvas);
         }
-
-        checkSpirits();
-        drawSpirits(canvas);
-        isHit();
     }
 
     /**
@@ -123,14 +151,14 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
     /**
      * 生成精灵，并添加到精灵管理列表
      */
-    private void generateSpirit() {
+    private void initAnimationSpirit() {
         /** 请修改此方法，使精灵从更多方向抛出 */
         AnimationSpirit leftSpirit = new AnimationSpirit(mContext);
         leftSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.LEFT);
         AnimationSpirit rightSpirit = new AnimationSpirit(mContext);
         rightSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.RIGHT);
-        mSpirits.add(leftSpirit);
-        mSpirits.add(rightSpirit);
+        animationSpirits.add(leftSpirit);
+        animationSpirits.add(rightSpirit);
     }
 
     /**
@@ -138,9 +166,9 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
      *
      * @param canvas 画布
      */
-    private void drawSpirits(Canvas canvas) {
-        for (int i = 0; i < mSpirits.size(); i++) {
-            mSpirits.get(i).draw(canvas);
+    private void drawAnimationSpirits(Canvas canvas) {
+        for (int i = 0; i < animationSpirits.size(); i++) {
+            animationSpirits.get(i).draw(canvas);
         }
     }
 
@@ -148,9 +176,9 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
      * 检查精灵是否还在屏幕内，不在屏幕内则移除
      */
     private void checkSpirits() {
-        for (int i = 0; i < mSpirits.size(); i++) {
+        for (int i = 0; i < animationSpirits.size(); i++) {
             if (isSpiritValidate(i)) {
-                mSpirits.remove(i);
+                animationSpirits.remove(i);
                 i -= 1;
             }
         }
@@ -163,22 +191,8 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
      * @return boolean
      */
     private boolean isSpiritValidate(int i) {
-        PointF coordinate = mSpirits.get(i).mCoordinate;
-        return (coordinate.x < -mSpirits.get(i).mDimension.x || coordinate.x > PhoneWidth || coordinate.y > PhoneHeight);
-    }
-
-    private void isHit() {
-        synchronized (mTrack) {
-            for (int i = 0; i < mTrack.size(); i++) {
-                for (int z = 0; z < mSpirits.size(); z++) {
-                    if (mTrack.get(i).x > mSpirits.get(z).mCoordinate.x && mTrack.get(i).x < mSpirits.get(z).mCoordinate.x + mSpirits.get(z).mDimension.x) {
-                        if (mTrack.get(i).y > mSpirits.get(z).mCoordinate.y && mTrack.get(i).y < mSpirits.get(z).mCoordinate.y + mSpirits.get(z).mDimension.y) {
-                            Log.e("isHit", "isHit");
-                        }
-                    }
-                }
-            }
-        }
+        PointF coordinate = animationSpirits.get(i).mCoordinate;
+        return (coordinate.x < -animationSpirits.get(i).mDimension.x || coordinate.x > PhoneWidth || coordinate.y > PhoneHeight);
     }
 
     /**
@@ -190,8 +204,20 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
         canvas.drawColor(0xFF000000);
         mBackground.setBounds(0, 0, PhoneWidth, PhoneHeight);
         mBackground.draw(canvas);
-        Bitmap bitmap_clock = BitmapFactory.decodeResource(getResources(), R.drawable.clock);
-        canvas.drawBitmap(bitmap_clock, PhoneWidth - 210, 35, mPaint);
+    }
+
+    private void isHit() {
+        synchronized (mTrack) {
+            for (int i = 0; i < mTrack.size(); i++) {
+                for (int z = 0; z < staticSpirits.size(); z++) {
+                    if (mTrack.get(i).x > staticSpirits.get(z).mCoordinate.x && mTrack.get(i).x < staticSpirits.get(z).mCoordinate.x + staticSpirits.get(z).mDimension.x) {
+                        if (mTrack.get(i).y > staticSpirits.get(z).mCoordinate.y && mTrack.get(i).y < staticSpirits.get(z).mCoordinate.y + staticSpirits.get(z).mDimension.y) {
+                            play = !play;
+                        }
+                    }
+                }
+            }
+        }
     }
 
 

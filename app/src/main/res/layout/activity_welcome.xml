@@ -30,52 +30,52 @@
         android:layout_marginEnd="60dp"
         android:background="@mipmap/soho_welcome_ventilator" />
 
-    <ImageView
-        android:id="@+id/iv_setting"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@mipmap/soho_welcome_shezhi" />
+    <!--<ImageView-->
+        <!--android:id="@+id/iv_setting"-->
+        <!--android:layout_marginLeft="30dp"-->
+        <!--android:layout_marginBottom="16dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:background="@mipmap/soho_welcome_shezhi" />-->
 
-    <ImageView
-        android:id="@+id/iv_start"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/iv_setting"
-        android:background="@mipmap/soho_welcome_kaishi" />
+    <!--<ImageView-->
+        <!--android:id="@+id/iv_start"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_marginBottom="16dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_toRightOf="@+id/iv_setting"-->
+        <!--android:background="@mipmap/soho_welcome_kaishi" />-->
 
-    <ImageView
-        android:id="@+id/iv_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_centerInParent="true"
-        android:layout_alignParentBottom="true"
-        android:background="@mipmap/soho_welcome_logo" />
+    <!--<ImageView-->
+        <!--android:id="@+id/iv_logo"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:background="@mipmap/soho_welcome_logo" />-->
 
-    <ImageView
-        android:id="@+id/iv_help"
-        android:layout_marginLeft="38dp"
-        android:layout_marginBottom="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/iv_logo"
-        android:background="@mipmap/soho_welcome_bangzhu" />
+    <!--<ImageView-->
+        <!--android:id="@+id/iv_help"-->
+        <!--android:layout_marginLeft="38dp"-->
+        <!--android:layout_marginBottom="16dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_toRightOf="@+id/iv_logo"-->
+        <!--android:background="@mipmap/soho_welcome_bangzhu" />-->
 
-    <ImageView
-        android:id="@+id/iv_jiangbei"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/iv_help"
-        android:background="@mipmap/soho_welcome_jiangbei" />
+    <!--<ImageView-->
+        <!--android:id="@+id/iv_jiangbei"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_marginBottom="16dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_toEndOf="@+id/iv_help"-->
+        <!--android:background="@mipmap/soho_welcome_jiangbei" />-->
 
 </RelativeLayout>
