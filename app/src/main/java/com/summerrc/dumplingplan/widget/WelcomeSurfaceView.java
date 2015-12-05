@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -16,7 +15,6 @@ import android.view.WindowManager;
 import com.summerrc.dumplingplan.R;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * @author SummerRC on 2015/12/3 0011.
@@ -88,7 +86,7 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
                 /** 检查动态精灵是否还在屏幕内 */
                 checkSpirits();
                 if(play) {
-                    /** 到了计算好的时间就生成精灵 ，间隔时间1秒钟左右，用了一个随机数 */
+                    /** 到了计算好的时间就生成精灵 ，间隔时间0.1秒钟左右，用了一个随机数 */
                     if (mNextTime < System.currentTimeMillis()) {
                         initAnimationSpirit();
                         nextGenTime();
@@ -143,9 +141,7 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
      */
     private void nextGenTime() {
         mNextTime = System.currentTimeMillis();
-        Random r = new Random();
-        int interval = 1000 + r.nextInt(100);
-        mNextTime += interval;
+        mNextTime += 300;
     }
 
     /**
@@ -153,9 +149,12 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
      */
     private void initAnimationSpirit() {
         /** 请修改此方法，使精灵从更多方向抛出 */
-        AnimationSpirit leftSpirit = new AnimationSpirit(mContext);
+        PointF coordinate = new PointF();
+        coordinate.x = staticSpirits.get(2).mCoordinate.x;
+        coordinate.y = staticSpirits.get(2).mCoordinate.y;
+        AnimationSpirit leftSpirit = new AnimationSpirit(mContext, coordinate);
         leftSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.LEFT);
-        AnimationSpirit rightSpirit = new AnimationSpirit(mContext);
+        AnimationSpirit rightSpirit = new AnimationSpirit(mContext, coordinate);
         rightSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.RIGHT);
         animationSpirits.add(leftSpirit);
         animationSpirits.add(rightSpirit);

@@ -20,13 +20,13 @@ public class AnimationSpirit {
 		LEFT, RIGHT
 	}
 
-	public AnimationSpirit(Context context){
+	public AnimationSpirit(Context context, PointF mCoordinate){
 		mContext = context;
-		mCoordinate = new PointF();
+		this.mCoordinate = new PointF();
+		this.mCoordinate.x = mCoordinate.x;
+		this.mCoordinate.y = mCoordinate.y;
 		mV = new PointF();
 		mDimension = new PointF();
-		mCoordinate.x = 300;
-		mCoordinate.y = 0;
 	}
 
 	/**
@@ -48,17 +48,14 @@ public class AnimationSpirit {
 	}
 
 	private void setLeftMove() {
-		mCoordinate.x = 300;
-		mCoordinate.y = 0;
 		mV.x = 7;
 		mV.y = -30;
 	}
 
 	private void setRightMove() {
-		mCoordinate.x = 600;
-		mCoordinate.y = 0;
 		mV.x = -7;
 		mV.y = -30;
+		mCoordinate.x = mCoordinate.x + 200;
 	}
 
 
