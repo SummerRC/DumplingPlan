@@ -1,60 +1,13 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rootView">
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/sdv_soho_mixture_gif"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/viewContainer" />
+        fresco:backgroundImage="@mipmap/soho_mixture_gif_place_holder" />
 
-    <ImageView
-        android:id="@+id/iv_kettle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/kettle"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="40dp"
-        android:layout_marginRight="130dp"/>
-
-    <ImageView
-        android:id="@+id/iv_basin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="30dp"
-        android:layout_marginLeft="100dp"
-        android:background="@anim/dough"/>
-
-    <ImageView
-        android:id="@+id/iv_stream"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="120dp"
-        android:layout_marginLeft="80dp"
-        android:visibility="invisible"
-        android:background="@mipmap/stream"/>
-
-    <LinearLayout
-        android:id="@+id/ll_tip_click_kettle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="60dp"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/tip_arrow_click_kettle"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/hint_click_kettle"/>
-    </LinearLayout>
-
-    <include layout="@layout/view_common"/>
-
-</FrameLayout>
+    <include layout="@layout/view_all_use" />
+</RelativeLayout>

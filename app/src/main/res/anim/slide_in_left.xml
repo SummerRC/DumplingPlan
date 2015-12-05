@@ -1,0 +1,5 @@
+<translate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="600"
+    android:fillAfter="true"
+    android:fromXDelta="-50%p"
+    android:toXDelta="0" />
