@@ -145,7 +145,7 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
             coordinate.y = staticSpirits.get(2).mCoordinate.y;
             Random r = new Random();
             AnimationSpirit animationSpirit = new AnimationSpirit(mContext, coordinate);
-            switch (r.nextInt(10)) {
+            switch (11) {
                 case 0:
                     animationSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.LEFT_ONE);
                     break;
@@ -177,7 +177,7 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
                     animationSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.RIGHT_FIVE);
                     break;
                 default:
-                    animationSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.LEFT_ONE);
+                    animationSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.RIGHT_FIVE);
             }
             animationSpirits.add(animationSpirit);
         }
@@ -214,7 +214,7 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
      */
     private boolean isSpiritValidate(int i) {
         PointF coordinate = animationSpirits.get(i).mCoordinate;
-        return (coordinate.x < -animationSpirits.get(i).mDimension.x || coordinate.x > PhoneWidth || coordinate.y > PhoneHeight);
+        return (coordinate.x < -animationSpirits.get(i).mDimension.x || coordinate.x > PhoneWidth || coordinate.x < 0 || coordinate.y < 0 || coordinate.y > PhoneHeight);
     }
 
     /**

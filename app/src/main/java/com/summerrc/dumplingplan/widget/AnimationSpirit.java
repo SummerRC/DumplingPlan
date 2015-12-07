@@ -105,13 +105,13 @@ public class AnimationSpirit {
     }
 
     private void setRightTwoMove() {
-        mV.x = 20 * 2;
+        mV.x = 20 * 4;
         mV.y = -30 * 2;
         mCoordinate.x = mCoordinate.x + 400;
     }
 
     private void setRightThreeMove() {
-        mV.x = 30 * 2;
+        mV.x = 30 * 6;
         mV.y = -50 * 2;
         mCoordinate.x = mCoordinate.x + 400;
     }
