@@ -17,7 +17,7 @@ public class AnimationSpirit {
 	private PointF mV;									//精灵的速度
 	public PointF mDimension;							//精灵的长宽
 	public enum Type {
-		LEFT, RIGHT
+		LEFT_ONE, LEFT_TWO, LEFT_THREE, LEFT_FOUR, LEFT_FIVE, RIGHT_ONE, RIGHT_TWO, RIGHT_THREE, RIGHT_FOUR, RIGHT_FIVE
 	}
 
 	public AnimationSpirit(Context context, PointF mCoordinate){
@@ -38,24 +38,91 @@ public class AnimationSpirit {
 		mDimension.x = mBitmap.getWidth();
 		mDimension.y = mBitmap.getHeight();
 		switch (type) {
-			case LEFT:
-				setLeftMove();
+			case LEFT_ONE:
+				setLeftOneMove();
 				break;
-			case RIGHT:
-				setRightMove();
+			case LEFT_TWO:
+				setLeftTwoMove();
+				break;
+			case LEFT_THREE:
+				setLeftThreeMove();
+				break;
+			case LEFT_FOUR:
+				setLeftFourMove();
+				break;
+			case LEFT_FIVE:
+				setLeftFourMove();
+				break;
+			case RIGHT_ONE:
+				setRightOneMove();
+				break;
+			case RIGHT_TWO:
+				setRightTwoMove();
+				break;
+			case RIGHT_THREE:
+				setRightThreeMove();
+				break;
+			case RIGHT_FOUR:
+				setRightFourMove();
+				break;
+			case RIGHT_FIVE:
+				setLeftFourMove();
 				break;
 		}
 	}
 
-	private void setLeftMove() {
-		mV.x = 7;
+	private void setLeftOneMove() {
+		mV.x = -30;
+		mV.y = -10;
+	}
+
+	private void setLeftTwoMove() {
+		mV.x = -15;
+		mV.y = -25;
+	}
+
+	private void setLeftThreeMove() {
+		mV.x = -10;
+		mV.y = -40;
+	}
+
+	private void setLeftFourMove() {
+		mV.x = -5;
 		mV.y = -30;
 	}
 
-	private void setRightMove() {
-		mV.x = -7;
+	private void setLeftFiveMove() {
+		mV.x = -2;
+		mV.y = -40;
+	}
+
+	private void setRightOneMove() {
+		mV.x = 7;
 		mV.y = -30;
-		mCoordinate.x = mCoordinate.x + 200;
+		mCoordinate.x = mCoordinate.x + 400;
+	}
+
+	private void setRightTwoMove() {
+		mV.x = 20;
+		mV.y = -30;
+		mCoordinate.x = mCoordinate.x + 400;
+	}
+
+	private void setRightThreeMove() {
+		mV.x = 30;
+		mV.y = -50;
+		mCoordinate.x = mCoordinate.x + 400;
+	}
+
+	private void setRightFourMove() {
+		mV.x = 40;
+		mV.y = -10;
+		mCoordinate.x = mCoordinate.x + 400;
+	}
+
+	private void setRightFiveMove() {
+		mV.x = 2;
+		mV.y = -40;
 	}
 
 

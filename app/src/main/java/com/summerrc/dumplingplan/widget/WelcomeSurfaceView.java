@@ -15,6 +15,7 @@ import com.summerrc.dumplingplan.ui.activity.WelcomeActivity;
 import com.summerrc.dumplingplan.utils.UIHelper;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * @author SummerRC on 2015/12/3 0011.
@@ -102,7 +103,6 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
         public void start() {
             mRun = true;
         }
-
     }
 
     /**
@@ -143,9 +143,43 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
             PointF coordinate = new PointF();
             coordinate.x = staticSpirits.get(2).mCoordinate.x;
             coordinate.y = staticSpirits.get(2).mCoordinate.y;
-            AnimationSpirit leftSpirit = new AnimationSpirit(mContext, coordinate);
-            leftSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.LEFT);
-            animationSpirits.add(leftSpirit);
+            Random r = new Random();
+            AnimationSpirit animationSpirit = new AnimationSpirit(mContext, coordinate);
+            switch (r.nextInt(10)) {
+                case 0:
+                    animationSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.LEFT_ONE);
+                    break;
+                case 1:
+                    animationSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.LEFT_TWO);
+                    break;
+                case 2:
+                    animationSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.LEFT_THREE);
+                    break;
+                case 3:
+                    animationSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.LEFT_FOUR);
+                    break;
+                case 4:
+                    animationSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.RIGHT_ONE);
+                    break;
+                case 5:
+                    animationSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.RIGHT_TWO);
+                    break;
+                case 6:
+                    animationSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.RIGHT_THREE);
+                    break;
+                case 7:
+                    animationSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.RIGHT_FOUR);
+                    break;
+                case 8:
+                    animationSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.LEFT_FIVE);
+                    break;
+                case 9:
+                    animationSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.RIGHT_FIVE);
+                    break;
+                default:
+                    animationSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.LEFT_ONE);
+            }
+            animationSpirits.add(animationSpirit);
         }
     }
 
@@ -218,7 +252,7 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
                                     break;
                                 case AWARD:
                                     mDrawThread.stop();
-                                    UIHelper.openAwardActivity((WelcomeActivity)mContext);
+                                    UIHelper.openAwardActivity((WelcomeActivity) mContext);
                                     break;
 
                             }
