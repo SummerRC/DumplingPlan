@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.summerrc.dumplingplan.R;
+import com.summerrc.dumplingplan.widget.WelcomeSurfaceView;
 
 /**
  * 自定义FrameLayout文字飞入飞出效果
@@ -18,6 +19,7 @@ import com.summerrc.dumplingplan.R;
  */
 public class WelcomeActivity extends Activity implements OnClickListener {
 
+	private WelcomeSurfaceView welcomeSurfaceView;
 	@Override
 	protected void onStop() {
 		super.onStop();
@@ -33,6 +35,7 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 
 		setContentView(R.layout.activity_welcome);
 		initView();
+		welcomeSurfaceView = (WelcomeSurfaceView)findViewById(R.id.welcomeSurfaceView);
 //		GameDataManager.init(getApplicationContext()).clean();
 //		GameDataManager.init(getApplicationContext());
 //		MusicPlayer.init(getApplicationContext());
@@ -59,36 +62,19 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.iv_stock:         //原木
-//				SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
 				Animation shake01 = AnimationUtils.loadAnimation(this, R.anim.shake);
 				findViewById(R.id.iv_stock).startAnimation(shake01);
 				break;
 			case R.id.iv_ventilator:    //抽油烟机
-//				SoundUtil.playSounds(SoundUtil.ONE_TWO, 0, getApplicationContext());
 				Animation shake02 = AnimationUtils.loadAnimation(this, R.anim.shake);
 				findViewById(R.id.iv_ventilator).startAnimation(shake02);
 				break;
-//			case R.id.iv_setting:		//设置
-////				SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
-////				UIHelper.openAboutUsActivity(this);
-//				break;
-//			case R.id.iv_start:			//开始
-//                UIHelper.openSelectFoodActivity(this);
-////				SoundUtil.playSounds(SoundUtil.ONE_ONE, 0, getApplicationContext());
-//				break;
-//			case R.id.iv_logo:			//logo
-////				SoundUtil.playSounds(SoundUtil.SETTING, 0, getApplicationContext());
-////				UIHelper.openSettingActivity(this);
-//				break;
-//            case R.id.iv_help:			//帮助
-////				SoundUtil.playSounds(SoundUtil.SETTING, 0, getApplicationContext());
-////				UIHelper.openSettingActivity(this);
-//                break;
-//            case R.id.iv_jiangbei:		//奖杯
-////				SoundUtil.playSounds(SoundUtil.SETTING, 0, getApplicationContext());
-//				UIHelper.openAwardActivity(this);
-//                break;
-
 		}
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		welcomeSurfaceView.destroyDrawingCache();
 	}
 }

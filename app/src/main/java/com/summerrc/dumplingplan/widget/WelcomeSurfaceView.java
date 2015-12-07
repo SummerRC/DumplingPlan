@@ -1,9 +1,7 @@
 package com.summerrc.dumplingplan.widget;
 
 import android.content.Context;
-
 import android.graphics.Canvas;
-
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -13,6 +11,8 @@ import android.view.SurfaceView;
 import android.view.WindowManager;
 
 import com.summerrc.dumplingplan.R;
+import com.summerrc.dumplingplan.ui.activity.WelcomeActivity;
+import com.summerrc.dumplingplan.utils.UIHelper;
 
 import java.util.ArrayList;
 
@@ -33,6 +33,7 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
     private ArrayList<StaticSpirit> staticSpirits;      //用于容纳静止的的精灵
     private Drawable mBackground;                       //背景
     private boolean play = false;                       //播放动画
+    private long mNextTime = 0L;                        //限制生成下一个动画精灵的时间间隔
 
     public WelcomeSurfaceView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -84,8 +85,9 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
                 drawStaticSpirits(canvas);
                 /** 检查动态精灵是否还在屏幕内 */
                 checkSpirits();
-                /** 生成动画精灵 */
+                /** 生成新的动画精灵 */
                 initAnimationSpirit();
+                /** 绘制已有的动画精灵 */
                 drawAnimationSpirits(canvas);
                 /** 捕获屏幕点击触摸事件 */
                 isHit();
@@ -107,8 +109,8 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
      * 修改画背景的方法
      */
     private void initStaticSpirit() {
-        StaticSpirit setting = new StaticSpirit(mContext, StaticSpirit.Type.SETTING);
-        StaticSpirit start = new StaticSpirit(mContext, StaticSpirit.Type.START);
+        StaticSpirit setting = new StaticSpirit(mContext, StaticSpirit.Type.START);
+        StaticSpirit start = new StaticSpirit(mContext, StaticSpirit.Type.SETTING);
         StaticSpirit logo = new StaticSpirit(mContext, StaticSpirit.Type.LOGO);
         StaticSpirit help = new StaticSpirit(mContext, StaticSpirit.Type.HELP);
         StaticSpirit award = new StaticSpirit(mContext, StaticSpirit.Type.AWARD);
@@ -135,7 +137,8 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
      * 生成精灵，并添加到精灵管理列表
      */
     private void initAnimationSpirit() {
-        if(play) {
+        if (play) {
+            play = false;
             /** 请修改此方法，使精灵从更多方向抛出 */
             PointF coordinate = new PointF();
             coordinate.x = staticSpirits.get(2).mCoordinate.x;
@@ -143,7 +146,6 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
             AnimationSpirit leftSpirit = new AnimationSpirit(mContext, coordinate);
             leftSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.LEFT);
             animationSpirits.add(leftSpirit);
-            play = false;
         }
     }
 
@@ -198,7 +200,28 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
                 for (int z = 0; z < staticSpirits.size(); z++) {
                     if (mTrack.get(i).x > staticSpirits.get(z).mCoordinate.x && mTrack.get(i).x < staticSpirits.get(z).mCoordinate.x + staticSpirits.get(z).mDimension.x) {
                         if (mTrack.get(i).y > staticSpirits.get(z).mCoordinate.y && mTrack.get(i).y < staticSpirits.get(z).mCoordinate.y + staticSpirits.get(z).mDimension.y) {
-                            play = true;
+                            switch (staticSpirits.get(z).type) {
+                                case START:
+                                    mDrawThread.stop();
+                                    UIHelper.openSelectFoodActivity((WelcomeActivity) mContext);
+                                    break;
+                                case SETTING:
+                                    break;
+                                case LOGO:
+                                    /** 到了计算好的时间就生成精灵 ，间隔时间1秒钟左右，用了一个随机数 */
+                                    if (mNextTime < System.currentTimeMillis()) {
+                                        play = true;
+                                        nextGenTime();
+                                    }
+                                    break;
+                                case HELP:
+                                    break;
+                                case AWARD:
+                                    mDrawThread.stop();
+                                    UIHelper.openAwardActivity((WelcomeActivity)mContext);
+                                    break;
+
+                            }
                         }
                     }
                 }
@@ -206,6 +229,13 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
         }
     }
 
+    /**
+     * 下一次生成精灵的时间，间隔时间1.几秒
+     */
+    private void nextGenTime() {
+        mNextTime = System.currentTimeMillis();
+        mNextTime += 200;
+    }
 
     /**
      * 屏幕点击事件的响应方法

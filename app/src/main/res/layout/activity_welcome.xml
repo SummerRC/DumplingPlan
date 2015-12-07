@@ -9,7 +9,7 @@
         android:layout_height="match_parent">
 
         <com.summerrc.dumplingplan.widget.WelcomeSurfaceView
-            android:id="@+id/welcomeView"
+            android:id="@+id/welcomeSurfaceView"
             android:layout_height="match_parent"
             android:layout_width="match_parent"/>
     </FrameLayout>
