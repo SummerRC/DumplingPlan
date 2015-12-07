@@ -11,11 +11,11 @@ public class AnimationSpirit {
     private Context mContext;
     private Bitmap mBitmap;
 
-    private final static float ACCELERATION_Y = 2F;        //Y方向加速度
-    private final static float ACCELERATION_X = 0F;        //X方向加速度
+    private final static float ACCELERATION_Y = 2F;       //Y方向加速度
+    private final static float ACCELERATION_X = 0F;       //X方向加速度
     public PointF mCoordinate;                            //精灵的坐标
     private PointF mV;                                    //精灵的速度
-    public PointF mDimension;                            //精灵的长宽
+    public PointF mDimension;                             //精灵的长宽
 
     public enum Type {
         LEFT_ONE, LEFT_TWO, LEFT_THREE, LEFT_FOUR, LEFT_FIVE, RIGHT_ONE, RIGHT_TWO, RIGHT_THREE, RIGHT_FOUR, RIGHT_FIVE
