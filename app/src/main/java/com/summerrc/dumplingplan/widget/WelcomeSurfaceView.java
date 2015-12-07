@@ -31,7 +31,6 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
     private final static int POINT_LIMIT = 5;
     private ArrayList<AnimationSpirit> animationSpirits;//用于容纳运动的精灵
     private ArrayList<StaticSpirit> staticSpirits;      //用于容纳静止的的精灵
-    private long mNextTime = 0L;                        //计算下次生成精灵的时间
     private Drawable mBackground;                       //背景
     private boolean play = false;                       //播放动画
 
@@ -85,14 +84,9 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
                 drawStaticSpirits(canvas);
                 /** 检查动态精灵是否还在屏幕内 */
                 checkSpirits();
-                if(play) {
-                    /** 到了计算好的时间就生成精灵 ，间隔时间0.1秒钟左右，用了一个随机数 */
-                    if (mNextTime < System.currentTimeMillis()) {
-                        initAnimationSpirit();
-                        nextGenTime();
-                    }
-                    drawAnimationSpirits(canvas);
-                }
+                /** 生成动画精灵 */
+                initAnimationSpirit();
+                drawAnimationSpirits(canvas);
                 /** 捕获屏幕点击触摸事件 */
                 isHit();
                 mHolder.unlockCanvasAndPost(canvas);
@@ -136,28 +130,21 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
         }
     }
 
-    /**
-     * 下一次生成精灵的时间，间隔时间1.几秒
-     */
-    private void nextGenTime() {
-        mNextTime = System.currentTimeMillis();
-        mNextTime += 300;
-    }
 
     /**
      * 生成精灵，并添加到精灵管理列表
      */
     private void initAnimationSpirit() {
-        /** 请修改此方法，使精灵从更多方向抛出 */
-        PointF coordinate = new PointF();
-        coordinate.x = staticSpirits.get(2).mCoordinate.x;
-        coordinate.y = staticSpirits.get(2).mCoordinate.y;
-        AnimationSpirit leftSpirit = new AnimationSpirit(mContext, coordinate);
-        leftSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.LEFT);
-        AnimationSpirit rightSpirit = new AnimationSpirit(mContext, coordinate);
-        rightSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.RIGHT);
-        animationSpirits.add(leftSpirit);
-        animationSpirits.add(rightSpirit);
+        if(play) {
+            /** 请修改此方法，使精灵从更多方向抛出 */
+            PointF coordinate = new PointF();
+            coordinate.x = staticSpirits.get(2).mCoordinate.x;
+            coordinate.y = staticSpirits.get(2).mCoordinate.y;
+            AnimationSpirit leftSpirit = new AnimationSpirit(mContext, coordinate);
+            leftSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.LEFT);
+            animationSpirits.add(leftSpirit);
+            play = false;
+        }
     }
 
     /**
@@ -211,7 +198,7 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
                 for (int z = 0; z < staticSpirits.size(); z++) {
                     if (mTrack.get(i).x > staticSpirits.get(z).mCoordinate.x && mTrack.get(i).x < staticSpirits.get(z).mCoordinate.x + staticSpirits.get(z).mDimension.x) {
                         if (mTrack.get(i).y > staticSpirits.get(z).mCoordinate.y && mTrack.get(i).y < staticSpirits.get(z).mCoordinate.y + staticSpirits.get(z).mDimension.y) {
-                            play = !play;
+                            play = true;
                         }
                     }
                 }
