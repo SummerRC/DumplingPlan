@@ -11,7 +11,7 @@ public class AnimationSpirit {
 	private Context mContext;
 	private Bitmap mBitmap;
 
-	private final static float ACCELERATION_Y = 1F;		//Y方向加速度
+	private final static float ACCELERATION_Y = 2F;		//Y方向加速度
 	private final static float ACCELERATION_X = 0F;		//X方向加速度
 	public PointF mCoordinate;							//精灵的坐标
 	private PointF mV;									//精灵的速度
@@ -51,7 +51,7 @@ public class AnimationSpirit {
 				setLeftFourMove();
 				break;
 			case LEFT_FIVE:
-				setLeftFourMove();
+				setLeftFiveMove();
 				break;
 			case RIGHT_ONE:
 				setRightOneMove();
@@ -66,51 +66,51 @@ public class AnimationSpirit {
 				setRightFourMove();
 				break;
 			case RIGHT_FIVE:
-				setLeftFourMove();
+				setRightFiveMove();
 				break;
 		}
 	}
 
 	private void setLeftOneMove() {
-		mV.x = -30;
-		mV.y = -10;
+		mV.x = -30*2;
+		mV.y = -10*2;
 	}
 
 	private void setLeftTwoMove() {
-		mV.x = -15;
-		mV.y = -25;
+		mV.x = -15*2;
+		mV.y = -25*2;
 	}
 
 	private void setLeftThreeMove() {
-		mV.x = -10;
-		mV.y = -40;
+		mV.x = -10*2;
+		mV.y = -40*2;
 	}
 
 	private void setLeftFourMove() {
-		mV.x = -5;
-		mV.y = -30;
+		mV.x = -5*2;
+		mV.y = -30*2;
 	}
 
 	private void setLeftFiveMove() {
-		mV.x = -2;
-		mV.y = -40;
+		mV.x = -2*10;
+		mV.y = -40*2;
 	}
 
 	private void setRightOneMove() {
-		mV.x = 7;
-		mV.y = -30;
+		mV.x = 7*2;
+		mV.y = -30*2;
 		mCoordinate.x = mCoordinate.x + 400;
 	}
 
 	private void setRightTwoMove() {
-		mV.x = 20;
-		mV.y = -30;
+		mV.x = 20*2;
+		mV.y = -30*2;
 		mCoordinate.x = mCoordinate.x + 400;
 	}
 
 	private void setRightThreeMove() {
-		mV.x = 30;
-		mV.y = -50;
+		mV.x = 30*2;
+		mV.y = -50*2;
 		mCoordinate.x = mCoordinate.x + 400;
 	}
 
@@ -121,8 +121,8 @@ public class AnimationSpirit {
 	}
 
 	private void setRightFiveMove() {
-		mV.x = 2;
-		mV.y = -40;
+		mV.x = 2*2;
+		mV.y = -40*2;
 	}
 
 
