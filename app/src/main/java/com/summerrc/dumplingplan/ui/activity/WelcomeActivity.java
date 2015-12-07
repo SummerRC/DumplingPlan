@@ -36,26 +36,17 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_welcome);
 		initView();
 		welcomeSurfaceView = (WelcomeSurfaceView)findViewById(R.id.welcomeSurfaceView);
-//		GameDataManager.init(getApplicationContext()).clean();
-//		GameDataManager.init(getApplicationContext());
-//		MusicPlayer.init(getApplicationContext());
-//		SoundUtil.initSounds(getApplicationContext());
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-//		MusicPlayer.startMusic();
 	}
 
 	public void initView() {
 		findViewById(R.id.iv_stock).setOnClickListener(WelcomeActivity.this);			//原木
 		findViewById(R.id.iv_ventilator).setOnClickListener(WelcomeActivity.this);		//抽油烟机
-//		findViewById(R.id.iv_setting).setOnClickListener(WelcomeActivity.this);			//设置
-//		findViewById(R.id.iv_start).setOnClickListener(WelcomeActivity.this);			//开始
-//		findViewById(R.id.iv_logo).setOnClickListener(WelcomeActivity.this);			//logo
-//		findViewById(R.id.iv_help).setOnClickListener(WelcomeActivity.this);			//帮助
-//		findViewById(R.id.iv_jiangbei).setOnClickListener(WelcomeActivity.this);		//奖杯
+
 	}
 
 	@Override
