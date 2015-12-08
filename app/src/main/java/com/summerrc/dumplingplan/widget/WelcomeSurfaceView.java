@@ -145,7 +145,7 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
             coordinate.y = staticSpirits.get(2).mCoordinate.y;
             Random r = new Random();
             AnimationSpirit animationSpirit = new AnimationSpirit(mContext, coordinate);
-            switch (11) {
+            switch (r.nextInt(10)) {
                 case 0:
                     animationSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.LEFT_ONE);
                     break;
@@ -177,7 +177,7 @@ public class WelcomeSurfaceView extends SurfaceView implements SurfaceHolder.Cal
                     animationSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.RIGHT_FIVE);
                     break;
                 default:
-                    animationSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.RIGHT_FIVE);
+                    animationSpirit.loadBitmap(R.mipmap.soho_welcome_anim_dumpling, AnimationSpirit.Type.RIGHT_ONE);
             }
             animationSpirits.add(animationSpirit);
         }
