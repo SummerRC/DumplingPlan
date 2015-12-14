@@ -6,8 +6,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="14dp"
         android:gravity="bottom"
         android:orientation="horizontal">
 
@@ -43,7 +43,7 @@
             android:id="@+id/iv_five"
             android:layout_width="81dp"
             android:layout_height="92dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="6dp"
             android:background="@mipmap/soho_select_seasoning_five" />
     </LinearLayout>
 
