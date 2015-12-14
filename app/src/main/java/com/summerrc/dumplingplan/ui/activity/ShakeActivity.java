@@ -177,7 +177,7 @@ public class ShakeActivity extends Activity implements Animation.AnimationListen
             switch (msg.what) {
                 case SENSOR_SHAKE:
                     activity.shake_count++;
-                    if (activity.shake_count == 10) {
+                    if (activity.shake_count == 17) {
                         activity.iv_jiangbei.setVisibility(View.VISIBLE);
                         activity.iv_finish.setVisibility(View.VISIBLE);
                         if (activity.mSensorManager != null) { // 取消监听器
