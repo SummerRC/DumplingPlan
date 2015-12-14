@@ -11,14 +11,16 @@ public class AnimationSpirit {
     private Context mContext;
     private Bitmap mBitmap;
 
-    private final static float ACCELERATION_Y = 2F;       //Y方向加速度
+    private final static float ACCELERATION_Y = 1.5F;       //Y方向加速度
     private final static float ACCELERATION_X = 0F;       //X方向加速度
     public PointF mCoordinate;                            //精灵的坐标
     private PointF mV;                                    //精灵的速度
     public PointF mDimension;                             //精灵的长宽
+    public static int x = 0;
+    public static int y = 0;
 
     public enum Type {
-        LEFT_ONE, LEFT_TWO, LEFT_THREE, LEFT_FOUR, LEFT_FIVE, RIGHT_ONE, RIGHT_TWO, RIGHT_THREE, RIGHT_FOUR, RIGHT_FIVE
+        ZERO, LEFT_ONE, LEFT_TWO, LEFT_THREE, LEFT_FOUR, LEFT_FIVE, RIGHT_ONE, RIGHT_TWO, RIGHT_THREE, RIGHT_FOUR, RIGHT_FIVE
     }
 
     public AnimationSpirit(Context context, PointF mCoordinate) {
@@ -40,6 +42,9 @@ public class AnimationSpirit {
         mDimension.x = mBitmap.getWidth();
         mDimension.y = mBitmap.getHeight();
         switch (type) {
+            case ZERO:
+                zero();
+                break;
             case LEFT_ONE:
                 setLeftOneMove();
                 break;
@@ -73,13 +78,18 @@ public class AnimationSpirit {
         }
     }
 
+    private void zero() {
+        mV.x = x;
+        mV.y = y;
+    }
+
     private void setLeftOneMove() {
         mV.x = -30 * 3;
         mV.y = -10 * 3;
     }
 
     private void setLeftTwoMove() {
-        mV.x = -15 * 2;
+        mV.x = -15 * 4;
         mV.y = -25 * 2;
     }
 
@@ -94,7 +104,7 @@ public class AnimationSpirit {
     }
 
     private void setLeftFiveMove() {
-        mV.x = -2 * 10;
+        mV.x = -2 * 30;
         mV.y = -40 * 2;
     }
 
@@ -105,13 +115,13 @@ public class AnimationSpirit {
     }
 
     private void setRightTwoMove() {
-        mV.x = 20 * 4;
-        mV.y = -30 * 2;
+        mV.x = 20 * 3;
+        mV.y = -20 * 2;
         mCoordinate.x = mCoordinate.x + 400;
     }
 
     private void setRightThreeMove() {
-        mV.x = 30 * 6;
+        mV.x = 3 * 6;
         mV.y = -50 * 2;
         mCoordinate.x = mCoordinate.x + 400;
     }
@@ -123,7 +133,7 @@ public class AnimationSpirit {
     }
 
     private void setRightFiveMove() {
-        mV.x = 2 * 2;
+        mV.x = -10 * 2;
         mV.y = -40 * 2;
     }
 
