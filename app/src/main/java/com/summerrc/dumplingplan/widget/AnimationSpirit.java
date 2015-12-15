@@ -11,7 +11,7 @@ public class AnimationSpirit {
     private Context mContext;
     private Bitmap mBitmap;
 
-    private final static float ACCELERATION_Y = 1.5F;       //Y方向加速度
+    private final static float ACCELERATION_Y = 1.5F;     //Y方向加速度
     private final static float ACCELERATION_X = 0F;       //X方向加速度
     public PointF mCoordinate;                            //精灵的坐标
     private PointF mV;                                    //精灵的速度
@@ -45,29 +45,32 @@ public class AnimationSpirit {
             case ZERO:
                 zero();
                 break;
-            case LEFT_ONE:
+            case LEFT_ONE:              //左1
                 setLeftOneMove();
                 break;
-            case LEFT_TWO:
+            case LEFT_TWO:              //左2
                 setLeftTwoMove();
                 break;
-            case LEFT_THREE:
+            case LEFT_THREE:            //左3
                 setLeftThreeMove();
                 break;
-            case LEFT_FOUR:
+            case LEFT_FOUR:             //左4
                 setLeftFourMove();
                 break;
             case LEFT_FIVE:
-                setLeftFiveMove();
+//                setLeftFiveMove();    左3
+                setRightThreeMove();        //中间
                 break;
             case RIGHT_ONE:
-                setRightOneMove();
+//                setRightOneMove();
+                setRightFourMove();
                 break;
             case RIGHT_TWO:
-                setRightTwoMove();
+//                setRightTwoMove();
+                setRightFiveMove();
                 break;
             case RIGHT_THREE:
-                setRightThreeMove();
+                setRightThreeMove();        //中间运动轨迹
                 break;
             case RIGHT_FOUR:
                 setRightFourMove();
