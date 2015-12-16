@@ -22,7 +22,7 @@
         android:id="@+id/iv_jiangbei"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@mipmap/soho_award_one_desc"
+        android:background="@mipmap/soho_award_five_desc"
         android:layout_centerInParent="true"
         android:visibility="gone" />
 
