@@ -2,6 +2,8 @@
 
 [![Gitter](https://badges.gitter.im/SummerRC/DumplingPlan.svg)](https://gitter.im/SummerRC/DumplingPlan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+[![Join the chat at https://gitter.im/SummerRC/DumplingPlan](https://badges.gitter.im/SummerRC/DumplingPlan.svg)](https://gitter.im/SummerRC/DumplingPlan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## 项目简介
         鬼话连篇：我还在帝都时，一个未曾谋面的妹子找我说想做一个关于饺子的游戏，看过几张妹子的手绘，对游戏的画风挺感兴趣的。
     但并没有决定要做这个游戏。后来，有朋友告诉我妹子颜值9.5+，这成了我无法拒绝的理由，后来，你们懂的......
