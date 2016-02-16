@@ -10,8 +10,7 @@ import java.util.HashMap;
  */
 public  class FoodTypeManager implements Serializable{
     public enum Food{
-        CABBAGE, CUCUMBER, EGGPLANT, PIMIENTO, TOMATO, BEEF, CHICKEN, CRAB, PORK, SHRIMP, BANANA,DRAGON_FRUIT, LEMON, MANGO_STEAN, WATERMELON
-        , OIL, SALT, SAUCE, DEFAULT
+        ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, O_ONE, O_TWO, O_THREE, O_FOUR, O_FIVE, DEFAULT
     }
     public static final String UNLOCK = "unlock";
     public static final String LOCK = "lock";
@@ -23,44 +22,45 @@ public  class FoodTypeManager implements Serializable{
      */
     public static HashMap<String, Integer> getHashMap(Food food) {
         HashMap<String, Integer> map = new HashMap<>();
+        /*HashMap<String, Integer> map = new HashMap<>();
         switch (food) {
-            case CABBAGE:
+            case ONE:
                 map.put(UNLOCK, R.mipmap.cabbage);
                 map.put(LOCK, R.mipmap.cabbage_lock);
                 break;
-            case CUCUMBER:
+            case TWO:
                 map.put(UNLOCK, R.mipmap.cucumber);
                 map.put(LOCK, R.mipmap.cucumber_lock);
                 break;
-            case EGGPLANT:
+            case THREE:
                 map.put(UNLOCK, R.mipmap.eggplant);
                 map.put(LOCK, R.mipmap.eggplant);               //Lock无
                 break;
-            case PIMIENTO:
+            case FOUR:
                 map.put(UNLOCK, R.mipmap.pimiento);
                 map.put(LOCK, R.mipmap.pimiento_lock);
                 break;
-            case TOMATO:
+            case FIVE:
                 map.put(UNLOCK, R.mipmap.tomato);
                 map.put(LOCK, R.mipmap.tomato_lock);
                 break;
-            case BEEF:
+            case SIX:
                 map.put(UNLOCK, R.mipmap.beef);
                 map.put(LOCK, R.mipmap.beef_lock);
                 break;
-            case CHICKEN:
+            case SEVEN:
                 map.put(UNLOCK, R.mipmap.chicken);
                 map.put(LOCK, R.mipmap.chicken_lock);
                 break;
-            case CRAB:
+            case EIGHT:
                 map.put(UNLOCK, R.mipmap.crab);
                 map.put(LOCK, R.mipmap.crab_lock);
                 break;
-            case PORK:
+            case NINE:
                 map.put(UNLOCK, R.mipmap.pork);
                 map.put(LOCK, R.mipmap.pork_lock);
                 break;
-            case SHRIMP:
+            case TEN:
                 map.put(UNLOCK, R.mipmap.shrimp);
                 map.put(LOCK, R.mipmap.shrimp_lock);
                 break;
@@ -93,7 +93,7 @@ public  class FoodTypeManager implements Serializable{
             case SAUCE:
                 map.put(UNLOCK, R.mipmap.sauce);
                 break;
-        }
+        }*/
         return map;
     }
 
@@ -105,59 +105,52 @@ public  class FoodTypeManager implements Serializable{
     public static Integer getFoodResourceId(Food food) {
         int resourceId = R.mipmap.ic_launcher;
         switch (food) {
-            case CABBAGE:
-                resourceId = R.mipmap.cabbage_description;
+            case ONE:
+                resourceId = R.mipmap.soho_food_one_desc;
                 break;
-            case CUCUMBER:
-                resourceId = R.mipmap.cucumber_description;
+            case TWO:
+                resourceId = R.mipmap.soho_food_two_desc;
                 break;
-            case EGGPLANT:
-                resourceId = R.mipmap.eggplant_description;
+            case THREE:
+                resourceId = R.mipmap.soho_food_three_desc;
                 break;
-            case PIMIENTO:
-                resourceId = R.mipmap.pimiento_description;
+            case FOUR:
+                resourceId = R.mipmap.soho_food_four_desc;
                 break;
-            case TOMATO:
-                resourceId = R.mipmap.tomato_description;
+            case FIVE:
+                resourceId = R.mipmap.soho_food_five_desc;
                 break;
-            case BEEF:
-                resourceId = R.mipmap.beef_description;
+            case SIX:
+                resourceId = R.mipmap.soho_food_six_desc;
                 break;
-            case CHICKEN:
-                resourceId = R.mipmap.chicken_description;
+            case SEVEN:
+                resourceId = R.mipmap.soho_food_seven_desc;
                 break;
-            case CRAB:
-                resourceId = R.mipmap.crab_description;
+            case EIGHT:
+                resourceId = R.mipmap.soho_food_eight_desc;
                 break;
-            case PORK:
-                resourceId = R.mipmap.pork_description;
+            case NINE:
+                resourceId = R.mipmap.soho_food_nine_desc;
                 break;
-            case SHRIMP:
-                resourceId = R.mipmap.shrimp_description;
+            case TEN:
+                resourceId = R.mipmap.soho_food_ten_desc;
                 break;
-            case BANANA:
-                resourceId = R.mipmap.banana_description;
+            case O_ONE:
+                resourceId = R.mipmap.soho_select_seasoning_one_desc;
                 break;
-            case DRAGON_FRUIT:
-                resourceId = R.mipmap.dragon_fruit_description;
+            case O_TWO:
+                resourceId = R.mipmap.soho_select_seasoning_two_desc;
                 break;
-            case LEMON:
-                resourceId = R.mipmap.lemon_description;
+            case O_THREE:
+                resourceId = R.mipmap.soho_select_seasoning_three_desc;
                 break;
-            case MANGO_STEAN:
-                resourceId = R.mipmap.mango_stean_description;
+            case O_FOUR:
+                resourceId = R.mipmap.soho_select_seasoning_four_desc;
                 break;
-            case WATERMELON:
-                resourceId = R.mipmap.watermelon_description;
+            case O_FIVE:
+                resourceId = R.mipmap.soho_select_seasoning_five_desc;
                 break;
-            case OIL:
-                resourceId = R.mipmap.oil_description;
-                break;
-            case SALT:
-                resourceId = R.mipmap.salt_description;
-                break;
-            case SAUCE:
-                resourceId = R.mipmap.sauce_description;
+            case DEFAULT:
                 break;
         }
         return resourceId;

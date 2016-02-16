@@ -1,114 +1,145 @@
 package com.summerrc.dumplingplan.ui.activity;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
+import android.app.Activity;
+import android.graphics.drawable.Animatable;
+import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
-import android.view.MotionEvent;
+import android.support.annotation.Nullable;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
-import android.widget.ImageView;
+import android.view.Window;
+import android.view.WindowManager;
+
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.controller.BaseControllerListener;
+import com.facebook.drawee.controller.ControllerListener;
+import com.facebook.drawee.interfaces.DraweeController;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.image.ImageInfo;
 import com.summerrc.dumplingplan.R;
-import com.summerrc.dumplingplan.config.GameDataManager;
-import com.summerrc.dumplingplan.config.StuffTypeManager;
-import com.summerrc.dumplingplan.utils.SoundUtil;
+import com.summerrc.dumplingplan.activion.listener.PlayAnimClickListener;
+import com.summerrc.dumplingplan.config.MMApplication;
 import com.summerrc.dumplingplan.utils.UIHelper;
+
 
 /**
  * @author SummerRC on 2015.07.12
  * description : 切馅界面
  */
-public class StuffingActivity extends BaseActivity implements View.OnClickListener{
-    private Bitmap bitmap_background_stuffing;
-    private Handler mHandler;
-    private ImageView iv_kitchen_knife_left;        //左边小刀
-    private ImageView iv_kitchen_knife_right;       //右边小刀
+public class StuffingActivity extends Activity {
 
     @Override
-    protected void setView() {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_stuffing);
         initView();
-        SoundUtil.playSounds(SoundUtil.FOUR_ONE, 0, getApplicationContext());
-        mHandler = new Handler();
-        /** 左边小刀的移动动画 */
-        mHandler.post(new Runnable() {
+        initOnClick();
+    }
+
+    private boolean tag = false;
+    private void initView() {
+        final Handler handler = new Handler();
+        final SimpleDraweeView sdv_soho_stuffing = (SimpleDraweeView) findViewById(R.id.sdv_soho_stuffing);
+        ControllerListener controllerListener = new BaseControllerListener<ImageInfo>() {
             @Override
-            public void run() {
-                TranslateAnimation translateAnimation1 = new TranslateAnimation(
-                        TranslateAnimation.RELATIVE_TO_PARENT, 0,
-                        TranslateAnimation.RELATIVE_TO_PARENT, 0,
-                        TranslateAnimation.RELATIVE_TO_SELF, -0.15f,
-                        TranslateAnimation.RELATIVE_TO_SELF, 0.15f);
-                translateAnimation1.setDuration(200);
-                translateAnimation1.setStartTime(0);
-                translateAnimation1.setRepeatCount(15);             //Integer.MAX_VALUE 可以设置无穷次
-                translateAnimation1.setRepeatMode(Animation.REVERSE);
-                iv_kitchen_knife_left.startAnimation(translateAnimation1);
+            public void onFinalImageSet(String id, @Nullable ImageInfo imageInfo, @Nullable Animatable anim) {
+                if (anim != null) {
+                    sdv_soho_stuffing.setOnClickListener(new PlayAnimClickListener(anim, handler, 3500,
+                            new PlayAnimClickListener.AnimStopCallBack() {
+                                @Override
+                                public void afterAnimStop() {
+                                    UIHelper.openDoughActivity(StuffingActivity.this);
+                                }
+                            }));
+                }
+            }
+        };
+
+        Uri uri = Uri.parse("res://com.summerrc.dumplingplan/" + R.mipmap.soho_stuffing_gif);
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setUri(uri)
+                .setAutoPlayAnimations(false)
+                .setControllerListener(controllerListener)
+                .build();
+
+        /** 设置Controller */
+        sdv_soho_stuffing.setController(controller);
+        setBackground();
+        setVisible();
+        findViewById(R.id.iv_setting).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MMApplication.isSelected = !MMApplication.isSelected;
+                setVisible();
             }
         });
-        /** 右边小刀的移动动画 */
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                TranslateAnimation translateAnimation = new TranslateAnimation(
-                        TranslateAnimation.RELATIVE_TO_PARENT, 0,
-                        TranslateAnimation.RELATIVE_TO_PARENT, 0,
-                        TranslateAnimation.RELATIVE_TO_SELF, 0.15f,
-                        TranslateAnimation.RELATIVE_TO_SELF, -0.15f);
-                translateAnimation.setDuration(200);
-                translateAnimation.setStartTime(0);
-                translateAnimation.setRepeatCount(15);             //Integer.MAX_VALUE 可以设置无穷次
-                translateAnimation.setRepeatMode(Animation.REVERSE);
-                iv_kitchen_knife_right.startAnimation(translateAnimation);
-            }
-        },0);
-        /** 动画结束之后自动进入下一个界面 */
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                UIHelper.openDoughActivity(StuffingActivity.this);
-            }
-        }, 3000);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(bitmap_background_stuffing==null || bitmap_background_stuffing.isRecycled()) {
-            bitmap_background_stuffing = BitmapFactory.decodeResource(getResources(), R.mipmap.background_stuffing);
-        }
-        findViewById(R.id.rootView).setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap_background_stuffing));
-    }
+    private void setVisible() {
+        if(MMApplication.isSelected) {
+            findViewById(R.id.iv_yingxiao).setVisibility(View.VISIBLE);
+            findViewById(R.id.iv_yingyue).setVisibility(View.VISIBLE);
+        } else {
+            findViewById(R.id.iv_yingxiao).setVisibility(View.GONE);
+            findViewById(R.id.iv_yingyue).setVisibility(View.GONE);
+            findViewById(R.id.iv_yingxiao).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MMApplication.isSelected_yinxiao = !MMApplication.isSelected_yinxiao;
+                    if(MMApplication.isSelected_yinxiao) {
+                        findViewById(R.id.iv_yingxiao).setBackgroundResource(R.mipmap.soho_select_seasoning_yinxiao_selected);
+                        findViewById(R.id.iv_yingyue).setBackgroundResource(R.mipmap.soho_select_seasoning_yinuser_selected);
+                    } else {
+                        findViewById(R.id.iv_yingxiao).setBackgroundResource(R.mipmap.soho_select_seasoning_yinxiao_unselected);
+                        findViewById(R.id.iv_yingyue).setBackgroundResource(R.mipmap.soho_select_seasoning_yinuser_unselected);
+                    }
+                }
+            });
+            findViewById(R.id.iv_yingyue).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MMApplication.isSelected_yinyue = !MMApplication.isSelected_yinyue;
+                    if(MMApplication.isSelected_yinyue) {
+                        findViewById(R.id.iv_yingxiao).setBackgroundResource(R.mipmap.soho_select_seasoning_yinxiao_selected);
+                        findViewById(R.id.iv_yingyue).setBackgroundResource(R.mipmap.soho_select_seasoning_yinuser_selected);
+                    } else {
+                        findViewById(R.id.iv_yingxiao).setBackgroundResource(R.mipmap.soho_select_seasoning_yinxiao_unselected);
+                        findViewById(R.id.iv_yingyue).setBackgroundResource(R.mipmap.soho_select_seasoning_yinuser_unselected);
+                    }
+                }
+            });
 
-    protected void initView() {
-        super.initView();
-        iv_kitchen_knife_left = (ImageView)findViewById(R.id.iv_kitchen_knife_left);
-        iv_kitchen_knife_right = (ImageView)findViewById(R.id.iv_kitchen_knife_right);
-        int stuffResourceId = StuffTypeManager.getStuffResourceId(GameDataManager.init(getApplicationContext()).getStuffType());
-        findViewById(R.id.iv_stuff).setBackgroundResource(stuffResourceId);
-    }
-
-    @Override
-    public void onClick(View v) {
-    }
-
-    /**
-     * 使是动画播放过程中其它组件点击事件失效
-     * */
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        return true;
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if(bitmap_background_stuffing != null && !bitmap_background_stuffing.isRecycled()) {
-            bitmap_background_stuffing.isRecycled();
-            bitmap_background_stuffing = null;
-            System.gc();
         }
     }
 
+    private void setBackground() {
+        if(MMApplication.isSelected) {
+            findViewById(R.id.iv_yingxiao).setBackgroundResource(R.mipmap.soho_select_seasoning_yinxiao_selected);
+            findViewById(R.id.iv_yingyue).setBackgroundResource(R.mipmap.soho_select_seasoning_yinuser_selected);
+        } else {
+            findViewById(R.id.iv_yingxiao).setBackgroundResource(R.mipmap.soho_select_seasoning_yinxiao_unselected);
+            findViewById(R.id.iv_yingyue).setBackgroundResource(R.mipmap.soho_select_seasoning_yinuser_unselected);
+        }
+    }
+
+
+    private void initOnClick() {
+        findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        findViewById(R.id.iv_setting).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.iv_yingxiao).setVisibility(View.INVISIBLE);
+                findViewById(R.id.iv_yingyue).setVisibility(View.INVISIBLE);
+            }
+        });
+    }
 }
