@@ -1,5 +1,6 @@
 # 饺子计划
-----
+
+[![Gitter](https://badges.gitter.im/SummerRC/DumplingPlan.svg)](https://gitter.im/SummerRC/DumplingPlan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## 项目简介
         鬼话连篇：我还在帝都时，一个未曾谋面的妹子找我说想做一个关于饺子的游戏，看过几张妹子的手绘，对游戏的画风挺感兴趣的。
