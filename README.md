@@ -1,6 +1,6 @@
 # 饺子计划
 
-[![Join the chat at https://gitter.im/SummerRC/DumplingPlan](https://badges.gitter.im/SummerRC/DumplingPlan.svg)](https://gitter.im/SummerRC/DumplingPlan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/SummerRC/DumplingPlan.svg?branch=master)](https://travis-ci.org/SummerRC/DumplingPlan.svg?branch=master)
+[![Join the chat at https://gitter.im/SummerRC/DumplingPlan](https://badges.gitter.im/SummerRC/DumplingPlan.svg)](https://gitter.im/SummerRC/DumplingPlan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/SummerRC/DumplingPlan.svg?branch=master)](https://travis-ci.org/SummerRC/DumplingPlan)
 
 ## 项目简介
         鬼话连篇：我还在帝都时，一个未曾谋面的妹子找我说想做一个关于饺子的游戏，看过几张妹子的手绘，对游戏的画风挺感兴趣的。
