@@ -1,7 +1,5 @@
 # 饺子计划
 
-[![Gitter](https://badges.gitter.im/SummerRC/DumplingPlan.svg)](https://gitter.im/SummerRC/DumplingPlan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
 [![Join the chat at https://gitter.im/SummerRC/DumplingPlan](https://badges.gitter.im/SummerRC/DumplingPlan.svg)](https://gitter.im/SummerRC/DumplingPlan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## 项目简介
