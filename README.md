@@ -1,3 +1,24 @@
+<h3 align="center">
+  <a href="https://www.yuxip.com">
+    <img src="\app\src\main\res\mipmap-hdpi/ic_launcher.png" width="150" /> <br />
+    DumplingPlan
+  </a>
+</h3>
+<p align="center">
+  <a href="https://github.com/SummerRC/WorldSay">WorldSay</a> &bull;
+  <b>DumplingPlan</b> &bull;
+  <a href="https://github.com/SummerRC/IngEatWhat">IngEatWhat</a> &bull;
+  <a href="https://github.com/SummerRC/BiLiBiLi">BiLiBiLi</a> &bull;
+  <a href="https://github.com/SummerRC/BabyComming">BabyComming</a> &bull;
+  <a href="https://github.com/SummerRC/python-webapp">python-webapp</a> &bull;
+  <a href="https://github.com/SummerRC/basic-blog">basic-blog</a> &bull;
+  <a href="https://github.com/SummerRC/Video">Video</a>
+</p>
+
+-------
+
+
+
 # 饺子计划
 
 [![Join the chat at https://gitter.im/SummerRC/DumplingPlan](https://badges.gitter.im/SummerRC/DumplingPlan.svg)](https://gitter.im/SummerRC/DumplingPlan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/SummerRC/DumplingPlan.svg?branch=master)](https://travis-ci.org/SummerRC/DumplingPlan)
@@ -12,8 +33,8 @@
     项目经理：婷女神
     项目原型创建：SummerRC
     UI设计师：木木皇上、凤梨姐姐、高孟大人、洪瑞琦妹子
-    Android开发人员：SummerRC 晓冬
-	后台：高强
+    Android开发人员：SummerRC 
+	后台：高强 晓冬
 	接口文档及测试网页：马总
 	测试：姚
 	
