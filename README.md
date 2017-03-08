@@ -1,5 +1,5 @@
 <h3 align="center">
-  <a href="https://www.yuxip.com">
+  <a href="https://www.baidusdu.com">
     <img src="\app\src\main\res\mipmap-hdpi/ic_launcher.png" width="150" /> <br />
     DumplingPlan
   </a>
@@ -27,6 +27,8 @@
         鬼话连篇：我还在帝都时，一个未曾谋面的妹子找我说想做一个关于饺子的游戏，看过几张妹子的手绘，对游戏的画风挺感兴趣的。
     但并没有决定要做这个游戏。后来，有朋友告诉我妹子颜值9.5+，这成了我无法拒绝的理由，后来，你们懂的......
         SummerRC表示说着玩的，有人信么？.....妹子萌值确实9.5+
+
+<img src="\DumplingPlan.gif" width="150" />
 
 ## 项目参与人员
     产品经理：木木皇上
