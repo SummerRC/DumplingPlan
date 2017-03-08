@@ -50,4 +50,4 @@
 
 ## 运行视频
 
-<img src="\DumplingPlan.gif" width="100%"/>
+<img src="\DumplingPlan.gif" width="60%"/>
