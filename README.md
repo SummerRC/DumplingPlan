@@ -1,5 +1,5 @@
 <h3 align="center">
-  <a href="https://www.baidusdu.com">
+  <a href="http://jekyll.baidusdu.com/DumplingPlan">
     <img src="\app\src\main\res\mipmap-hdpi/ic_launcher.png" width="150" /> <br />
     DumplingPlan
   </a>
