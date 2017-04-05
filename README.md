@@ -1,6 +1,6 @@
 <h3 align="center">
   <a href="http://jekyll.baidusdu.com/DumplingPlan">
-    <img src="https://github.com/SummerRC/DumplingPlan\app\src\main\res\mipmap-hdpi/ic_launcher.png" width="150" /> <br />
+    <img src="https://github.com/SummerRC/DumplingPlan/blob/master/app/src/main/res/mipmap-hdpi/ic_launcher.png" width="150" /> <br />
     DumplingPlan
   </a>
 </h3>
@@ -50,4 +50,4 @@
 
 ## 运行视频
 
-<img src="https://github.com/SummerRC/DumplingPlan\DumplingPlan.gif" width="60%"/>
+<img src="https://github.com/SummerRC/DumplingPlan/blob/master/DumplingPlan.gif" width="60%"/>
